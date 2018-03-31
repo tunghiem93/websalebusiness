@@ -1,0 +1,16 @@
+D:\MyProject\ProjectWebSaleLand.Data\bin\Debug\ProjectWebSaleLand.Data.dll.config
+D:\MyProject\ProjectWebSaleLand.Data\bin\Debug\ProjectWebSaleLand.Data.dll
+D:\MyProject\ProjectWebSaleLand.Data\bin\Debug\ProjectWebSaleLand.Data.pdb
+D:\MyProject\ProjectWebSaleLand.Data\bin\Debug\EntityFramework.dll
+D:\MyProject\ProjectWebSaleLand.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\MyProject\ProjectWebSaleLand.Data\bin\Debug\NSLog.dll
+D:\MyProject\ProjectWebSaleLand.Data\bin\Debug\EntityFramework.xml
+D:\MyProject\ProjectWebSaleLand.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\MyProject\ProjectWebSaleLand.Data\obj\Debug\ProjectWebSaleLand.Data.Migrations.createdb.resources
+D:\MyProject\ProjectWebSaleLand.Data\obj\Debug\ProjectWebSaleLand.Data.Migrations.updatetable.resources
+D:\MyProject\ProjectWebSaleLand.Data\obj\Debug\ProjectWebSaleLand.Data.Migrations.updatetable1.resources
+D:\MyProject\ProjectWebSaleLand.Data\obj\Debug\ProjectWebSaleLand.Data.Migrations.update3003.resources
+D:\MyProject\ProjectWebSaleLand.Data\obj\Debug\ProjectWebSaleLand.Data.Migrations.addLocation.resources
+D:\MyProject\ProjectWebSaleLand.Data\obj\Debug\ProjectWebSaleLand.Data.csproj.GenerateResource.Cache
+D:\MyProject\ProjectWebSaleLand.Data\obj\Debug\ProjectWebSaleLand.Data.dll
+D:\MyProject\ProjectWebSaleLand.Data\obj\Debug\ProjectWebSaleLand.Data.pdb

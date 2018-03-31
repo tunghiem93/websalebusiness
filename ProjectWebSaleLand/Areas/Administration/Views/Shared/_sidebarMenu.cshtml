@@ -1,0 +1,29 @@
+﻿@*@using ProjectWebSaleLand.Web.App_Start;*@
+@{
+    var user = Session["User"] as ProjectWebSaleLand.Shared.Models.UserSession;
+}
+
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+    <div class="menu_section">
+        <h3>&nbsp;</h3>
+        <ul class="nav side-menu">
+            <li><a href="@Url.Action("Index", "Employee", new { area = "" })">Nhân viên</a></li>
+            <li><a href="@Url.Action("Index", "Customer", new { area = "" })">Khách hàng</a></li>
+            <li><a href="@Url.Action("Index", "Category", new { area = "" })">Thể loại</a></li>
+            <li><a href="@Url.Action("Index", "Location", new { area = "" })">Khu vực</a></li>  
+            <li id="">
+                <a><i class="fa fa-cogs"></i>Sản phẩm<span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="@Url.Action("Index", "Land", new { area = "" })">Đất</a></li>   
+                    <li><a href="@Url.Action("Index", "House", new { area = "" })">Nhà</a></li>   
+                </ul>
+            </li>  
+        </ul>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        
+    });
+</script>
+
