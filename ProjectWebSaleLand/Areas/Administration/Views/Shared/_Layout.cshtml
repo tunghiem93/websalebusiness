@@ -158,18 +158,19 @@
     <!--iCheck-->
     <script src="@Url.Content("~/Libaraies/vendors/iCheck/icheck.min.js")"></script>
     <script src="@Url.Content("~/Scripts/js/custom.min.js")"></script>
-    <script src="@Url.Content("~/Assets/js/file/FileSaver.min.js")"></script>
+    @*<script src="@Url.Content("~/Assets/js/file/FileSaver.min.js")"></script>*@
     <!-- Switchery -->
     <script src="@Url.Content("~/Libaraies/vendors/switchery/dist/switchery.min.js")"></script>
     <!-- Validate -->
-    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/js/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
     <!-- Custom Scroll bar -->
+
     <script src="@Url.Content("~/Libaraies/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js")"></script>
 
     <!-- Daterangepicker -->
-    <script src="@Url.Content("~/js/moment/moment.min.js")"></script>
-    <script src="@Url.Content("~/js/datepicker/daterangepicker.js")"></script>
+    <script src="@Url.Content("~/Libaraies/vendors/moment/min/moment.min.js")"></script>
+    <script src="@Url.Content("~/Libaraies/vendors/bootstrap-daterangepicker/daterangepicker.js")"></script>
     <!-- Select2  trongntn-->
     <script src="@Url.Content("~/Libaraies/vendors/select2/dist/js/select2.full.js")"></script>
     <!-- Datatables -->
@@ -179,6 +180,9 @@
     <script src="@Url.Content("~/Libaraies/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js")"></script>
     <script src="@Url.Content("~/Libaraies/vendors/datatables.net-scroller/js/datatables.scroller.min.js")"></script>
     <script src="@Url.Content("~/Libaraies/vendors/timepicker/bootstrap-timepicker.min.js")"></script>
+
+    
+    <script src="@Url.Content("~/Scripts/js/validator.js")"></script>
     <script src="@Url.Content("~/Scripts/js/jcommon.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Libaraies/vendors/bootstrap-multiselect/bootstrap-multiselect.js")"></script>
 
@@ -226,7 +230,7 @@
         });
     </script>
 
-    <script src="@Url.Content("~/Scripts/functions.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/functions.js")"></script>*@
     @RenderSection("Scripts", false)
 
 

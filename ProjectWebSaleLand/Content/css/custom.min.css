@@ -5202,7 +5202,7 @@ ul.notifications {
     position: fixed;
     top: 0;
     width: 100%;
-    background: #fff url("../../Assets/Images/Preloader_21.gif") no-repeat center center;
+    background: #fff url("../../Images/Preloader_21.gif") no-repeat center center;
     opacity: .75;
     filter: alpha(opacity=75);
     z-index: 20140628;
