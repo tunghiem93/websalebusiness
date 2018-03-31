@@ -32,7 +32,7 @@
                                 }
                                 var item = Model.ListCate[i];
                                 <tr class="@styleRow">
-                                    <td style="color:#34495e; font-weight:bold;">&nbsp;&nbsp;&nbsp;@Model.ListLocation[i].Name</td>
+                                    <td style="color:#34495e; font-weight:bold;">&nbsp;&nbsp;&nbsp;@Model.ListCate[i].Name</td>
                                     <td>
                                         <a href="#"
                                            onclick="ShowView('@Url.Action("View", "Customer", new { id = item.ID })')"
@@ -81,12 +81,13 @@
 
         var table = $('#datatable-responsive').DataTable({
             "columnDefs": [
-                { "orderable": false, "targets": [4] },
-                { "width": "10%", "targets": [0] },
-                { "width": "3%", "targets": [1] },
-                { "width": "3%", "targets": [2] },
-                { "width": "3%", "targets": [3] },
-                { "width": "3%", "targets": [4] }
+                { "orderable": false, "targets": [5] },
+                { "width": "20%", "targets": [0] },
+                { "width": "10%", "targets": [1] },
+                { "width": "5%", "targets": [2] },
+                { "width": "5%", "targets": [3] },
+                { "width": "5%", "targets": [4] },
+                { "width": "8%", "targets": [5] }
             ],
             "order": [[0, 'asc']],
             "displayLength": 25,
