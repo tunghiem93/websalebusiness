@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ProjectWebSaleLand.Areas.Administration.Controllers
 {
-    public class LandController : Controller
+    public class LandController : BaseController
     {
         // GET: Administration/Land
         public ActionResult Index()

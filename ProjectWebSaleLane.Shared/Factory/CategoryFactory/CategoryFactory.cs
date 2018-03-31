@@ -58,6 +58,11 @@ namespace ProjectWebSaleLand.Shared.Factory.CategoryFactory
                         string id = Guid.NewGuid().ToString();
                         item.ID = id;
                         item.Name = model.Name;
+                        item.IsActive = true;
+                        item.CreatedDate = DateTime.Now;
+                        item.CreatedUser = model.CreatedUser;
+                        item.ModifiedDate = DateTime.Now;
+                        item.ModifiedUser = model.CreatedUser;
 
                         cxt.dbCategory.Add(item);
                         cxt.SaveChanges();
@@ -126,6 +131,12 @@ namespace ProjectWebSaleLand.Shared.Factory.CategoryFactory
                         {
                             itemUpdate.ID = itemUpdate.ID;
                             itemUpdate.Name = itemUpdate.Name;
+                            itemUpdate.IsActive = itemUpdate.IsActive;
+                            itemUpdate.CreatedDate = itemUpdate.CreatedDate;
+                            itemUpdate.CreatedUser = itemUpdate.CreatedUser;
+                            itemUpdate.ModifiedDate = DateTime.Now;
+                            itemUpdate.ModifiedUser = model.ModifiedUser;
+
                             cxt.dbCategory.Add(itemUpdate);
                             cxt.SaveChanges();
                             transaction.Commit();

@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace ProjectWebSaleLand.Areas.Administration.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
         private CategoryFactory _factory = null;
         // GET: Administration/Category
@@ -73,6 +73,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     return PartialView("Create", model);
                 }
                 string msg = "";
+                model.CreatedUser = CurrentUser.UserId;
                 var result = _factory.InsertCate(model, ref msg);
                 if (result)
                 {
@@ -120,6 +121,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     return PartialView("_Edit", model);
                 }
                 string msg = "";
+                model.ModifiedUser = CurrentUser.UserId;
                 var result = _factory.UpdateCate(model, ref msg);
                 if (result)
                 {

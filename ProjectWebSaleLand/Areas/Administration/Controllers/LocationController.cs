@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace ProjectWebSaleLand.Areas.Administration.Controllers
 {
-    public class LocationController : Controller
+    public class LocationController : BaseController
     {
         private LocationFactory _factory = null;
         // GET: Administration/Location
@@ -72,6 +72,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     return PartialView("Create", model);
                 }
                 string msg = "";
+                model.CreatedUser = CurrentUser.UserId;
                 var result = _factory.InsertLocation(model, ref msg);
                 if (result)
                 {
@@ -119,6 +120,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     return PartialView("_Edit", model);
                 }
                 string msg = "";
+                model.ModifiedUser = CurrentUser.UserId;
                 var result = _factory.UpdateLocation(model, ref msg);
                 if (result)
                 {

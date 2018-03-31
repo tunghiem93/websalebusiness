@@ -96,10 +96,10 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         item.Gender = model.Gender;
                         item.IsSupperAdmin = model.IsSupperAdmin;
                         item.IsActive = model.IsActive;
-                        item.CreatedDate = model.CreatedDate;
+                        item.CreatedDate = DateTime.Now;
                         item.CreatedUser = model.CreatedUser;
-                        item.ModifiedDate = model.ModifiedDate;
-                        item.ModifiedUser = model.ModifiedUser;
+                        item.ModifiedDate = DateTime.Now;
+                        item.ModifiedUser = model.CreatedUser;
                         item.ImageURL = model.ImageURL;
 
                         cxt.dbEmployee.Add(item);
@@ -178,7 +178,7 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                             itemUpdate.IsActive = itemUpdate.IsActive;
                             itemUpdate.CreatedDate = itemUpdate.CreatedDate;
                             itemUpdate.CreatedUser = itemUpdate.CreatedUser;
-                            itemUpdate.ModifiedDate = itemUpdate.ModifiedDate;
+                            itemUpdate.ModifiedDate = DateTime.Now;
                             itemUpdate.ModifiedUser = itemUpdate.ModifiedUser;
                             itemUpdate.ImageURL = itemUpdate.ImageURL;
 

@@ -9,8 +9,7 @@
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Tên thể loại: </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            @Html.TextBoxFor(model => model.Name, new { @class = "form-control has-feedback-left", placeholder = "", autocomplete = "off" })
-            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "", autocomplete = "off" })
             @Html.ValidationMessageFor(model => model.Name, null, new { @class = "label label-danger" })
         </div>
     </div>
