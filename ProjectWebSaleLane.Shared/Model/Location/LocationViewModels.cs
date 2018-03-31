@@ -9,10 +9,10 @@ namespace ProjectWebSaleLane.Shared.Model.Location
 {
     public class LocationViewModels
     {
-        public List<LocationModels> ListCate { get; set; }
+        public List<LocationModels> ListLocation { get; set; }
         public LocationViewModels()
         {
-            ListCate = new List<LocationModels>();
+            ListLocation = new List<LocationModels>();
         }
     }
 }
