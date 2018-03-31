@@ -11,7 +11,7 @@ namespace ProjectWebSaleLand.Shared.Factory.LocationFactory
 {
     public class LocationFactory
     {
-        public List<LocationModels> GetListLaction()
+        public List<LocationModels> GetListLocation()
         {
             using (DataContext cxt = new DataContext())
             {
