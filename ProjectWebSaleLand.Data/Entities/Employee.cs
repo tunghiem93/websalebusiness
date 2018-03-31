@@ -15,6 +15,12 @@ namespace ProjectWebSaleLand.Data.Entities
         public string Phone { get; set; }
         public DateTime BirthDate { get; set; }
         public bool Gender { get; set; }
+        public string Address { get; set; }
+        public bool MaritalStatus { get; set; }
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string Description { get; set; }
         public bool IsSupperAdmin { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }

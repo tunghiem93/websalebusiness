@@ -1,6 +1,10 @@
-﻿using System;
+﻿using ProjectWebSaleLand.Shared.Factory.CustomerFactory;
+using ProjectWebSaleLand.Shared.Model.Customer;
+using ProjectWebSaleLane.Shared.Model.Customer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,10 +12,168 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
 {
     public class CustomerController : Controller
     {
+        
+        private CustomerFactory _factory = null;
         // GET: Administration/Customer
+        public CustomerController()
+        {
+            _factory = new CustomerFactory();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            CustomerViewModels model = new CustomerViewModels();
+            return View(model);
+        }
+
+        public ActionResult Search(CustomerViewModels model)
+        {
+            try
+            {
+                var data = _factory.GetListCustomer();
+                model.ListCate = data;
+            }
+            catch (Exception e)
+            {
+                NSLog.Logger.Error("GetListCustomer: ", e);
+                return new HttpStatusCodeResult(400, e.Message);
+            }
+            return PartialView("_ListData", model);
+        }
+
+        public CustomerModels GetDetail(string id)
+        {
+            try
+            {
+                CustomerModels model = _factory.GetDetailCustomer(id);
+                return model;
+            }
+            catch (Exception ex)
+            {
+                NSLog.Logger.Error("GetDetailCustomer: ", ex);
+                return null;
+            }
+        }
+
+        [HttpGet]
+        public PartialViewResult Create()
+        {
+            CustomerModels model = new CustomerModels();
+            return PartialView("Create", model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(CustomerModels model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return PartialView("Create", model);
+                }
+                string msg = "";
+                var result = _factory.InsertCustomer(model, ref msg);
+                if (result)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("Name", msg);
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return PartialView("Create", model);
+                }
+            }
+            catch (Exception ex)
+            {
+                NSLog.Logger.Error("CustomerCreate: ", ex);
+                ModelState.AddModelError("Name", "Có một lỗi xảy ra!");
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return PartialView("Create", model);
+            }
+        }
+
+        [HttpGet]
+        public new PartialViewResult View(string id)
+        {
+            CustomerModels model = GetDetail(id);
+            return PartialView("_View", model);
+        }
+
+        [HttpGet]
+        public PartialViewResult Edit(string id)
+        {
+            CustomerModels model = GetDetail(id);
+            return PartialView("_Edit", model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(CustomerModels model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    model = GetDetail(model.ID);
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return PartialView("_Edit", model);
+                }
+                string msg = "";
+                var result = _factory.UpdateCustomer(model, ref msg);
+                if (result)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    model = GetDetail(model.ID);
+                    if (!string.IsNullOrEmpty(msg))
+                    {
+                        ModelState.AddModelError("Name", msg);
+                    }
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return PartialView("_Edit", model);
+                }
+            }
+            catch (Exception ex)
+            {
+                NSLog.Logger.Error("Customer_Edit: ", ex);
+                ModelState.AddModelError("Name", ex.Message);
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return PartialView("_Edit", model);
+            }
+        }
+
+        [HttpGet]
+        public PartialViewResult Delete(string id)
+        {
+            CustomerModels model = GetDetail(id);
+            return PartialView("_Delete", model);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(CustomerModels model)
+        {
+            try
+            {
+                string msg = "";
+                var result = _factory.DeleteCustomer(model.ID, ref msg);
+                if (!result)
+                {
+                    ModelState.AddModelError("Name", msg);
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return PartialView("_Delete", model);
+                }
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                NSLog.Logger.Error("Xóa khách hàng: ", ex);
+                ModelState.AddModelError("Name", ("Lỗi khi xóa thông tin khách hàng!"));
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return PartialView("_Delete", model);
+            }
         }
     }
 }

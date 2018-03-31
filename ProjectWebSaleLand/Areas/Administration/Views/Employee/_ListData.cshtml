@@ -1,9 +1,9 @@
-﻿@model ProjectWebSaleLane.Shared.Model.Location.LocationViewModels
+﻿@model ProjectWebSaleLane.Shared.Model.Employee.EmployeeViewModels
 <div class="table-responsive">
     <div class="x_panel">
         <div class="x_title">
             <h2>
-                Danh sách khu vực
+                Danh sách nhân viên
             </h2>
             <div class="clearfix"></div>
         </div>
@@ -13,31 +13,35 @@
                     <thead>
                         <tr class="headings">
                             <th class="column-title text-center">Tên</th>
+                            <th class="column-title text-center">Email</th>
+                            <th class="column-title text-center">Số điện thoại</th>
+                            <th class="column-title text-center">Ngày sinh</th>
+                            <th class="column-title text-center">Giới tính</th>
                             <th class="column-title text-center">Tùy chỉnh</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if (Model.ListLocation != null)
+                        @if (Model.ListEmployee != null)
                         {
-                            for (int i = 0; i < Model.ListLocation.Count; i++)
+                            for (int i = 0; i < Model.ListEmployee.Count; i++)
                             {
                                 string styleRow = "row-evenItem";
                                 if (i % 2 == 0)
                                 {
                                     styleRow = "row-oddItem";
                                 }
-                                var item = Model.ListLocation[i];
+                                var item = Model.ListEmployee[i];
                                 <tr class="@styleRow">
-                                    <td style="color:#34495e; font-weight:bold;">&nbsp;&nbsp;&nbsp;@Model.ListLocation[i].Name</td>
+                                    <td style="color:#34495e; font-weight:bold;">&nbsp;&nbsp;&nbsp;@Model.li[i].Name</td>
                                     <td>
                                         <a href="#"
-                                           onclick="ShowView('@Url.Action("View", "Location", new { id = item.ID })')"
+                                           onclick="ShowView('@Url.Action("View", "Customer", new { id = item.ID })')"
                                            class="btn btn-primary btn-xs view details"><i class="fa fa-eye"></i>&nbsp;Xem</a>&nbsp;&nbsp;
                                         <a href="#"
-                                           onclick="ShowView('@Url.Action("Edit", "Location", new { id = item.ID })')"
+                                           onclick="ShowView('@Url.Action("Edit", "Customer", new { id = item.ID })')"
                                            class="btn btn-info btn-xs edit details"><i class="fa fa-edit"></i>&nbsp;Sửa</a>&nbsp;&nbsp;
                                         <a href="#"
-                                           onclick="ShowView('@Url.Action("Delete", "Location", new { id = item.ID})')"
+                                           onclick="ShowView('@Url.Action("Delete", "Customer", new { id = item.ID})')"
                                            class="btn btn-danger btn-xs delete details"><i class="fa fa-trash-o"></i>&nbsp;Xóa</a>
                                     </td>
                                 </tr>
@@ -77,8 +81,12 @@
 
         var table = $('#datatable-responsive').DataTable({
             "columnDefs": [
-                { "orderable": false, "targets": [1] },
-                { "width": "5%", "targets": [1] }
+                { "orderable": false, "targets": [4] },
+                { "width": "10%", "targets": [0] },
+                { "width": "3%", "targets": [1] },
+                { "width": "3%", "targets": [2] },
+                { "width": "3%", "targets": [3] },
+                { "width": "3%", "targets": [4] }
             ],
             "order": [[0, 'asc']],
             "displayLength": 25,

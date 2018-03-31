@@ -7,9 +7,19 @@ using System.Threading.Tasks;
 namespace ProjectWebSaleLand.Shared
 {
     public class Commons
-    {
+    {        
         #region Enum
+        public enum EGender
+        {
+            Male = 1, //Nam
+            Female = 2, //Nữ
+        }
 
+        public enum EMarital
+        {
+            Male = 1, //Nam
+            Female = 2, //Nữ
+        }
         #endregion
 
         public const string Image100_100 = "http://placehold.it/100x100";

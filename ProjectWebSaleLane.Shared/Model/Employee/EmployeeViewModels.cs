@@ -9,10 +9,10 @@ namespace ProjectWebSaleLane.Shared.Model.Employee
 {
     public class EmployeeViewModels
     {
-        public List<EmployeeModels> ListCate { get; set; }
+        public List<EmployeeModels> ListEmployee { get; set; }
         public EmployeeViewModels()
         {
-            ListCate = new List<EmployeeModels>();
+            ListEmployee = new List<EmployeeModels>();
         }
     }
 }
