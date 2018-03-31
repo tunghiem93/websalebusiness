@@ -9,25 +9,10 @@ namespace ProjectWebSaleLand.Shared
     public class Commons
     {
         #region Enum
-        public enum ECateGgory
-        {
-            Land = 1,
-            House = 2,
-        }
-        public enum EArea
-        {
-            AnPhuDong = 1,
-            DongHungThuan = 2,
-            HiepThanh = 3,
-            TanChanhHiep = 4,
-            TanHungThuan = 5,
-            TanThoiHiep = 6,
-            TanThoiNhat = 7,
-            ThanhLoc = 8,
-            ThanhXuan = 9,
-            ThoiAn = 10,
-            TrungMyTay = 11,
-        }
+
         #endregion
+
+        public const string Image100_100 = "http://placehold.it/100x100";
+        public const string Image200_100 = "http://placehold.it/200x100";
     }
 }

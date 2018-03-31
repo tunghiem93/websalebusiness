@@ -17,7 +17,9 @@ namespace ProjectWebSaleLand.Shared.Model.Product
 
         public ProductViewModels()
         {
-            
+            ListProduct = new List<ProductModels>();
+            ListCate = new List<SelectListItem>();
+            ListArea = new List<SelectListItem>();
         }
     }
 }
