@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NüWeb F&B - Login</title>
+    <title>ThachMinh - Login</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href='@Url.Content("~/Libaraies/vendors/bootstrap/dist/css/bootstrap.min.css")'>
@@ -43,7 +43,7 @@
                 <section class="login_content">
                     @using (Html.BeginForm(new { @returnUrl = @Model.ReturnUrl }))
                     {
-                        <h1>Login</h1>
+                        <h1>Đăng nhập</h1>
                         <div class="form-group has-feedback">
                             @Html.TextBoxFor(model => model.Email,
                                 new
@@ -61,7 +61,7 @@
                                new
                                {
                                    @class = "form-control has-feedback-left",
-                                   @placeholder = "Password",
+                                   @placeholder = "Mật khẩu",
                                    @style = "margin-left:5px;",
                                    @required = "required"
                                })
@@ -83,11 +83,11 @@
                         <div class="checkbox text-left" style="margin-left:-15px;">
                             <label>
                                 @Html.CheckBoxFor(model => model.RememberMe, new { @class = "flat", @check = "true" })
-                                Remember me
+                                Ghi nhớ mật khẩu
                             </label>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-default submit">Log in</button>
+                            <button type="submit" class="btn btn-default submit">Đăng nhập</button>
                         </div>
                         <div class="clearfix"></div>
                         <div class="separator">
@@ -97,10 +97,10 @@
                             <div>
                                 <h1>
                                 @*<i class="fa fa-cloud"></i>*@
-                                    <img src="~/Assets/Images/logo.png" height="40" />
-                                 NüWeb F&B</h1>
-                                <p><strong>&copy; @DateTime.Now.Year.ToString() <a href="http://www.newstead.com.sg/" target="_blank">Newstead Technologies Pte. Ltd.</a></strong></p>
-                                <p>Version <strong>@ViewBag.Version</strong></p>
+                                    @*<img src="~/Assets/Images/logo.png" height="40" />*@
+                                 Thạch Minh</h1>
+                                <p><strong>&copy; @DateTime.Now.Year.ToString() <a href="http://www.newstead.com.sg/" target="_blank">Hồ Chí Minh</a></strong></p>
+                                <p>Phiên bản <strong>@ViewBag.Version</strong></p>
                             </div>
                         </div>
                     }

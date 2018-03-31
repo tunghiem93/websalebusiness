@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NüWeb F&B | @ViewBag.Title</title>
+    <title>Minh Thạch | @ViewBag.Title</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href='@Url.Content("~/Libaraies/vendors/bootstrap/dist/css/bootstrap.min.css")'>
     <!--Font Awesome-->
@@ -107,10 +107,9 @@
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0; background-color:#F2F2F2;">
                         <a href="@Url.Action("Index", "Home", new { area = "" })" class="site_title">
-                            @*<i class="fa fa-cloud"></i>
-                                <span>NüWeb F&B</span>*@
-                            <img src="~/Assets/Images/logo.png" height="35" />
-                            <span style="color: #2A3F54;">NüWeb F&B</span>
+                            <span class="fa fa-home" style="color: black;">&nbsp; Minh Thạch</span>
+                            @*<img src="~/Assets/Images/logo.png" height="35" />*@
+                            
                         </a>
                     </div>
                     <div class="clearfix"></div>
@@ -134,20 +133,6 @@
                                 </div>
                             }
                         }
-                        @*<div class="profile_pic">
-                                <img src="@Url.Content("~/Assets/images/picture.jpg")" alt="..." class="img-circle profile_img">
-                            </div>
-                            <div class="profile_info">
-                                @*<span>Welcome,</span>
-                                @{
-                                    var user = Session["User"] as ProjectWebSaleLand.Shared.Models.UserSession;
-                                    if (user != null)
-                                    {
-                                        <h2>@Html.Raw(user.UserName)</h2>
-                                    }
-                                }
-
-                            </div>*@
                     </div>
                     <br />
                     <!-- sidebar menu -->
@@ -158,7 +143,7 @@
 
             @Html.Partial("_topNavigation")
             @RenderBody()
-            @Html.Partial("_footer")
+            @*@Html.Partial("_footer")*@
         </div>
     </div>
 
