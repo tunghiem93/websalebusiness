@@ -31,7 +31,7 @@ namespace ProjectWebSaleLand.Shared.Factory
                     info.Password = CommonHelper.GetSHA512(info.Password);
                     string serverImage = ConfigurationManager.AppSettings["PublicImages"];
 
-                    var emp = _db.dbEmployee.Where(o => o.Email == info.Email.ToLower().Trim() && o.PassWord == info.Password).FirstOrDefault();
+                    var emp = _db.dbEmployee.Where(o => o.Email == info.Email.ToLower().Trim() && o.Password == info.Password).FirstOrDefault();
                     if (emp != null)
                     {
                         user = new LoginResponseModel()

@@ -21,7 +21,7 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         ID = o.ID,
                         Name = o.Name,
                         Email = o.Email,
-                        Password = o.PassWord,
+                        Password = o.Password,
                         Phone = o.Phone,
                         BirthDate = o.BirthDate,
                         Gender = o.Gender,
@@ -54,7 +54,7 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         ID = o.ID,
                         Name = o.Name,
                         Email = o.Email,
-                        Password = o.PassWord,
+                        Password = o.Password,
                         Phone = o.Phone,
                         BirthDate = o.BirthDate,
                         Gender = o.Gender,
@@ -90,7 +90,7 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         item.ID = id;
                         item.Name = model.Name;
                         item.Email = model.Email;
-                        item.PassWord = model.Password;
+                        item.Password = model.Password;
                         item.Phone = model.Phone;
                         item.BirthDate = model.BirthDate;
                         item.Gender = model.Gender;
@@ -170,7 +170,7 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                             itemUpdate.ID = itemUpdate.ID;
                             itemUpdate.Name = itemUpdate.Name;
                             itemUpdate.Email = itemUpdate.Email;
-                            itemUpdate.PassWord = itemUpdate.PassWord;
+                            itemUpdate.Password = itemUpdate.Password;
                             itemUpdate.Phone = itemUpdate.Phone;
                             itemUpdate.BirthDate = itemUpdate.BirthDate;
                             itemUpdate.Gender = itemUpdate.Gender;
