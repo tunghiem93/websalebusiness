@@ -116,7 +116,6 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             {                
                 if (!ModelState.IsValid)
                 {
-                    model = GetDetail(model.ID);
                     Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return PartialView("_Edit", model);
                 }

@@ -31,7 +31,6 @@ namespace ProjectWebSaleLand.Shared.Model.Customer
         public string Street { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        [Required(ErrorMessage = "Làm ơn nhập mô tả chi tiết!")]
         public string Description { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
@@ -43,10 +42,11 @@ namespace ProjectWebSaleLand.Shared.Model.Customer
         public List<SelectListItem> ListGender { get; set; }
         public CustomerModels()
         {
+            BirthDate = new DateTime(1990, 01, 01);
             ListMarital = new List<SelectListItem>()
             {
-                new SelectListItem() {  Text = "Độc thân", Value = "True"},
-                new SelectListItem() { Text = "Kết hôn", Value = "False"}
+                new SelectListItem() {  Text = "Độc thân", Value = "False"},
+                new SelectListItem() { Text = "Kết hôn", Value = "True"}
             };
 
             ListGender = new List<SelectListItem>()

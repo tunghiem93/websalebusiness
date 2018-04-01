@@ -66,6 +66,10 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         {
             try
             {
+                if (!model.Password.Trim().ToLower().Equals(model.ConfirmPassword.ToString().Trim().ToLower()))
+                {
+                    ModelState.AddModelError("ConfirmPassword", "Làm ơn xác nhận lại mật khẩu!");
+                }
                 if (!ModelState.IsValid)
                 {
                     Response.StatusCode = (int)HttpStatusCode.BadRequest;
@@ -113,9 +117,12 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         {
             try
             {
+                if (!model.Password.Trim().ToLower().Equals(model.ConfirmPassword.ToString().Trim().ToLower()))
+                {
+                    ModelState.AddModelError("ConfirmPassword", "Làm ơn xác nhận lại mật khẩu!");
+                }
                 if (!ModelState.IsValid)
                 {
-                    model = GetDetail(model.ID);
                     Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return PartialView("_Edit", model);
                 }
