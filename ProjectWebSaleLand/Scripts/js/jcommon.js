@@ -24,13 +24,6 @@ function IndexCheckAll(containElementSelector, e) {
 }
 
 function ToggleBtnDelete() {
-    //if ($(".gridview tbody input[type='checkbox']:checked").length > 0) {
-    //    $("#btn-delete").removeClass('disabled');
-    //    $("#btn-actives").removeClass('disabled');
-    //} else {
-    //    $("#btn-delete").addClass('disabled');
-    //    $("#btn-actives").addClass('disabled');
-    //}
 
     var totalRow = $(".gridview tbody input[type='checkbox']").length;
     var totalChecked = $(".gridview tbody input[type='checkbox']:checked").length;
@@ -67,7 +60,6 @@ function include(scriptUrl) {
 
 /*Call Search - edit*/
 /** Global variables **/
-var StoreID = "";
 var ControllerName;
 var SelectingCateID = "0";
 
@@ -147,13 +139,9 @@ function Search() {
             $(".se-pre-con").show();
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            //$(".search-form .validateLevel").html('' + errorThrown);
-            //$(".search-form .validateLevel").parents('.form-group').addClass('has-error');
         },
         success: function (data) {
             $(".gridview").html(data);
-            //$(".search-form .validateLevel").html('');
-            //$(".search-form .validateLevel").parents('.form-group').removeClass('has-error');
         },
         complete: function () {
             $(".se-pre-con").hide();
@@ -184,151 +172,6 @@ function ChangeCategory(ddl) {
         SelectingCateID = "0";
 }
 
-function LoadPrinter(elementDiv) {
-    $(".se-pre-con").show();
-    $.ajax({
-        url: CreateAbsoluteUrl("LoadPrinter"),
-        type: "post",
-        traditional: true,
-        data: { StoreID: StoreID },
-        dataType: 'html',
-        success: function (data) {
-            $(".se-pre-con").hide();
-            $(elementDiv).html(data);
-            LoadTimeSlot();
-        }
-    });
-}
-
-function LoadCategory(cateComponent) {
-    $(".se-pre-con").show();
-    $.ajax({
-        url: CreateAbsoluteUrl("LoadCategory"),
-        type: "post",
-        traditional: true,
-        data: { StoreID: StoreID, itemType: ItemType, cateID: SelectingCateID },
-        dataType: 'html',
-        success: function (data) {
-            $(".se-pre-con").hide();
-            $(cateComponent).html(data);
-            LoadSeason();
-        }
-    });
-}
-
-function LoadTimeSlot() {
-    $(".se-pre-con").show();
-    $(".timeslot").html('');
-    $.ajax({
-        url: CreateAbsoluteUrl("LoadTimeSlot"),
-        type: "post",
-        traditional: true,
-        data: { StoreID: StoreID },
-        dataType: 'html',
-        success: function (data) {
-            $(".se-pre-con").hide();
-            $(".timeslot").html(data);
-            //loadServiceCharge
-            LoadServiceCharge()
-        }
-    });
-}
-
-function LoadServiceCharge() {
-    $('#txtServiceCharge').val(0);
-    $(".se-pre-con").show();
-    $.ajax({
-        url: CreateAbsoluteUrl("LoadServiceCharge"),
-        type: "post",
-        traditional: true,
-        data: { StoreID: StoreID },
-        dataType: 'html',
-        success: function (data) {
-            $(".se-pre-con").hide();
-            var obj = $.parseJSON(data)[0];
-            if (obj != undefined) {
-                var value = obj.Value;
-                var IsCurrency = eval(obj.IsCurrency); //False : %
-                var IsIncludedOnBill = eval(obj.IsIncludedOnBill);
-                $('#txtServiceCharge').val(value);
-                if (!IsCurrency) {
-                    $('#chbServiceCharge').attr('disabled', false);
-                } else if (IsCurrency || IsIncludedOnBill) {
-                    $('#chbServiceCharge').attr('disabled', true);
-                }
-            }
-
-        }
-    });
-}
-
-function LoadSeason() {
-    $(".se-pre-con").show();
-    $.ajax({
-        url: CreateAbsoluteUrl("LoadSeason"),
-        type: "post",
-        traditional: true,
-        data: { StoreID: StoreID },
-        dataType: 'json',
-        success: function (lstSeason) {
-            $(".se-pre-con").hide();
-            $(".ddl-prices").each(function (e) {
-                AddOptionForDDLSeason(this, lstSeason);
-                SetSelectedSeason(this);
-                //======
-            });
-            LoadPrinter('.printer');
-        }
-    });
-}
-
-function LoadZone(zoneComponent) {
-    $(".se-pre-con").show();
-    $.ajax({
-        url: CreateAbsoluteUrl("LoadZone"),
-        type: "post",
-        traditional: true,
-        data: { StoreID: StoreID },
-        dataType: 'html',
-        success: function (data) {
-            $(".se-pre-con").hide();
-            $(zoneComponent).html(data);
-        }
-    });
-}
-
-function LoadParentCategory(elementDiv, ProductTypeID) {
-    $('#imgLoading').show();
-    $.ajax({
-        url: CreateAbsoluteUrl("LoadParentCategory"),
-        type: "post",
-        traditional: true,
-        data: { StoreID: StoreID, ProductTypeID: ProductTypeID },
-        dataType: 'html',
-        success: function (data) {
-            $('#imgLoading').hide();
-            $(elementDiv).html(data);
-        }
-    });
-}
-
-//function LoadRole(Component) {
-//    $(".se-pre-con").show();
-//    var listStoreId = [];
-//    listStoreId.push(StoreID);
-//    $.ajax({
-//        url: CreateAbsoluteUrl("GetRoles"),
-//        type: "post",
-//        traditional: true,
-//        data: { listStoreId: listStoreId },
-//        dataType: 'html',
-//        success: function (data) {
-//            $(".se-pre-con").hide();
-//            $(Component).html(data);
-//        }
-//    });
-//}
-
 
 function AddOptionForDDLSeason(ddl, lstSeason) {
     $(ddl).empty();
@@ -356,14 +199,6 @@ function ChangeSeason(ddl) {
         $(ddl).parents('.form-group').find('input[name="SelectingSeason"]').val($(ddl).val());
 }
 
-function ResizeModal(element, h) {
-    var heightElement = $(element).height() + 100;
-    var heightMain = $(window).height();
-    if (heightElement > heightMain) {
-        $(element).css({ "overflow": "auto", "height": heightMain - h + "px" })
-    }
-}
-
 
 
 function formatDate(date) {
@@ -384,96 +219,6 @@ function formatDate(date) {
     return strDate + " " + strTime;
 }
 
-//*01-08-2017*/
-
-function AddOrSubtract(_type, txtInput) {
-    var value = $(txtInput).val();
-    if (value == '')
-        value = 0;
-    if (_type == 'add') { //add
-        value++;
-    } else if (_type == 'sub') {//subtract
-        if (value == 0) {
-            value = 0;
-        } else {
-            value--;
-        }
-    }
-    $(txtInput).val(value);
-}
-
-function SelectOrDeselect(_status, classObjectInput) {
-    $(classObjectInput).prop('checked', _status);
-}
-
-function CheckPeriodForProduct(listItem, _value, _typePrice) {
-    var _IsFlag = false;
-    $(listItem).each(function (index, value) {
-        var OffSet = $(this).data('value');
-        var period = $(this).find('#lblperiod' + _typePrice + '_' + OffSet).text();
-        var nameperiodtype = $(this).find('#lblnameperiodtype' + _typePrice + '_' + OffSet).text();
-        var itemValue = period + nameperiodtype;
-        if (itemValue == _value) {
-            _IsFlag = true;
-            return true;
-        }
-    });
-    return _IsFlag;
-}
-
-//=========
-function CheckStatusActiveForProduct(listItem, _typePrice) {
-    var _IsFlag = false;
-    $(listItem).each(function (index, value) {
-        var OffSet = $(this).data('value');
-        var status = $(this).find('#lblstatus' + _typePrice + '_' + OffSet).text().replace(' ', '');
-        if (status == 'Active') {
-            _IsFlag = true;
-        }
-        return true;
-    });
-    return _IsFlag;
-}
-
-function MarkStart(_str, _beg, _end) {
-    var ret = _str;
-    if (_str.length > 4) /* normal string */
-        ret = ret.substring(0, _beg) +
-            '*'.repeat(_end - _beg) +
-            ret.substring(_end, ret.length);
-    else /* short string */
-        ret = _str;
-
-    return ret;
-}
-
-/****** key number ***/
-function KeyNumberCheck() {
-    $(".keyNumber").keypress(function (e) {
-        var dataType = $(e.target).attr('data-type');
-        var exceptList = [8]; /* backspace key */
-
-        if (dataType == "float") {
-            exceptList.push(46); /* period key */
-        }
-
-        if (window.event) {//chrome and IE
-            if (exceptList.indexOf(event.keyCode) >= 0) {
-                return true;
-            }
-            else if (event.keyCode < 48 || 57 < event.keyCode) {
-                return (false);
-            }
-        } else {
-            if (exceptList.indexOf(e.which) >= 0) { /* backspace key */
-                return true;
-            }
-            else if (e.which < 48 || 57 < e.which) {
-                return (false);//firefox
-            }
-        }
-    });
-}
 function disableButton(btn, status) {
     if (status) {
         $(btn).addClass('disabled');

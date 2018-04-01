@@ -32,7 +32,20 @@
                                 }
                                 var item = Model.ListCate[i];
                                 <tr class="@styleRow">
-                                    <td style="color:#34495e; font-weight:bold;">&nbsp;&nbsp;&nbsp;@Model.ListCate[i].Name</td>
+                                    <td style="color:#34495e; font-weight:bold; ">&nbsp;&nbsp;&nbsp;@item.Name</td>
+                                    <td style="text-align: center; ">@item.Email</td>
+                                    <td style="text-align: center; ">@item.Phone</td>
+                                    <td style="text-align: center; ">@item.BirthDate.ToString("dd/MM/yyyy")</td>
+                                    <td style="text-align: center; ">
+                                        @if (item.Gender)
+                                        {
+                                            <span class="label label-success">Nữ</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="label label-danger">Nam</span>
+                                        }
+                                    </td>
                                     <td>
                                         <a href="#"
                                            onclick="ShowViewOrEdit('@Url.Action("View", "Customer", new { id = item.ID })')"
