@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +11,27 @@ namespace ProjectWebSaleLand.Shared.Model.Employee
     public class EmployeeModels
     {
         public string ID { get; set; }
+        [Required(ErrorMessage = "Làm ơn nhập tên!")]
         public string Name { get; set; }
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail không hợp lệ")]
         public string Email { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Làm ơn xác nhận lại mật khẩu!")]
+        [DataType(DataType.Password)]        
+        public string ConfirmPassword { get; set; }
+        [RegularExpression("([0-9]+)", ErrorMessage = "Làm ơn nhập số điện thoại!")]
         public string Phone { get; set; }
         public DateTime BirthDate { get; set; }
         public bool Gender { get; set; }
+        [Required(ErrorMessage = "Làm ơn nhập địa chỉ!")]
         public string Address { get; set; }
         public bool MaritalStatus { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        [Required(ErrorMessage = "Làm ơn nhập mô tả chi tiết!")]
         public string Description { get; set; }
         public bool IsSupperAdmin { get; set; }
         public bool IsActive { get; set; }

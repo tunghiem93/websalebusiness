@@ -1,4 +1,6 @@
-﻿using ProjectWebSaleLand.Shared.Factory.ProductFactory;
+﻿using ProjectWebSaleLand.Shared.Factory.CategoryFactory;
+using ProjectWebSaleLand.Shared.Factory.LocationFactory;
+using ProjectWebSaleLand.Shared.Factory.ProductFactory;
 using ProjectWebSaleLand.Shared.Model.Product;
 using System;
 using System.Collections.Generic;
@@ -10,19 +12,36 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
 {
     public class HomeController : Controller
     {
-        private ProductFactory _productFactory = null;
+        private ProductFactory _factoryPro = null;
+        private CategoryFactory _factoryCate = null;
+        private LocationFactory _factoryLoc = null;
 
         public HomeController()
         {
-            _productFactory = new ProductFactory();
+            _factoryPro = new ProductFactory();
+            _factoryCate = new CategoryFactory();
+            _factoryLoc = new LocationFactory();
         }
         // GET: ClientSite/Home
         public ActionResult Index()
         {
             try
             {
-                ProductModels model = new ProductModels();
-                //var listProduct = _productFactory.GetPromotion();
+                ProductViewModels model = new ProductViewModels();
+                var data = _factoryPro.GetListProduct();
+                model.ListProduct = data;
+                var lstCate = _factoryCate.GetListCate();
+                model.ListCate = lstCate.Where(w => w.IsActive).Select(o => new SelectListItem()
+                {
+                    Value = o.ID,
+                    Text = o.Name,
+                }).ToList();
+                var lstLoc = _factoryLoc.GetListLocation();
+                model.ListArea = lstLoc.Where(w => w.IsActive).Select(o => new SelectListItem()
+                {
+                    Value = o.ID,
+                    Text = o.Name,
+                }).ToList();
                 return View();
             }
             catch (Exception ex)

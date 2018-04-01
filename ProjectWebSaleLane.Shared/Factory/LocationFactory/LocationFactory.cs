@@ -17,7 +17,7 @@ namespace ProjectWebSaleLand.Shared.Factory.LocationFactory
             {
                 try
                 {
-                    var lstResult = cxt.dbCategory.Select(o => new LocationModels() { ID = o.ID, Name = o.Name }).ToList();
+                    var lstResult = cxt.dbLocation.Select(o => new LocationModels() { ID = o.ID, Name = o.Name }).ToList();
                     return lstResult;
                 }
                 catch (Exception ex)

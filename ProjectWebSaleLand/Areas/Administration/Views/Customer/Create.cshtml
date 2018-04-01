@@ -1,4 +1,4 @@
-﻿@model ProjectWebSaleLand.Shared.Model.Location.LocationModels
+﻿@model ProjectWebSaleLand.Shared.Model.Customer.CustomerModels
 @{
     ViewBag.Title = "Khách hàng - Thêm";
     Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
@@ -45,5 +45,23 @@
     function SubmitForm(form) {
         $(form).submit();
     }
+
+    $(document).ready(function () {
+            $('.datepicker').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_2",
+                maxDate : new Date()
+            });
+
+            $("#GenderStatusDdl").select2({
+                placeholder: "làm ơn chọn giới tính",
+                //allowClear: true
+            });
+
+            $("#MaritalStatusDdl").select2({
+                placeholder: "Tình trạng hôn nhân!",
+                //allowClear: true
+            });
+        });
 </script>
 
