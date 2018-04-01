@@ -85,7 +85,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     return PartialView("Create", model);
                 }
             }
-            catch (Exception ex)
+          catch (Exception ex)
             {
                 NSLog.Logger.Error("LocationCreate: ", ex);
                 ModelState.AddModelError("Name", "Có một lỗi xảy ra!");
