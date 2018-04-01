@@ -56,10 +56,10 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult Create()
+        public ActionResult Create()
         {
             CustomerModels model = new CustomerModels();
-            return PartialView("Create", model);
+            return View(model);
         }
 
         [HttpPost]
@@ -121,7 +121,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     return PartialView("_Edit", model);
                 }
                 string msg = "";
-                model.ModifiedUser = CurrentUser.UserId;
+                model.CreatedUser = CurrentUser.UserId;
                 var result = _factory.UpdateCustomer(model, ref msg);
                 if (result)
                 {

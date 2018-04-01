@@ -165,7 +165,6 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         var itemUpdate = cxt.dbCustomer.Where(x => x.ID == model.ID).FirstOrDefault();
                         if (itemUpdate != null)
                         {
-                            itemUpdate.ID = itemUpdate.ID;
                             itemUpdate.Name = itemUpdate.Name;
                             itemUpdate.Email = itemUpdate.Email;
                             itemUpdate.Password = itemUpdate.Password;
@@ -173,13 +172,10 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                             itemUpdate.BirthDate = itemUpdate.BirthDate;
                             itemUpdate.Gender = itemUpdate.Gender;
                             itemUpdate.IsActive = itemUpdate.IsActive;
-                            itemUpdate.CreatedDate = itemUpdate.CreatedDate;
-                            itemUpdate.CreatedUser = itemUpdate.CreatedUser;
                             itemUpdate.ModifiedDate = DateTime.Now;
-                            itemUpdate.ModifiedUser = itemUpdate.ModifiedUser;
+                            itemUpdate.ModifiedUser = itemUpdate.CreatedUser;
                             itemUpdate.ImageURL = itemUpdate.ImageURL;
-
-                            cxt.dbCustomer.Add(itemUpdate);
+                            
                             cxt.SaveChanges();
                             transaction.Commit();
                         }

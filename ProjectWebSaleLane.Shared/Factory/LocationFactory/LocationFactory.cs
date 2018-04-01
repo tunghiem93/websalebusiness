@@ -129,15 +129,12 @@ namespace ProjectWebSaleLand.Shared.Factory.LocationFactory
                         var itemUpdate = cxt.dbLocation.Where(x => x.ID == model.ID).FirstOrDefault();
                         if (itemUpdate != null)
                         {
-                            itemUpdate.ID = itemUpdate.ID;
                             itemUpdate.Name = itemUpdate.Name;
                             itemUpdate.IsActive = itemUpdate.IsActive;
-                            itemUpdate.CreatedDate = itemUpdate.CreatedDate;
                             itemUpdate.CreatedUser = itemUpdate.CreatedUser;
                             itemUpdate.ModifiedDate = DateTime.Now;
-                            itemUpdate.ModifiedUser = model.ModifiedUser;
-
-                            cxt.dbLocation.Add(itemUpdate);
+                            itemUpdate.ModifiedUser = model.CreatedUser;
+                            
                             cxt.SaveChanges();
                             transaction.Commit();
                         }

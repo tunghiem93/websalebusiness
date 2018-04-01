@@ -129,15 +129,12 @@ namespace ProjectWebSaleLand.Shared.Factory.CategoryFactory
                         var itemUpdate = cxt.dbCategory.Where(x => x.ID == model.ID).FirstOrDefault();
                         if (itemUpdate != null)
                         {
-                            //itemUpdate.ID = itemUpdate.ID;
                             itemUpdate.Name = model.Name;
                             itemUpdate.IsActive = model.IsActive;
-                            //itemUpdate.CreatedDate = model.CreatedDate;
                             itemUpdate.CreatedUser = model.CreatedUser;
                             itemUpdate.ModifiedDate = DateTime.Now;
-                            itemUpdate.ModifiedUser = model.ModifiedUser;
-
-                           // cxt.dbCategory.Add(itemUpdate);
+                            itemUpdate.ModifiedUser = model.CreatedUser;
+                            
                             cxt.SaveChanges();
                             transaction.Commit();
                         }
