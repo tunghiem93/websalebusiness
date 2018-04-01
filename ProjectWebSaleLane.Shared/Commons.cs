@@ -14,11 +14,11 @@ namespace ProjectWebSaleLand.Shared
             Male = 1, //Nam
             Female = 2, //Nữ
         }
-
-        public enum EMarital
+        
+        public enum EProductType
         {
-            Male = 1, //Nam
-            Female = 2, //Nữ
+            Land = 1, //Đất
+            House = 2, //Nhà
         }
         #endregion
 

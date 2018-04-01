@@ -13,7 +13,7 @@ namespace ProjectWebSaleLand.Shared.Model.Product
         public string CategoryID { get; set; }
         public string LocationID { get; set; }
         public string Category { get; set; }
-     
+        public int Type { get; set; }
         public string Address { get; set; }
         public double Length { get; set; }
         public double Width { get; set; }
