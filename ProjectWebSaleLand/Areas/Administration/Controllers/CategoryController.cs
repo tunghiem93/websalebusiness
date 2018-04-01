@@ -56,10 +56,10 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult Create()
+        public ActionResult Create()
         {
             CategoryModels model = new CategoryModels();
-            return PartialView("Create", model);
+            return View(model);
         }
 
         [HttpPost]

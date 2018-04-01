@@ -42,30 +42,8 @@
 </div>
 
 <script type="text/javascript">
-    $('.create-form').submit(function () {
-        debugger;
-        $.ajax({
-            url: $(this).attr('action'),
-            type: "POST",
-            data: new FormData(this),
-            processData: false,
-            contentType: false,
-
-            beforeSend: function () {
-                $('.se-pre-con').show();
-            },
-            complete: function () {
-                $('.se-pre-con').hide();
-            },
-            success: function () {
-                CloseDetail();
-                Search();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                $(".detail-view").html(jqXHR.responseText);
-            }
-        });
-        return false;
-    });
+    function SubmitForm(form) {
+        $(form).submit();
+    }
 </script>
 
