@@ -62,13 +62,13 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             {
                 byte[] photoByte = null;
 
-                if (model.PictureUpload != null && model.PictureUpload.ContentLength > 0)
+                if (model.PictureUpload1 != null && model.PictureUpload1.ContentLength > 0)
                 {
-                    Byte[] imgByte = new Byte[model.PictureUpload.ContentLength];
-                    model.PictureUpload.InputStream.Read(imgByte, 0, model.PictureUpload.ContentLength);
-                    model.PictureByte = imgByte;
-                    model.ImageURL1 = Guid.NewGuid() + Path.GetExtension(model.PictureUpload.FileName);
-                    model.PictureUpload = null;
+                    Byte[] imgByte = new Byte[model.PictureUpload1.ContentLength];
+                    model.PictureUpload1.InputStream.Read(imgByte, 0, model.PictureUpload1.ContentLength);
+                    model.PictureByte1 = imgByte;
+                    model.ImageURL1 = Guid.NewGuid() + Path.GetExtension(model.PictureUpload1.FileName);
+                    model.PictureUpload1 = null;
                     photoByte = imgByte;
                 }
 
@@ -78,15 +78,15 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 }
                 //====================
                 string msg = "";
-                var tmp = model.PictureByte;
-                model.PictureByte = null;
+                var tmp = model.PictureByte1;
+                model.PictureByte1 = null;
                 model.Type = (int)Commons.EProductType.House;
                 bool result = _factory.InsertProduct(model, ref msg);
                 if (result)
                 {
-                    model.PictureByte = tmp;
+                    model.PictureByte1 = tmp;
                     //Save Image on Server
-                    if (!string.IsNullOrEmpty(model.ImageURL1) && model.PictureByte != null)
+                    if (!string.IsNullOrEmpty(model.ImageURL1) && model.PictureByte1 != null)
                     {
                         //var originalDirectory = new DirectoryInfo(string.Format("{0}Uploads\\", Server.MapPath(@"\")));
                         //var path = string.Format("{0}{1}", originalDirectory, model.ImageURL1);
@@ -98,7 +98,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
 
                         ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL1, ref photoByte);
-                        model.PictureByte = photoByte;
+                        model.PictureByte1 = photoByte;
                     }
                     return RedirectToAction("Index");
                 }
@@ -155,13 +155,13 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     model.ImageURL1 = model.ImageURL1.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
                 }
-                if (model.PictureUpload != null && model.PictureUpload.ContentLength > 0)
+                if (model.PictureUpload1 != null && model.PictureUpload1.ContentLength > 0)
                 {
-                    Byte[] imgByte = new Byte[model.PictureUpload.ContentLength];
-                    model.PictureUpload.InputStream.Read(imgByte, 0, model.PictureUpload.ContentLength);
-                    model.PictureByte = imgByte;
-                    model.ImageURL1 = Guid.NewGuid() + Path.GetExtension(model.PictureUpload.FileName);
-                    model.PictureUpload = null;
+                    Byte[] imgByte = new Byte[model.PictureUpload1.ContentLength];
+                    model.PictureUpload1.InputStream.Read(imgByte, 0, model.PictureUpload1.ContentLength);
+                    model.PictureByte1 = imgByte;
+                    model.ImageURL1 = Guid.NewGuid() + Path.GetExtension(model.PictureUpload1.FileName);
+                    model.PictureUpload1 = null;
                     photoByte = imgByte;
                 }
                 else
@@ -175,14 +175,14 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 }
                 //====================
                 string msg = "";
-                var tmp = model.PictureByte;
-                model.PictureByte = null;
+                var tmp = model.PictureByte1;
+                model.PictureByte1 = null;
                 var result = _factory.UpdateProduct(model, ref msg);
                 if (result)
                 {
-                    model.PictureByte = tmp;
+                    model.PictureByte1 = tmp;
                     //Save Image on Server
-                    if (!string.IsNullOrEmpty(model.ImageURL1) && model.PictureByte != null)
+                    if (!string.IsNullOrEmpty(model.ImageURL1) && model.PictureByte1 != null)
                     {
                         var path = Server.MapPath("~/Uploads/" + model.ImageURL1);
                         MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
@@ -190,7 +190,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
 
                         ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL1, ref photoByte);
-                        model.PictureByte = photoByte;
+                        model.PictureByte1 = photoByte;
                     }
                     return RedirectToAction("Index");
                 }

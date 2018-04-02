@@ -14,6 +14,7 @@ namespace ProjectWebSaleLand.Data.Entities
         public int Type { get; set; }
         public int Segment { get; set; }
         public string Address { get; set; }
+        public string Phone { get; set; }
         public double Length { get; set; }
         public double Width { get; set; }
         public double Acreage { get; set; }
