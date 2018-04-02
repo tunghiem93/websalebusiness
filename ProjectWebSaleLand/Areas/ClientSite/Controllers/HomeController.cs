@@ -30,6 +30,7 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                 ProductViewModels model = new ProductViewModels();
                 var data = _factoryPro.GetListProduct();
                 model.ListProduct = data;
+                model.ListProduct = model.ListProduct.OrderBy(o => o.CreatedDate).ToList();
                 var lstCate = _factoryCate.GetListCate();
                 model.ListCate = lstCate.Where(w => w.IsActive).Select(o => new SelectListItem()
                 {
