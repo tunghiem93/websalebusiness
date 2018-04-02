@@ -42,6 +42,7 @@ namespace ProjectWebSaleLand.Shared.Model.Customer
         public List<SelectListItem> ListGender { get; set; }
         public CustomerModels()
         {
+            IsActive = true;
             BirthDate = new DateTime(1990, 01, 01);
             ListMarital = new List<SelectListItem>()
             {

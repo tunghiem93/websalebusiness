@@ -93,7 +93,7 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         item.Phone = model.Phone;
                         item.BirthDate = model.BirthDate;
                         item.Gender = model.Gender;
-                        item.IsActive = true;
+                        item.IsActive = model.IsActive;
                         item.CreatedDate = DateTime.Now;
                         item.CreatedUser = model.CreatedUser;
                         item.ModifiedDate = DateTime.Now;
