@@ -1,6 +1,6 @@
-﻿@model ProjectWebSaleLand.Shared.Model.Category.CategoryModels
+﻿@model ProjectWebSaleLand.Shared.Model.Product.ProductModels
 @{
-    ViewBag.Title = "Thể loại - Xóa";
+    ViewBag.Title = "Nhà - Xóa";
   //  Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
         <div class="page-title">
             <div class="title_left" style="padding: 10px 0px">
                 @Html.Partial("~/Areas/Administration/Views/Shared/_breadcrumb.cshtml",
-               new Dictionary<string, string> { { "A", "Quản lý" }, { "B", "Thể loại" }, { "C", "Xóa" } })
+               new Dictionary<string, string> { { "A", "Quản lý" }, { "B", "Nhà" }, { "C", "Xóa" } })
             </div>
             <div class="clearfix"></div>
             <div class="row">
@@ -22,16 +22,15 @@
                             </ul>
                         </div>
                         <div class="box-body" style="display: block;">
-                            @using (@Html.BeginForm("Delete", "Category", FormMethod.Post, new { @id = "form-delete", @class = "form-horizontal" }))
+                            @using (@Html.BeginForm("Delete", "House", FormMethod.Post, new { @id = "form-delete", @class = "form-horizontal" }))
                             {
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"></label>
                                     <div class="col-md-6" style="font-size:20px;">
-                                        Bạn có chắc chắn muôn xóa thể loại<strong>[ @Model.Name ]</strong>?
+                                        Bạn có chắc chắn muôn xóa <strong></strong>?
                                         <br />
                                         @Html.HiddenFor(model => model.ID)
-                                        @Html.HiddenFor(model => model.Name)
-                                        @Html.ValidationMessageFor(model => model.Name, null, new { @class = "label label-danger" })
+                                        @Html.ValidationMessageFor(model => model.ID, null, new { @class = "label label-danger" })
                                     </div>
                                 </div>
                             }

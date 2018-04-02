@@ -216,5 +216,36 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             ProductModels model = GetDetail(id);
             return PartialView("_View", model);
         }
+
+        [HttpGet]
+        public PartialViewResult Delete(string id)
+        {
+            ProductModels model = GetDetail(id);
+            return PartialView("_Delete", model);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(ProductModels model)
+        {
+            try
+            {
+                string msg = "";
+                var result = _factory.DeleteProduct(model.ID, ref msg);
+                if (!result)
+                {
+                    ModelState.AddModelError("Name", msg);
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return PartialView("_Delete", model);
+                }
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                NSLog.Logger.Error("House_Delete: " , ex);
+                ModelState.AddModelError("Name", "Sản phẩm này hiện đang sử dụng. Làm ơn kiểm tra lại!");
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return PartialView("_Delete", model);
+            }
+        }
     }
 }
