@@ -15,5 +15,6 @@ namespace ProjectWebSaleLand.Data.Entities
         public DateTime ModifiedDate { get; set; }
         public string ModifiedUser { get; set; }
         public bool IsActive { get; set; }
+        public string Description { get; set; }
     }
 }

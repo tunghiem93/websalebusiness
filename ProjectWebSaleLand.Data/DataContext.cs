@@ -12,7 +12,8 @@ namespace ProjectWebSaleLand.Data
     {
         public DataContext() : base("name = CompanyConnectionString")
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<DataContext>());
+
+           // Database.SetInitializer(new DropCreateDatabaseAlways<DataContext>());
         }
 
         public DbSet<Customer> dbCustomer
