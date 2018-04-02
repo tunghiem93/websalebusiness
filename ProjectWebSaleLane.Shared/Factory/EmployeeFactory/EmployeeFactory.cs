@@ -32,6 +32,8 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         ModifiedDate = o.ModifiedDate,
                         ModifiedUser = o.ModifiedUser,
                         ImageURL = o.ImageURL,
+                        Description = o.Description,
+                        Address = o.Address
                     }).ToList();
                     return lstResult;
                 }

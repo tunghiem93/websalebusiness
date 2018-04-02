@@ -18,73 +18,71 @@
                                 <li><a href="javascript:void(0)" onclick="CloseDetail(); return false;" class="btn btn-danger" id="btn-delete"><i class="fa fa-times"></i>&nbsp;Đóng</a></li>
                             </ul>
                         </div>
-                        <div class="row form-horizontal form-label-left">
-                            <div class="row form-horizontal form-label-left" style="margin-bottom:15px;">                                
-                                <div class="form-group">
-                                    <label class="control-label col-md-2 col-sm-2 col-xs-12">Tên</label>
+                        <div class="row form-horizontal form-label-left" style="margin-bottom:15px;">                                
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Tên</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Model.Name
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Số điện thoại</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Model.Phone
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Email</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Model.Email
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Ngày sinh</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Model.BirthDate.ToString("dd/MM/yyyy")
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Địa chỉ</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Model.Address
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Giới tính</label>
+                                @if (Model.Gender == true)
+                                {
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        @Model.Name
+                                        Nam
                                     </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Nữ
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Tình trạng hôn nhân</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @string.Format("{0}", Model.MaritalStatus ? "Độc thân" : "Kết hôn")
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Số điện thoại</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                @Model.Phone
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Tình trạng</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @string.Format("{0}", Model.IsActive ? "Hoạt động" : "Không hoạt động")
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Email</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                @Model.Email
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả chi tiết</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Model.Description
+                                </div>
                             </div>
                         </div>                        
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Ngày sinh</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                @Model.BirthDate.ToString("dd/MM/yyyy")
-                            </div>
-                        </div>                        
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Địa chỉ</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                @Model.Address
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Giới tính</label>
-                            @if (Model.Gender == true)
-                            {
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    Nam
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    Nữ
-                                </div>
-                            }
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Tình trạng hôn nhân</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                @string.Format("{0}", Model.MaritalStatus ? "Độc thân" : "Kết hôn")
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Tình trạng</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                @string.Format("{0}", Model.IsActive ? "Hoạt động" : "Không hoạt động")
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô tả chi tiết</label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                @Model.Description
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -32,6 +32,8 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         ModifiedDate = o.ModifiedDate,
                         ModifiedUser = o.ModifiedUser,
                         ImageURL = o.ImageURL,
+                        Description = o.Description,
+                        Address = o.Address
                     }).ToList();
                     return lstResult;
                 }
@@ -64,6 +66,8 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         ModifiedDate = o.ModifiedDate,
                         ModifiedUser = o.ModifiedUser,
                         ImageURL = o.ImageURL,
+                        Description = o.Description,
+                        Address = o.Address
                     }).FirstOrDefault();
                     return result;
                 }
