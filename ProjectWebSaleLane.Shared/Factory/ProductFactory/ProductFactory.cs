@@ -51,7 +51,8 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                          ImageURL8 = pro.ImageURL8,
                                          LocationID = loc.ID,
                                          Category = cat.Name,
-                                         CategoryID = cat.ID
+                                         CategoryID = cat.ID,
+                                         Type = pro.Type
                                          
                                      }).ToList();
                     return lstResult;
@@ -133,8 +134,8 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         item.Width = model.Width;
                         item.Acreage = model.Acreage;
                         item.Price = model.Price;
-                        item.LocationID = model.Location;
-                        item.CategoryID = model.Location;
+                        item.LocationID = model.LocationID;
+                        item.CategoryID = model.CategoryID;
                         item.Right = model.Right;
                         item.BedRoom = model.BedRoom;
                         item.LivingRoom = model.LivingRoom;
@@ -153,7 +154,12 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         item.ImageURL6 = model.ImageURL6;
                         item.ImageURL7 = model.ImageURL7;
                         item.ImageURL8 = model.ImageURL8;
-
+                        item.IsActive = model.IsActive;
+                        item.CreatedDate = DateTime.Now;
+                        item.ModifiedDate = DateTime.Now;
+                        item.CreatedUser = model.CreatedUser;
+                        item.ModifiedUser = model.ModifiedUser;
+                        item.Type = model.Type;
                         cxt.dbProduct.Add(item);
                         cxt.SaveChanges();
                         transaction.Commit();

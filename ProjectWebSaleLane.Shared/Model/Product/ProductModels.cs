@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ProjectWebSaleLand.Shared.Model.Product
@@ -44,7 +46,9 @@ namespace ProjectWebSaleLand.Shared.Model.Product
         public string ImageURL6 { get; set; }
         public string ImageURL7 { get; set; }
         public string ImageURL8 { get; set; }
-        
+        [DataType(DataType.Upload)]
+        public HttpPostedFileBase PictureUpload { get; set; }
+        public byte[] PictureByte { get; set; }
         public ProductModels()
         {            
         }
