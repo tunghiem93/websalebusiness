@@ -35,14 +35,14 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                 {
                     Value = o.ID,
                     Text = o.Name,
-                }).ToList();
+                }).OrderBy(o => o.Text).ToList();
                 var lstLoc = _factoryLoc.GetListLocation();
                 model.ListArea = lstLoc.Where(w => w.IsActive).Select(o => new SelectListItem()
                 {
                     Value = o.ID,
                     Text = o.Name,
-                }).ToList();
-                return View();
+                }).OrderBy(o => o.Text).ToList();
+                return View(model);
             }
             catch (Exception ex)
             {

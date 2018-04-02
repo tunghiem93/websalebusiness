@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ProjectWebSaleLand.Shared.Model.Product.ProductViewModels
+@{
     Layout = "~/Areas/ClientSite/Views/Shared/_Layout.cshtml";
 }
     <div id="preloader"></div>
@@ -43,14 +44,41 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="at-col-default-mar">
-                        <select>
-                            <option value="0" selected>Thể loại</option>
-                            <option value="1">Nhà</option>
-                            <option value="2">Đất</option>
-                        </select>
+                        @Html.DropDownListFor(model => model.CateID,
+                        new SelectList(Model.ListCate, "Value", "Text", Model.CateID), "Thể loại",
+                        new
+                        {
+                            @class = "form-control select2_multiple has-feedback-left",
+                            @id = "CateDdl",
+                            @style = "width:100%;"
+                        })
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
+                    <div class="at-col-default-mar">
+                        @Html.DropDownListFor(model => model.AreaID,
+                        new SelectList(Model.ListArea, "Value", "Text", Model.AreaID), "Khu vực",
+                        new
+                        {
+                            @class = "form-control select2_multiple has-feedback-left",
+                            @id = "AreaDdl",
+                            @style = "width:100%;"
+                        })
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="at-col-default-mar">
+                        @Html.DropDownListFor(model => model.SegmentID,
+                        new SelectList(Model.ListSeg, "Value", "Text", Model.SegmentID), "Phân khúc",
+                        new
+                        {
+                            @class = "form-control select2_multiple has-feedback-left",
+                            @id = "SegmentDdl",
+                            @style = "width:100%;"
+                        })
+                    </div>
+                </div>
+                @*<div class="col-lg-3 col-md-6">
                     <div class="at-col-default-mar">
                         <select class="div-toggle" data-target=".my-info-1">
                             <option value="0" data-show=".acitveon" selected>Khu Vực</option>
@@ -77,7 +105,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>*@
                 <div class="col-lg-3 col-md-6">
                     <div class="at-col-default-mar">
                         <button class="btn btn-default hvr-bounce-to-right" type="submit">Tìm kiếm</button>

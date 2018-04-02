@@ -13,12 +13,20 @@ namespace ProjectWebSaleLand.Shared
         {
             Male = 1, //Nam
             Female = 2, //Nữ
-        }
-        
+        }        
         public enum EProductType
         {
             Land = 1, //Đất
             House = 2, //Nhà
+        }
+        public enum EArea
+        {
+        }
+        public enum ESegment
+        {
+            Intermediate = 1, //Trung cấp
+            Appellative = 2, //Phổ thông
+            HighUp = 3, //Cao cấp
         }
         #endregion
 
