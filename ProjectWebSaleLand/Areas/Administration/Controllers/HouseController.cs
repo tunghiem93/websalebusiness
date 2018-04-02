@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -141,6 +142,72 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         {
             ProductModels model = GetDetail(id);
             return PartialView("_Edit", model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ProductModels model)
+        {
+            try
+            {
+                byte[] photoByte = null;
+
+                if (string.IsNullOrEmpty(model.ImageURL1))
+                {
+                    model.ImageURL1 = model.ImageURL1.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
+                }
+                if (model.PictureUpload != null && model.PictureUpload.ContentLength > 0)
+                {
+                    Byte[] imgByte = new Byte[model.PictureUpload.ContentLength];
+                    model.PictureUpload.InputStream.Read(imgByte, 0, model.PictureUpload.ContentLength);
+                    model.PictureByte = imgByte;
+                    model.ImageURL1 = Guid.NewGuid() + Path.GetExtension(model.PictureUpload.FileName);
+                    model.PictureUpload = null;
+                    photoByte = imgByte;
+                }
+                else
+                    model.ImageURL1 = model.ImageURL1.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
+
+                
+                if (!ModelState.IsValid)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return PartialView("_Edit", model);
+                }
+                //====================
+                string msg = "";
+                var tmp = model.PictureByte;
+                model.PictureByte = null;
+                var result = _factory.UpdateProduct(model, ref msg);
+                if (result)
+                {
+                    model.PictureByte = tmp;
+                    //Save Image on Server
+                    if (!string.IsNullOrEmpty(model.ImageURL1) && model.PictureByte != null)
+                    {
+                        var path = Server.MapPath("~/Uploads/" + model.ImageURL1);
+                        MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
+                        ms.Write(photoByte, 0, photoByte.Length);
+                        System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
+
+                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL1, ref photoByte);
+                        model.PictureByte = photoByte;
+                    }
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("CategoryID", msg);
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return PartialView("_Edit", model);
+                }
+            }
+            catch (Exception ex)
+            {
+                NSLog.Logger.Error("House_Edit: " , ex);
+                model = GetDetail(model.ID);
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return new HttpStatusCodeResult(400, ex.Message);
+            }
         }
 
         [HttpGet]

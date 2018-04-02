@@ -34,5 +34,6 @@ namespace ProjectWebSaleLand.Shared
         public const string Image100_100 = "http://placehold.it/100x100";
         public const string Image200_100 = "http://placehold.it/200x100";
         public static string HostImage = ConfigurationManager.AppSettings["HostImage"];
+        public static string _PublicImages = string.IsNullOrEmpty(ConfigurationManager.AppSettings["PublicImages"]) ? "" : ConfigurationManager.AppSettings["PublicImages"];
     }
 }

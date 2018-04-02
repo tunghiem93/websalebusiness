@@ -5,6 +5,10 @@
     var _ID = Model.ID;
 }
 @Html.HiddenFor(model => model.ID)
+@if (!string.IsNullOrEmpty(_ID))
+{
+    @Html.Hidden("ImageURL1", Model.ImageURL1)
+}
 <div class="row form-horizontal form-label-left" style="margin-bottom:15px;">   
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Thể loại</label>

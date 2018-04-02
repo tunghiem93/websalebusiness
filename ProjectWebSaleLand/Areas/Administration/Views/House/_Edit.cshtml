@@ -1,4 +1,4 @@
-﻿@model ProjectWebSaleLand.Shared.Model.Category.CategoryModels
+﻿@model ProjectWebSaleLand.Shared.Model.Product.ProductModels
 @{
     ViewBag.Title = "Thể loại - Sửa";
    // Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
@@ -22,7 +22,7 @@
                             </ul>
                         </div>
                         <div class="box-body" style="display: block;">
-                            @using (@Html.BeginForm("Edit", "Category", FormMethod.Post, new { @id = "form-edit", @class = "form-horizontal" }))
+                            @using (@Html.BeginForm("Edit", "House", FormMethod.Post, new { @id = "form-edit", @class = "form-horizontal" }))
                             {
                                 @Html.Partial("_Form", Model)
                             }

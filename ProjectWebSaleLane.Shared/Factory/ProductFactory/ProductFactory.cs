@@ -105,7 +105,8 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                       ImageURL8 = pro.ImageURL8,
                                       LocationID = loc.ID,
                                       Category = cat.Name,
-                                      CategoryID = cat.ID
+                                      CategoryID = cat.ID,
+                                      IsActive = pro.IsActive
                                   }).FirstOrDefault();
                     return result;
                 }
@@ -225,33 +226,33 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         var itemUpdate = cxt.dbProduct.Where(x => x.ID == model.ID).FirstOrDefault();
                         if (itemUpdate != null)
                         {
-                            itemUpdate.ID = itemUpdate.ID;
-                            itemUpdate.Address = itemUpdate.Address;
-                            itemUpdate.Length = itemUpdate.Length;
-                            itemUpdate.Width = itemUpdate.Width;
-                            itemUpdate.Acreage = itemUpdate.Acreage;
-                            itemUpdate.Price = itemUpdate.Price;
-                            itemUpdate.LocationID = itemUpdate.LocationID;
-                            itemUpdate.CategoryID = itemUpdate.CategoryID;
-                            itemUpdate.Right = itemUpdate.Right;
-                            itemUpdate.BedRoom = itemUpdate.BedRoom;
-                            itemUpdate.LivingRoom = itemUpdate.LivingRoom;
-                            itemUpdate.BathRoom = itemUpdate.BathRoom;
-                            itemUpdate.Floor = itemUpdate.Floor;
-                            itemUpdate.Description = itemUpdate.Description;
-                            itemUpdate.Phone1 = itemUpdate.Phone1;
-                            itemUpdate.Address1 = itemUpdate.Address1;
-                            itemUpdate.Phone2 = itemUpdate.Phone2;
-                            itemUpdate.Address2 = itemUpdate.Address2;
-                            itemUpdate.ImageURL1 = itemUpdate.ImageURL1;
-                            itemUpdate.ImageURL2 = itemUpdate.ImageURL2;
-                            itemUpdate.ImageURL3 = itemUpdate.ImageURL3;
-                            itemUpdate.ImageURL4 = itemUpdate.ImageURL4;
-                            itemUpdate.ImageURL5 = itemUpdate.ImageURL5;
-                            itemUpdate.ImageURL6 = itemUpdate.ImageURL6;
-                            itemUpdate.ImageURL7 = itemUpdate.ImageURL7;
-                            itemUpdate.ImageURL8 = itemUpdate.ImageURL8;
-                            cxt.dbProduct.Add(itemUpdate);
+                            //itemUpdate.ID = model.ID;
+                            itemUpdate.Address = model.Address;
+                            itemUpdate.Length = model.Length;
+                            itemUpdate.Width = model.Width;
+                            itemUpdate.Acreage = model.Acreage;
+                            itemUpdate.Price = model.Price;
+                            itemUpdate.LocationID = model.LocationID;
+                            itemUpdate.CategoryID = model.CategoryID;
+                            itemUpdate.Right = model.Right;
+                            itemUpdate.BedRoom = model.BedRoom;
+                            itemUpdate.LivingRoom = model.LivingRoom;
+                            itemUpdate.BathRoom = model.BathRoom;
+                            itemUpdate.Floor = model.Floor;
+                            itemUpdate.Description = model.Description;
+                            itemUpdate.Phone1 = model.Phone1;
+                            itemUpdate.Address1 = model.Address1;
+                            itemUpdate.Phone2 = model.Phone2;
+                            itemUpdate.Address2 = model.Address2;
+                            itemUpdate.ImageURL1 = model.ImageURL1;
+                            itemUpdate.ImageURL2 = model.ImageURL2;
+                            itemUpdate.ImageURL3 = model.ImageURL3;
+                            itemUpdate.ImageURL4 = model.ImageURL4;
+                            itemUpdate.ImageURL5 = model.ImageURL5;
+                            itemUpdate.ImageURL6 = model.ImageURL6;
+                            itemUpdate.ImageURL7 = model.ImageURL7;
+                            itemUpdate.ImageURL8 = model.ImageURL8;
+                            itemUpdate.IsActive = model.IsActive;
                             cxt.SaveChanges();
                             transaction.Commit();
                         }
