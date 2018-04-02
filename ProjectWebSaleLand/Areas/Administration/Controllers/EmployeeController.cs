@@ -45,6 +45,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             try
             {
                 EmployeeModels model = _factory.GetDetailEmployee(id);
+                
                 return model;
             }
             catch (Exception ex)
@@ -109,6 +110,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         public PartialViewResult Edit(string id)
         {
             EmployeeModels model = GetDetail(id);
+            model.ConfirmPassword = model.Password;
             return PartialView("_Edit", model);
         }
 

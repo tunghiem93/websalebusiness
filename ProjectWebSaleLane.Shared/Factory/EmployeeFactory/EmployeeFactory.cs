@@ -65,6 +65,8 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         ModifiedDate = o.ModifiedDate,
                         ModifiedUser = o.ModifiedUser,
                         ImageURL = o.ImageURL,
+                        Description= o.Description,
+                        Address = o.Address
                     }).FirstOrDefault();
                     return result;
                 }
@@ -101,7 +103,8 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         item.ModifiedDate = DateTime.Now;
                         item.ModifiedUser = model.CreatedUser;
                         item.ImageURL = model.ImageURL;
-
+                        item.Address = model.Address;
+                        item.Description = model.Description;
                         cxt.dbEmployee.Add(item);
                         cxt.SaveChanges();
                         transaction.Commit();
@@ -167,18 +170,19 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         var itemUpdate = cxt.dbEmployee.Where(x => x.ID == model.ID).FirstOrDefault();
                         if (itemUpdate != null)
                         {
-                            itemUpdate.Name = itemUpdate.Name;
-                            itemUpdate.Email = itemUpdate.Email;
-                            itemUpdate.Password = itemUpdate.Password;
-                            itemUpdate.Phone = itemUpdate.Phone;
-                            itemUpdate.BirthDate = itemUpdate.BirthDate;
-                            itemUpdate.Gender = itemUpdate.Gender;
-                            itemUpdate.IsSupperAdmin = itemUpdate.IsSupperAdmin;
-                            itemUpdate.IsActive = itemUpdate.IsActive;
+                            itemUpdate.Name = model.Name;
+                            itemUpdate.Email = model.Email;
+                            itemUpdate.Password = model.Password;
+                            itemUpdate.Phone = model.Phone;
+                            itemUpdate.BirthDate = model.BirthDate;
+                            itemUpdate.Gender = model.Gender;
+                            itemUpdate.IsSupperAdmin = model.IsSupperAdmin;
+                            itemUpdate.IsActive = model.IsActive;
                             itemUpdate.ModifiedDate = DateTime.Now;
-                            itemUpdate.ModifiedUser = itemUpdate.CreatedUser;
-                            itemUpdate.ImageURL = itemUpdate.ImageURL;
-                            
+                            itemUpdate.ModifiedUser = model.CreatedUser;
+                            itemUpdate.ImageURL = model.ImageURL;
+                            itemUpdate.Description = model.Description;
+                            itemUpdate.Address = model.Address;
                             cxt.SaveChanges();
                             transaction.Commit();
                         }
