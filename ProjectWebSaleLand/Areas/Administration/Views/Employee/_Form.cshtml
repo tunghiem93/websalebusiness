@@ -38,7 +38,7 @@
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Mật khẩu: </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            @Html.TextBoxFor(model => model.Password, new { @class = "form-control has-feedback-left", placeholder = "", autocomplete = "off" })
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control has-feedback-left txtpassword", placeholder = "", autocomplete = "off" })
             <span class="fa fa-lock form-control-feedback left" aria-hidden="true"></span>
             @Html.ValidationMessageFor(model => model.Password, null, new { @class = "label label-danger" })
         </div>
@@ -48,7 +48,7 @@
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Xác nhận mật khẩu: </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control has-feedback-left", placeholder = "", autocomplete = "off" })
+            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control has-feedback-left txtConfirmPassword", placeholder = "", autocomplete = "off" })
             <span class="fa fa-lock form-control-feedback left" aria-hidden="true"></span>
             @Html.ValidationMessageFor(model => model.ConfirmPassword, null, new { @class = "label label-danger" })
         </div>
@@ -146,6 +146,9 @@
                 monthNames: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
             }
         }, function (start, end, label) {
-        });
+            });
+
+        $('.txtpassword').val('@Model.Password')
+        $('.txtConfirmPassword').val('@Model.ConfirmPassword')
     });
 </script>

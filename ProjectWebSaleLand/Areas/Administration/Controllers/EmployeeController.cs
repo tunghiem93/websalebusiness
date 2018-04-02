@@ -1,5 +1,6 @@
 ﻿using ProjectWebSaleLand.Shared.Factory.EmployeeFactory;
 using ProjectWebSaleLand.Shared.Model.Employee;
+using ProjectWebSaleLand.Shared.Utilities;
 using ProjectWebSaleLane.Shared.Model.Employee;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             try
             {
                 EmployeeModels model = _factory.GetDetailEmployee(id);
-                
+                model.Password = CommonHelper.Decrypt(model.Password);
                 return model;
             }
             catch (Exception ex)
@@ -78,6 +79,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 }
                 string msg = "";
                 model.CreatedUser = CurrentUser.UserId;
+                model.Password = CommonHelper.Encrypt(model.Password);
                 var result = _factory.InsertEmployee(model, ref msg);
                 if (result)
                 {
@@ -130,6 +132,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 }
                 string msg = "";
                 model.CreatedUser = CurrentUser.UserId;
+                model.Password = CommonHelper.Encrypt(model.Password);
                 var result = _factory.UpdateEmployee(model, ref msg);
                 if (result)
                 {
