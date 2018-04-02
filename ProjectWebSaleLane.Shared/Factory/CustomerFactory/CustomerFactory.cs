@@ -17,7 +17,7 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
             {
                 try
                 {
-                    var lstResult = cxt.dbEmployee.Select(o => new CustomerModels()
+                    var lstResult = cxt.dbCustomer.Select(o => new CustomerModels()
                     {
                         ID = o.ID,
                         Name = o.Name,
@@ -93,7 +93,7 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         item.Phone = model.Phone;
                         item.BirthDate = model.BirthDate;
                         item.Gender = model.Gender;
-                        item.IsActive = model.IsActive;
+                        item.IsActive = true;
                         item.CreatedDate = DateTime.Now;
                         item.CreatedUser = model.CreatedUser;
                         item.ModifiedDate = DateTime.Now;
