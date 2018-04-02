@@ -23,6 +23,7 @@ namespace ProjectWebSaleLand.Shared.Model.Customer
         public string ConfirmPassword { get; set; }
         [RegularExpression("([0-9]+)", ErrorMessage = "Làm ơn nhập số điện thoại!")]
         public string Phone { get; set; }
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
         public bool Gender { get; set; }
         [Required(ErrorMessage = "Làm ơn nhập địa chỉ!")]

@@ -99,6 +99,8 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         item.ModifiedDate = DateTime.Now;
                         item.ModifiedUser = model.CreatedUser;
                         item.ImageURL = model.ImageURL;
+                        item.Address = model.Address;
+                        item.Description = model.Description;
 
                         cxt.dbCustomer.Add(item);
                         cxt.SaveChanges();
@@ -165,17 +167,19 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         var itemUpdate = cxt.dbCustomer.Where(x => x.ID == model.ID).FirstOrDefault();
                         if (itemUpdate != null)
                         {
-                            itemUpdate.Name = itemUpdate.Name;
-                            itemUpdate.Email = itemUpdate.Email;
-                            itemUpdate.Password = itemUpdate.Password;
-                            itemUpdate.Phone = itemUpdate.Phone;
-                            itemUpdate.BirthDate = itemUpdate.BirthDate;
-                            itemUpdate.Gender = itemUpdate.Gender;
-                            itemUpdate.IsActive = itemUpdate.IsActive;
+                            itemUpdate.Name = model.Name;
+                            itemUpdate.Email = model.Email;
+                            itemUpdate.Password = model.Password;
+                            itemUpdate.Phone = model.Phone;
+                            itemUpdate.BirthDate = model.BirthDate;
+                            itemUpdate.Gender = model.Gender;
+                            itemUpdate.IsActive = model.IsActive;
                             itemUpdate.ModifiedDate = DateTime.Now;
-                            itemUpdate.ModifiedUser = itemUpdate.CreatedUser;
-                            itemUpdate.ImageURL = itemUpdate.ImageURL;
-                            
+                            itemUpdate.ModifiedUser = model.CreatedUser;
+                            itemUpdate.ImageURL = model.ImageURL;
+                            itemUpdate.Description = model.Description;
+                            itemUpdate.Address = model.Address;
+
                             cxt.SaveChanges();
                             transaction.Commit();
                         }

@@ -34,7 +34,7 @@ namespace ProjectWebSaleLand.Shared.Model.Employee
         public string Country { get; set; }
         public string Description { get; set; }
         public bool IsSupperAdmin { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedUser { get; set; }
         public DateTime ModifiedDate { get; set; }
@@ -44,6 +44,8 @@ namespace ProjectWebSaleLand.Shared.Model.Employee
         public List<SelectListItem> ListGender { get; set; }
         public EmployeeModels()
         {
+            IsActive = true;
+            IsSupperAdmin = true;
             BirthDate = new DateTime(1990, 01, 01);
             ListMarital = new List<SelectListItem>()
             {

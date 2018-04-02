@@ -106,6 +106,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         public PartialViewResult Edit(string id)
         {
             CustomerModels model = GetDetail(id);
+            model.ConfirmPassword = model.Password;
             return PartialView("_Edit", model);
         }
 
