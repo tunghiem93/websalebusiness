@@ -269,59 +269,11 @@
             //allowClear: true
         });
     })
-
-    @*function chkItemCateClick(e) {
-        debugger;
-        var CateName = $(e).text();
-        if (CateName != null || CateName != "0") {
-            if (CateName.toString().trim() == '@Commons.Land.ToString().Trim()') {
-                $("#idType").val('@Commons.EProductType.Land');
-                $(".groupItemForCate").hide();
-            }
-        }
-        else {
-            $("#idType").val(@Commons.EProductType.House);
-            $(".groupItemForCate").show();
-            $('.se-pre-con').hide();
-        }
-    }*@
-
-    function AddMoreImage(e) {
-        $('.se-pre-con').show();
-        var countGroImg = $(".groupImageRow:visible").length + 1;
-        var currentOffset = $(".div-add-more-image > .groupImage > .groupImageRow").length;
-        if (countGroImg > 8) {
-            $('.se-pre-con').hide();
-            $("#idMessRangeImage").show();
-        }
-        else {
-            $("#idMessRangeImage").hide();
-            $.ajax({
-                url: '@Url.Action("AddMoreImage", "Product")',
-                type: 'get',
-                data: {
-                    currentOffset: currentOffset,
-                },
-                dataType: 'html',
-                success: function (data) {
-                    $('.se-pre-con').hide();
-                    $("#div-add-more-tab-image").before(data);
-                }
-            });
-        }
-    }
-
-    function DeleteTabPanelImage(btn) {
-        var count = $(".groupImageRow:visible").length;
-        var tr = $(btn).parents('.groupImageRow:first');
-        $(tr).find('input.GroupStatus').val(9);
-        $(tr).css('display', 'none');
-    }
-
+    
     function AddImageItem(elemnetFillData) {
         var _OffSet = $('.ng-image-product').length;
         $.ajax({
-            url: '@Url.Action("AddImageItem", "Product")',
+            url: '@Url.Action("AddImageItem", "House")',
             type: 'GET',
             data: {
                 OffSet: _OffSet
