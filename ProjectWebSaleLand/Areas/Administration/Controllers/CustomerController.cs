@@ -1,5 +1,6 @@
 ﻿using ProjectWebSaleLand.Shared.Factory.CustomerFactory;
 using ProjectWebSaleLand.Shared.Model.Customer;
+using ProjectWebSaleLand.Shared.Utilities;
 using ProjectWebSaleLane.Shared.Model.Customer;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             try
             {
                 CustomerModels model = _factory.GetDetailCustomer(id);
+                model.Password = CommonHelper.Decrypt(model.Password);
                 return model;
             }
             catch (Exception ex)
@@ -74,6 +76,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 }
                 string msg = "";
                 model.CreatedUser = CurrentUser.UserId;
+                model.Password = CommonHelper.Encrypt(model.Password);
                 var result = _factory.InsertCustomer(model, ref msg);
                 if (result)
                 {
@@ -122,6 +125,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 }
                 string msg = "";
                 model.CreatedUser = CurrentUser.UserId;
+                model.Password = CommonHelper.Encrypt(model.Password);
                 var result = _factory.UpdateCustomer(model, ref msg);
                 if (result)
                 {
