@@ -18,7 +18,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         public HouseController()
         {
             _factory = new ProductFactory();
-            ViewBag.Category = getListCategory();
+            //ViewBag.Category = getListCategory();
             ViewBag.Location = getListLocation();
         }
         // GET: Administration/House
@@ -32,20 +32,27 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         {
             try
             {
-                var data = _factory.GetListProduct().Where(x=>x.Type == (int)Commons.EProductType.House).ToList();
+                var data = _factory.GetListProduct().Where(x => x.Type == (int)Commons.EProductType.House).ToList();
                 data.ForEach(x =>
                 {
-                   if(!string.IsNullOrEmpty(x.ImageURL1))
-                        x.ImageURL1 = Commons.HostImage + x.ImageURL1;
+                    if (!string.IsNullOrEmpty(x.ImageURL))
+                        x.ImageURL = Commons.HostImage + x.ImageURL;
                 });
                 model.ListProduct = data;
             }
             catch (Exception e)
             {
-                NSLog.Logger.Error("GetListProduct: ", e);
+                NSLog.Logger.Error("GetListHouse: ", e);
                 return new HttpStatusCodeResult(400, e.Message);
             }
             return PartialView("_ListData", model);
+        }
+
+        [HttpGet]
+        public PartialViewResult View(string id)
+        {
+            ProductModels model = GetDetail(id);
+            return PartialView("_View", model);
         }
 
         [HttpGet]
@@ -61,14 +68,13 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             try
             {
                 byte[] photoByte = null;
-
-                if (model.PictureUpload1 != null && model.PictureUpload1.ContentLength > 0)
+                if (model.PictureUpload != null && model.PictureUpload.ContentLength > 0)
                 {
-                    Byte[] imgByte = new Byte[model.PictureUpload1.ContentLength];
-                    model.PictureUpload1.InputStream.Read(imgByte, 0, model.PictureUpload1.ContentLength);
-                    model.PictureByte1 = imgByte;
-                    model.ImageURL1 = Guid.NewGuid() + Path.GetExtension(model.PictureUpload1.FileName);
-                    model.PictureUpload1 = null;
+                    Byte[] imgByte = new Byte[model.PictureUpload.ContentLength];
+                    model.PictureUpload.InputStream.Read(imgByte, 0, model.PictureUpload.ContentLength);
+                    model.PictureByte = imgByte;
+                    model.RawImageUrl = Guid.NewGuid() + Path.GetExtension(model.PictureUpload.FileName);
+                    model.PictureUpload = null;
                     photoByte = imgByte;
                 }
 
@@ -76,41 +82,64 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     return View(model);
                 }
+
+                model.ListImageUrl.Add(model.RawImageUrl);
+                //========
+                Dictionary<int, byte[]> lstImgByte = new Dictionary<int, byte[]>();
+                var ListImage = model.ListImg.Where(x => !x.IsDelete).ToList();
+                foreach (var item in ListImage)
+                {
+                    if (item.PictureUpload != null && item.PictureUpload.ContentLength > 0)
+                    {
+                        Byte[] imgByte = new Byte[item.PictureUpload.ContentLength];
+                        item.PictureUpload.InputStream.Read(imgByte, 0, item.PictureUpload.ContentLength);
+                        item.PictureByte = imgByte;
+                        item.ImageURL = Guid.NewGuid() + Path.GetExtension(item.PictureUpload.FileName);
+                        item.PictureUpload = null;
+                        lstImgByte.Add(item.OffSet, imgByte);
+                        model.ListImageUrl.Add(item.ImageURL);
+                    }
+                }
                 //====================
                 string msg = "";
-                var tmp = model.PictureByte1;
-                model.PictureByte1 = null;
-                model.Type = (int)Commons.EProductType.House;
+                var tmp = model.PictureByte;
+                model.Type = (byte)Commons.EProductType.House;
                 bool result = _factory.InsertProduct(model, ref msg);
                 if (result)
                 {
-                    model.PictureByte1 = tmp;
-                    //Save Image on Server
-                    if (!string.IsNullOrEmpty(model.ImageURL1) && model.PictureByte1 != null)
+                    if (!string.IsNullOrEmpty(model.RawImageUrl) && model.PictureByte != null)
                     {
-                        //var originalDirectory = new DirectoryInfo(string.Format("{0}Uploads\\", Server.MapPath(@"\")));
-                        //var path = string.Format("{0}{1}", originalDirectory, model.ImageURL1);
-                       // var originalDirectory = "~/Uploads/";
-                       // var path = string.Format("{0}{1}", originalDirectory, model.ImageURL1);
-                        var path =  Server.MapPath("~/Uploads/" + model.ImageURL1);
+                        var path = Server.MapPath("~/Uploads/" + model.ImageURL);
                         MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
                         ms.Write(photoByte, 0, photoByte.Length);
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
 
-                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL1, ref photoByte);
-                        model.PictureByte1 = photoByte;
+                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL, ref photoByte);
+                    }
+
+                    foreach (var item in ListImage)
+                    {
+                        if (!string.IsNullOrEmpty(item.ImageURL) && item.PictureByte != null)
+                        {
+                            var path = Server.MapPath("~/Uploads/" + item.ImageURL);
+                            MemoryStream ms = new MemoryStream(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
+                            ms.Write(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
+                            System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
+
+                            ImageHelper.Me.SaveCroppedImage(imageTmp, path, item.ImageURL, ref photoByte);
+                        }
                     }
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ModelState.AddModelError("CategoryID", msg);
+                    ModelState.AddModelError("Name", msg);
                     return View(model);
                 }
             }
             catch (Exception ex)
             {
-                NSLog.Logger.Error("Categories_Create: " , ex);
+                NSLog.Logger.Error("House_Create: ", ex);
                 return new HttpStatusCodeResult(400, ex.Message);
             }
         }
@@ -122,7 +151,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 ProductModels model = _factory.GetDetailProduct(id);
                 if (model != null)
                 {
-                    model.ImageURL1 = string.IsNullOrEmpty(model.ImageURL1) ? Commons.Image100_100 : (Commons.HostImage+ model.ImageURL1);
+                    model.ImageURL = string.IsNullOrEmpty(model.ImageURL) ? Commons.Image100_100 : (Commons.HostImage + model.ImageURL);
                     return model;
                 }
                 else
@@ -133,7 +162,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             }
             catch (Exception ex)
             {
-                NSLog.Logger.Error("House_Detail: " , ex);
+                NSLog.Logger.Error("House_Detail: ", ex);
                 return null;
             }
         }
@@ -151,23 +180,23 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             {
                 byte[] photoByte = null;
 
-                if (string.IsNullOrEmpty(model.ImageURL1))
+                if (string.IsNullOrEmpty(model.ImageURL))
                 {
-                    model.ImageURL1 = model.ImageURL1.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
+                    model.ImageURL = model.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
                 }
-                if (model.PictureUpload1 != null && model.PictureUpload1.ContentLength > 0)
+                if (model.PictureUpload != null && model.PictureUpload.ContentLength > 0)
                 {
-                    Byte[] imgByte = new Byte[model.PictureUpload1.ContentLength];
-                    model.PictureUpload1.InputStream.Read(imgByte, 0, model.PictureUpload1.ContentLength);
-                    model.PictureByte1 = imgByte;
-                    model.ImageURL1 = Guid.NewGuid() + Path.GetExtension(model.PictureUpload1.FileName);
-                    model.PictureUpload1 = null;
+                    Byte[] imgByte = new Byte[model.PictureUpload.ContentLength];
+                    model.PictureUpload.InputStream.Read(imgByte, 0, model.PictureUpload.ContentLength);
+                    model.PictureByte = imgByte;
+                    model.ImageURL = Guid.NewGuid() + Path.GetExtension(model.PictureUpload.FileName);
+                    model.PictureUpload = null;
                     photoByte = imgByte;
                 }
                 else
-                    model.ImageURL1 = model.ImageURL1.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
+                    model.ImageURL = model.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
 
-                
+
                 if (!ModelState.IsValid)
                 {
                     Response.StatusCode = (int)HttpStatusCode.BadRequest;
@@ -175,46 +204,40 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 }
                 //====================
                 string msg = "";
-                var tmp = model.PictureByte1;
-                model.PictureByte1 = null;
+                var tmp = model.PictureByte;
+                model.PictureByte = null;
+                model.Type = (byte)Commons.EProductType.House;
                 var result = _factory.UpdateProduct(model, ref msg);
                 if (result)
                 {
-                    model.PictureByte1 = tmp;
+                    model.PictureByte = tmp;
                     //Save Image on Server
-                    if (!string.IsNullOrEmpty(model.ImageURL1) && model.PictureByte1 != null)
+                    if (!string.IsNullOrEmpty(model.ImageURL) && model.PictureByte != null)
                     {
-                        var path = Server.MapPath("~/Uploads/" + model.ImageURL1);
+                        var path = Server.MapPath("~/Uploads/" + model.ImageURL);
                         MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
                         ms.Write(photoByte, 0, photoByte.Length);
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
 
-                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL1, ref photoByte);
-                        model.PictureByte1 = photoByte;
+                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL, ref photoByte);
+                        model.PictureByte = photoByte;
                     }
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ModelState.AddModelError("CategoryID", msg);
+                    ModelState.AddModelError("Name", msg);
                     Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return PartialView("_Edit", model);
                 }
             }
             catch (Exception ex)
             {
-                NSLog.Logger.Error("House_Edit: " , ex);
+                NSLog.Logger.Error("House_Edit: ", ex);
                 model = GetDetail(model.ID);
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return new HttpStatusCodeResult(400, ex.Message);
             }
-        }
-
-        [HttpGet]
-        public PartialViewResult View(string id)
-        {
-            ProductModels model = GetDetail(id);
-            return PartialView("_View", model);
         }
 
         [HttpGet]
@@ -241,11 +264,18 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             }
             catch (Exception ex)
             {
-                NSLog.Logger.Error("House_Delete: " , ex);
+                NSLog.Logger.Error("House_Delete: ", ex);
                 ModelState.AddModelError("Name", "Sản phẩm này hiện đang sử dụng. Làm ơn kiểm tra lại!");
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return PartialView("_Delete", model);
             }
+        }
+        public PartialViewResult AddImageItem(int OffSet)
+        {
+            ImageProduct model = new ImageProduct();
+            model.OffSet = OffSet;
+            model.ImageURL = Commons.Image100_100;
+            return PartialView("_ImageItemProduct", model);
         }
     }
 }

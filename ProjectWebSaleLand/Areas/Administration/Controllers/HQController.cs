@@ -1,4 +1,4 @@
-﻿using ProjectWebSaleLand.Shared.Factory.CategoryFactory;
+﻿
 using ProjectWebSaleLand.Shared.Factory.LocationFactory;
 using ProjectWebSaleLand.Shared.Models;
 using System;
@@ -22,28 +22,28 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             }
         }
 
-        public List<SelectListItem> getListCategory()
-        {
-            var _lstCate = new List<SelectListItem>();
-            try
-            {
-                CategoryFactory _factory = new CategoryFactory();
-                var data = _factory.GetListCate();
-                foreach(var item in data)
-                {
-                    _lstCate.Add(new SelectListItem
-                    {
-                        Value = item.ID,
-                        Text = item.Name
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                NSLog.Logger.Error("getListCategory", ex);
-            }
-            return _lstCate;
-        }
+        //public List<SelectListItem> getListCategory()
+        //{
+        //    var _lstCate = new List<SelectListItem>();
+        //    try
+        //    {
+        //        CategoryFactory _factory = new CategoryFactory();
+        //        var data = _factory.GetListCate();
+        //        foreach(var item in data)
+        //        {
+        //            _lstCate.Add(new SelectListItem
+        //            {
+        //                Value = item.ID,
+        //                Text = item.Name
+        //            });
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        NSLog.Logger.Error("getListCategory", ex);
+        //    }
+        //    return _lstCate;
+        //}
 
         public List<SelectListItem> getListLocation()
         {

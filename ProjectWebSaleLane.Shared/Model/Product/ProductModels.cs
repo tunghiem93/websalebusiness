@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectWebSaleLane.Shared.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace ProjectWebSaleLand.Shared.Model.Product
 {
-    public class ProductModels
+    public class ProductModels : BaseModels
     {
         public string ID { get; set; }
         [Required(ErrorMessage = "Làm ơn chọn thể loại!")]
@@ -42,39 +43,12 @@ namespace ProjectWebSaleLand.Shared.Model.Product
         public string Address1 { get; set; }
         public string Phone2 { get; set; }
         public string Address2 { get; set; }
-        public string ImageURL1 { get; set; }
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase PictureUpload1 { get; set; }
-        public byte[] PictureByte1 { get; set; }
-        public string ImageURL2 { get; set; }
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase PictureUpload2 { get; set; }
-        public byte[] PictureByte2 { get; set; }
-        public string ImageURL3 { get; set; }
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase PictureUpload3 { get; set; }
-        public byte[] PictureByte3 { get; set; }
-        public string ImageURL4 { get; set; }
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase PictureUpload4 { get; set; }
-        public byte[] PictureByte4 { get; set; }
-        public string ImageURL5 { get; set; }
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase PictureUpload5 { get; set; }
-        public byte[] PictureByte5 { get; set; }
-        public string ImageURL6 { get; set; }
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase PictureUpload6 { get; set; }
-        public byte[] PictureByte6 { get; set; }
-        public string ImageURL7 { get; set; }
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase PictureUpload7 { get; set; }
-        public byte[] PictureByte7 { get; set; }
-        public string ImageURL8 { get; set; }
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase PictureUpload8 { get; set; }
-        public byte[] PictureByte8 { get; set; }
         public List<SelectListItem> ListSegment { get; set; }
+
+        //Image
+        public List<string> ListImageUrl { get; set; }
+        public List<ImageProduct> ListImg { get; set; }
+        public string RawImageUrl { get; set; }        
         public ProductModels()
         {
             IsActive = true;
@@ -84,6 +58,12 @@ namespace ProjectWebSaleLand.Shared.Model.Product
                 new SelectListItem(){ Value = Commons.ESegment.Appellative.ToString("d"), Text = "Phổ thông", },
                 new SelectListItem(){ Value = Commons.ESegment.HighUp.ToString("d"), Text = "Cao cấp", },
             };
+            ListImageUrl = new List<string>();
         }
+    }
+    public class ImageProduct : BaseModels
+    {
+        public int OffSet { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

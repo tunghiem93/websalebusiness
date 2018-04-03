@@ -9,7 +9,6 @@ namespace ProjectWebSaleLand.Data.Entities
     public class Product
     {
         public string ID { get; set; }
-        public string CategoryID { get; set; }
         public string LocationID { get; set; }
         public int Type { get; set; }
         public int Segment { get; set; }
@@ -34,13 +33,5 @@ namespace ProjectWebSaleLand.Data.Entities
         public string CreatedUser { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string ModifiedUser { get; set; }
-        public string ImageURL1 { get; set; }
-        public string ImageURL2 { get; set; }
-        public string ImageURL3 { get; set; }
-        public string ImageURL4 { get; set; }
-        public string ImageURL5 { get; set; }
-        public string ImageURL6 { get; set; }
-        public string ImageURL7 { get; set; }
-        public string ImageURL8 { get; set; }
     }
 }

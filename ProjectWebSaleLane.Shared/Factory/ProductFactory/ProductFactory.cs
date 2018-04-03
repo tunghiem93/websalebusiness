@@ -18,9 +18,8 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                 try
                 {
                     var lstResult = (from pro in cxt.dbProduct
-                                     from cat in cxt.dbCategory
                                      from loc in cxt.dbLocation
-                                     where (pro.CategoryID == cat.ID && pro.LocationID == loc.ID)
+                                     where (pro.LocationID == loc.ID)
                                      orderby pro.CreatedDate descending
                                      select new ProductModels()
                                      {
@@ -41,19 +40,8 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                          Address1 = pro.Address1,
                                          Phone2 = pro.Phone2,
                                          Address2 = pro.Address2,
-                                         ImageURL1 = pro.ImageURL1,
-                                         ImageURL2 = pro.ImageURL2,
-                                         ImageURL3 = pro.ImageURL3,
-                                         ImageURL4 = pro.ImageURL4,
-                                         ImageURL5 = pro.ImageURL5,
-                                         ImageURL6 = pro.ImageURL6,
-                                         ImageURL7 = pro.ImageURL7,
-                                         ImageURL8 = pro.ImageURL8,
                                          LocationID = loc.ID,
-                                         Category = cat.Name,
-                                         CategoryID = cat.ID,
                                          Type = pro.Type
-                                         
                                      }).ToList();
                     return lstResult;
                 }
@@ -72,9 +60,8 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                 try
                 {
                     var result = (from pro in cxt.dbProduct
-                                  from cat in cxt.dbCategory
                                   from loc in cxt.dbLocation
-                                  where (pro.ID == id && pro.CategoryID == cat.ID && pro.LocationID == loc.ID)
+                                  where (pro.ID == id && pro.LocationID == loc.ID)
                                   orderby pro.CreatedDate descending
                                   select new ProductModels()
                                   {
@@ -95,17 +82,8 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                       Address1 = pro.Address1,
                                       Phone2 = pro.Phone2,
                                       Address2 = pro.Address2,
-                                      ImageURL1 = pro.ImageURL1,
-                                      ImageURL2 = pro.ImageURL2,
-                                      ImageURL3 = pro.ImageURL3,
-                                      ImageURL4 = pro.ImageURL4,
-                                      ImageURL5 = pro.ImageURL5,
-                                      ImageURL6 = pro.ImageURL6,
-                                      ImageURL7 = pro.ImageURL7,
-                                      ImageURL8 = pro.ImageURL8,
                                       LocationID = loc.ID,
-                                      Category = cat.Name,
-                                      CategoryID = cat.ID,
+                                      Type = pro.Type,
                                       IsActive = pro.IsActive
                                   }).FirstOrDefault();
                     return result;
@@ -136,7 +114,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         item.Acreage = model.Acreage;
                         item.Price = model.Price;
                         item.LocationID = model.LocationID;
-                        item.CategoryID = model.CategoryID;
+                        item.Type = model.Type;
                         item.Right = model.Right;
                         item.BedRoom = model.BedRoom;
                         item.LivingRoom = model.LivingRoom;
@@ -147,14 +125,6 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         item.Address1 = model.Address1;
                         item.Phone2 = model.Phone2;
                         item.Address2 = model.Address2;
-                        item.ImageURL1 = model.ImageURL1;
-                        item.ImageURL2 = model.ImageURL2;
-                        item.ImageURL3 = model.ImageURL3;
-                        item.ImageURL4 = model.ImageURL4;
-                        item.ImageURL5 = model.ImageURL5;
-                        item.ImageURL6 = model.ImageURL6;
-                        item.ImageURL7 = model.ImageURL7;
-                        item.ImageURL8 = model.ImageURL8;
                         item.IsActive = model.IsActive;
                         item.CreatedDate = DateTime.Now;
                         item.ModifiedDate = DateTime.Now;
@@ -233,7 +203,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                             itemUpdate.Acreage = model.Acreage;
                             itemUpdate.Price = model.Price;
                             itemUpdate.LocationID = model.LocationID;
-                            itemUpdate.CategoryID = model.CategoryID;
+                            itemUpdate.Type = model.Type;
                             itemUpdate.Right = model.Right;
                             itemUpdate.BedRoom = model.BedRoom;
                             itemUpdate.LivingRoom = model.LivingRoom;
@@ -244,14 +214,6 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                             itemUpdate.Address1 = model.Address1;
                             itemUpdate.Phone2 = model.Phone2;
                             itemUpdate.Address2 = model.Address2;
-                            itemUpdate.ImageURL1 = model.ImageURL1;
-                            itemUpdate.ImageURL2 = model.ImageURL2;
-                            itemUpdate.ImageURL3 = model.ImageURL3;
-                            itemUpdate.ImageURL4 = model.ImageURL4;
-                            itemUpdate.ImageURL5 = model.ImageURL5;
-                            itemUpdate.ImageURL6 = model.ImageURL6;
-                            itemUpdate.ImageURL7 = model.ImageURL7;
-                            itemUpdate.ImageURL8 = model.ImageURL8;
                             itemUpdate.IsActive = model.IsActive;
                             cxt.SaveChanges();
                             transaction.Commit();

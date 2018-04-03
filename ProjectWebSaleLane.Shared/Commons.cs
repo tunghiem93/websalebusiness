@@ -29,6 +29,17 @@ namespace ProjectWebSaleLand.Shared
             Appellative = 2, //Phổ thông
             HighUp = 3, //Cao cấp
         }
+        public enum EStatus
+        {
+            Actived = 1,
+            Deleted = 9,
+            InActived = 3,
+        }
+        #endregion
+
+        #region Add category
+        public const string Land = "Đất";
+        public const string House = "Nhà";
         #endregion
 
         public const string Image100_100 = "http://placehold.it/100x100";

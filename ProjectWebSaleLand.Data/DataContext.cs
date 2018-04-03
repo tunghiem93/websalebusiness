@@ -26,18 +26,19 @@ namespace ProjectWebSaleLand.Data
             get;
             set;
         }
+              
+        public DbSet<Location> dbLocation
+        {
+            get;
+            set;
+        }
         
         public DbSet<Product> dbProduct
         {
             get;
             set;
         }
-        public DbSet<Category> dbCategory
-        {
-            get;
-            set;
-        }
-        public DbSet<Location> dbLocation
+        public DbSet<Image> dbImage
         {
             get;
             set;
