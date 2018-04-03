@@ -102,7 +102,6 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 }
                 //====================
                 string msg = "";
-                var tmp = model.PictureByte;
                 model.Type = (byte)Commons.EProductType.House;
                 bool result = _factory.InsertProduct(model, ref msg);
                 if (result)
@@ -189,7 +188,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     Byte[] imgByte = new Byte[model.PictureUpload.ContentLength];
                     model.PictureUpload.InputStream.Read(imgByte, 0, model.PictureUpload.ContentLength);
                     model.PictureByte = imgByte;
-                    model.ImageURL = Guid.NewGuid() + Path.GetExtension(model.PictureUpload.FileName);
+                    model.RawImageUrl = Guid.NewGuid() + Path.GetExtension(model.PictureUpload.FileName);
                     model.PictureUpload = null;
                     photoByte = imgByte;
                 }
@@ -202,17 +201,32 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return PartialView("_Edit", model);
                 }
+
+                model.ListImageUrl.Add(model.RawImageUrl);
+                //========
+                Dictionary<int, byte[]> lstImgByte = new Dictionary<int, byte[]>();
+                var ListImage = model.ListImg.Where(x => !x.IsDelete).ToList();
+                foreach (var item in ListImage)
+                {
+                    if (item.PictureUpload != null && item.PictureUpload.ContentLength > 0)
+                    {
+                        Byte[] imgByte = new Byte[item.PictureUpload.ContentLength];
+                        item.PictureUpload.InputStream.Read(imgByte, 0, item.PictureUpload.ContentLength);
+                        item.PictureByte = imgByte;
+                        item.ImageURL = Guid.NewGuid() + Path.GetExtension(item.PictureUpload.FileName);
+                        item.PictureUpload = null;
+                        lstImgByte.Add(item.OffSet, imgByte);
+                        model.ListImageUrl.Add(item.ImageURL);
+                    }
+                }
+
                 //====================
                 string msg = "";
-                var tmp = model.PictureByte;
-                model.PictureByte = null;
                 model.Type = (byte)Commons.EProductType.House;
                 var result = _factory.UpdateProduct(model, ref msg);
                 if (result)
                 {
-                    model.PictureByte = tmp;
-                    //Save Image on Server
-                    if (!string.IsNullOrEmpty(model.ImageURL) && model.PictureByte != null)
+                    if (!string.IsNullOrEmpty(model.RawImageUrl) && model.PictureByte != null)
                     {
                         var path = Server.MapPath("~/Uploads/" + model.ImageURL);
                         MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
@@ -220,7 +234,19 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
 
                         ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL, ref photoByte);
-                        model.PictureByte = photoByte;
+                    }
+
+                    foreach (var item in ListImage)
+                    {
+                        if (!string.IsNullOrEmpty(item.ImageURL) && item.PictureByte != null)
+                        {
+                            var path = Server.MapPath("~/Uploads/" + item.ImageURL);
+                            MemoryStream ms = new MemoryStream(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
+                            ms.Write(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
+                            System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
+
+                            ImageHelper.Me.SaveCroppedImage(imageTmp, path, item.ImageURL, ref photoByte);
+                        }
                     }
                     return RedirectToAction("Index");
                 }
