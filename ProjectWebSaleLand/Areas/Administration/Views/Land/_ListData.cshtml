@@ -12,7 +12,6 @@
             <table class="table table-striped table-bordered dt-responsive nowrap table table-striped jambo_table bulk_action" id="datatable-responsive" cellspacing="0" style="width:100%;">
                 <thead>
                     <tr class="headings">
-                        <th class="column-title text-center">Loại</th>
                         <th class="column-title text-center">Khu vực</th>
                         <th class="column-title text-center">Địa chỉ</th>
                         <th class="column-title text-center">Chiều dài</th>
@@ -36,7 +35,6 @@
                             }
                             var item = Model.ListProduct[i];
                             <tr class="@styleRow">
-                                <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Category</td>
                                 <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Location</td>
                                 <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Address</td>
                                 <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Length</td>
@@ -45,9 +43,9 @@
                                 <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Right</td>
                                 <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Phone</td>
                                 <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;
-                                @if (!string.IsNullOrEmpty(item.ImageURL1))
+                                @if (!string.IsNullOrEmpty(item.ImageURL))
                                 {
-                                    <img id="upload-preview" src="@item.ImageURL1" height="50" width="50" class="img-circle" />
+                                    <img id="upload-preview" src="@item.ImageURL" height="50" width="50" class="img-circle" />
                                 }
                                 else
                                 {
@@ -56,13 +54,13 @@
                                 </td>
                                 <td style="text-align: center; ">
                                     <a href="#"
-                                       onclick="ShowViewOrEdit('@Url.Action("View", "Product", new { id = item.ID })')"
+                                       onclick="ShowViewOrEdit('@Url.Action("View", "Land", new { id = item.ID })')"
                                        class="btn btn-primary btn-xs view details"><i class="fa fa-eye"></i>&nbsp;Xem</a>&nbsp;&nbsp;
                                     <a href="#"
-                                       onclick="ShowViewOrEdit('@Url.Action("Edit", "Product", new { id = item.ID })')"
+                                       onclick="ShowViewOrEdit('@Url.Action("Edit", "Land", new { id = item.ID })')"
                                        class="btn btn-info btn-xs edit details"><i class="fa fa-edit"></i>&nbsp;Sửa</a>&nbsp;&nbsp;
                                     <a href="#"
-                                       onclick="ShowViewOrEdit('@Url.Action("Delete", "Product", new { id = item.ID})')"
+                                       onclick="ShowViewOrEdit('@Url.Action("Delete", "Land", new { id = item.ID})')"
                                        class="btn btn-danger btn-xs delete details"><i class="fa fa-trash-o"></i>&nbsp;Xóa</a>
                                 </td>
                             </tr>
@@ -103,7 +101,7 @@
         var table = $('#datatable-responsive').DataTable({
             "columnDefs": [
                 { "orderable": false, "targets": [1] },
-                { "width": "10%", "targets": [0,1,2,3,4,5,6,7,8,9] },
+                { "width": "10%", "targets": [0,1,2,3,4,5,6,7,8] },
             ],
             "order": [[0, 'asc']],
             "displayLength": 25,

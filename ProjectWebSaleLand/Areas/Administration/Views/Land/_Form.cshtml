@@ -34,23 +34,6 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Thể loại</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            @Html.DropDownListFor(model => model.CategoryID,
-            new SelectList(ViewBag.Category, "Value", "Text", Model.CategoryID), "Làm ơn chọn thể loại!",
-            new
-            {
-                @class = "form-control select2_multiple",
-                @id = "CategoryDdl",
-                @style = "width:100%;",
-                //@onChange = "chkItemCateClick(this)",
-            })
-
-            @Html.ValidationMessageFor(model => model.CategoryID, null, new { @class = "label label-danger" })
-        </div>
-    </div>
-
     <fieldset>
         <legend>THÔNG TIN CHUNG: </legend>
         <div class="form-group">
@@ -228,45 +211,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </fieldset>
-
-    <fieldset class="groupItemForCate form-group">
-        <legend>THÔNG TIN CHỈ GIÀNH CHO SẢN PHẨM LÀ NHÀ:</legend>
-        <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Số phòng ngủ</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                @Html.TextBoxFor(model => model.BedRoom, new { @class = "form-control has-feedback-left", autocomplete = "off", @type = "number" })
-                <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
-                @Html.ValidationMessageFor(model => model.BedRoom, null, new { @class = "label label-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Số phòng khách</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                @Html.TextBoxFor(model => model.LivingRoom, new { @class = "form-control has-feedback-left", autocomplete = "off", @type = "number" })
-                <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
-                @Html.ValidationMessageFor(model => model.LivingRoom, null, new { @class = "label label-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Số phòng tắm</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                @Html.TextBoxFor(model => model.BathRoom, new { @class = "form-control has-feedback-left", autocomplete = "off", @type = "number" })
-                <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
-                @Html.ValidationMessageFor(model => model.BathRoom, null, new { @class = "label label-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Số tầng</label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                @Html.TextBoxFor(model => model.Floor, new { @class = "form-control has-feedback-left", autocomplete = "off", @type = "number" })
-                <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
-                @Html.ValidationMessageFor(model => model.Floor, null, new { @class = "label label-danger" })
             </div>
         </div>
     </fieldset>
