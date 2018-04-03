@@ -1,6 +1,7 @@
 ﻿using ProjectWebSaleLand.Data;
 using ProjectWebSaleLand.Data.Entities;
 using ProjectWebSaleLand.Shared.Model.Customer;
+using ProjectWebSaleLane.Shared.Model.Customer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -202,6 +203,32 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                 }
             }
             return result;
+        }
+
+        public ClientLoginModel Login(ClientLoginModel model)
+        {
+            try
+            {
+                using (var cxt = new DataContext())
+                {
+                    var data = cxt.dbCustomer.Where(x => x.Email.Equals(model.Email) 
+                                                        && x.Password.Equals(model.Password)
+                                                        && x.IsActive)
+                                              .Select(x=> new ClientLoginModel
+                                              {
+                                                  Email = x.Email,
+                                                  DisplayName = x.Name,
+                                                  Password = x.Password
+                                              })
+                                              .FirstOrDefault();
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                NSLog.Logger.Error("Login", ex);
+            }
+            return null;
         }
     }
 }
