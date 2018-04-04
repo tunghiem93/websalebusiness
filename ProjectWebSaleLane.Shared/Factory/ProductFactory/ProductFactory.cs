@@ -41,8 +41,46 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                          Phone2 = pro.Phone2,
                                          Address2 = pro.Address2,
                                          LocationID = loc.ID,
-                                         Type = pro.Type
+                                         Type = pro.Type,
+                                         Name = pro.Name
                                      }).ToList();
+
+                    var _images = cxt.dbImage.Select(x => new
+                    {
+                        ID = x.ID,
+                        ProductID = x.ProductID,
+                        ImageUrL = x.ImageUrL
+                    }).ToList();
+
+                    lstResult.ForEach(x =>
+                    {
+                        if(_images != null && _images.Any())
+                        {
+                            var defaultImage = _images.Where(z=>z.ProductID.Equals(x.ID)).FirstOrDefault();
+                            if(defaultImage != null)
+                            {
+                                x.ImageURL = defaultImage.ImageUrL;
+                                /// add list image
+                                var _temp = _images.Where(z => z.ProductID.Equals(x.ID) && z.ID != defaultImage.ID)
+                                                     .Select(m => new ImageProduct
+                                                     {
+                                                         ImageURL = m.ImageUrL,
+                                                         IsDelete = true
+                                                     }).ToList();
+                                var _offSet = 0;
+                                _temp.ForEach(k =>
+                                {
+                                    k.OffSet = _offSet;
+                                    _offSet++;
+                                });
+                                if (_temp != null && _temp.Any())
+                                {
+                                    x.ListImg.AddRange(_temp);
+                                }
+                            }
+
+                        }
+                    });
                     return lstResult;
                 }
                 catch (Exception ex)
@@ -86,6 +124,36 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                       Type = pro.Type,
                                       IsActive = pro.IsActive
                                   }).FirstOrDefault();
+
+                    var _images = cxt.dbImage.Select(x => new
+                    {
+                        ID = x.ID,
+                        ProductID = x.ProductID,
+                        ImageUrL = x.ImageUrL
+                    }).Where(z=>z.ProductID == id).ToList();
+
+                    if (_images != null && _images.Any())
+                    {
+                        var defaultImage = _images[0];
+                        result.ImageURL = defaultImage.ImageUrL;
+                        /// add list image
+                        var _temp = _images.Where(z => z.ID != defaultImage.ID)
+                                             .Select(m => new ImageProduct
+                                             {
+                                                 ImageURL = m.ImageUrL,
+                                                 IsDelete = true
+                                             }).ToList();
+                        var _offSet = 0;
+                        _temp.ForEach(k =>
+                        {
+                            k.OffSet = _offSet;
+                            _offSet++;
+                        });
+                        if (_temp != null && _temp.Any())
+                        {
+                            result.ListImg.AddRange(_temp);
+                        }
+                    }
                     return result;
                 }
                 catch (Exception ex)
@@ -108,6 +176,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         Product item = new Product();
                         string id = Guid.NewGuid().ToString();
                         item.ID = id;
+                        item.Name = model.Name;
                         item.Address = model.Address;
                         item.Length = model.Length;
                         item.Width = model.Width;
@@ -132,6 +201,19 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         item.ModifiedUser = model.ModifiedUser;
                         item.Type = model.Type;
                         cxt.dbProduct.Add(item);
+
+                        //////////////////////////////////// Save table Image
+                        var lstEImage = new List<Image>();
+                        model.ListImageUrl.ForEach(x =>
+                        {
+                            lstEImage.Add(new Image
+                            {
+                                ID = Guid.NewGuid().ToString(),
+                                ImageUrL = x,
+                                ProductID = id
+                            });
+                        });
+                        cxt.dbImage.AddRange(lstEImage);
                         cxt.SaveChanges();
                         transaction.Commit();
                     }
@@ -156,30 +238,42 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
             bool result = true;
             using (DataContext cxt = new DataContext())
             {
-                try
+                using (var tran = cxt.Database.BeginTransaction())
                 {
-                    var item = cxt.dbProduct.Where(x => x.ID == id).FirstOrDefault();
-                    if (item != null)
+                    try
                     {
-                        cxt.dbProduct.Remove(item);
-                        cxt.SaveChanges();
+                        var _image = cxt.dbImage.Where(x => x.ProductID == id).ToList();
+                        if (_image != null)
+                            cxt.dbImage.RemoveRange(_image);
+
+                        var item = cxt.dbProduct.Where(x => x.ID == id).FirstOrDefault();
+                        if (item != null)
+                        {
+                            cxt.dbProduct.Remove(item);
+                            cxt.SaveChanges();
+                            tran.Commit();
+                        }
+                        else
+                        {
+                            msg = "Sản phẩm này hiện đang sử dụng. Làm ơn kiểm tra lại!";
+                            result = false;
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        msg = "Sản phẩm này hiện đang sử dụng. Làm ơn kiểm tra lại!";
+                        NSLog.Logger.Error(msg, ex);
+                        tran.Rollback();
                         result = false;
                     }
+                    finally
+                    {
+                        if (cxt != null)
+                            cxt.Dispose();
+                    }
+
                 }
-                catch (Exception ex)
-                {
-                    NSLog.Logger.Error(msg, ex);
-                    result = false;
-                }
-                finally
-                {
-                    if (cxt != null)
-                        cxt.Dispose();
-                }
+                
+                
             }
             return result;
         }
@@ -215,6 +309,25 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                             itemUpdate.Phone2 = model.Phone2;
                             itemUpdate.Address2 = model.Address2;
                             itemUpdate.IsActive = model.IsActive;
+                            itemUpdate.Name = model.Name;
+                            ///// update image
+                            var images = cxt.dbImage.Where(x => x.ProductID == model.ID).ToList();
+                            if (images != null)
+                                cxt.dbImage.RemoveRange(images);
+
+
+                            var lstEImage = new List<Image>();
+                            model.ListImageUrl.ForEach(x =>
+                            {
+                                lstEImage.Add(new Image
+                                {
+                                    ID = Guid.NewGuid().ToString(),
+                                    ImageUrL = x,
+                                    ProductID = model.ID
+                                });
+                            });
+                            cxt.dbImage.AddRange(lstEImage);
+
                             cxt.SaveChanges();
                             transaction.Commit();
                         }

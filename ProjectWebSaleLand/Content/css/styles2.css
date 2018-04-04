@@ -119,7 +119,7 @@ margin-top: 10px;
     height: 720px;
 }
 
-input.valid, input.valid[type="text"], input.valid[type="password"], input.valid[type="date"], input.valid[type="number"], select.valid, select.valid {
+/*input.valid, input.valid[type="text"], input.valid[type="password"], input.valid[type="date"], input.valid[type="number"], select.valid, select.valid {
     background-color: #ffffff;
     border-left: 5px solid #088b0b;
 }
@@ -127,11 +127,11 @@ input.valid, input.valid[type="text"], input.valid[type="password"], input.valid
 input.input-validation-error, input.input-validation-error[type="text"], input.input-validation-error[type="password"], input.input-validation-error[type="date"], input.input-validation-error[type="number"], select.input-validation-error, select.input-validation-error {
     background-color: #ffffff;
     border-left: 5px solid #ff0000;
-}
+}*/
 
-.field-validation-error, .validation-summary-errors {
+/*.field-validation-error, .validation-summary-errors {
     color: #ff0000;
-}
+}*/
 
 
 /* Profile container */

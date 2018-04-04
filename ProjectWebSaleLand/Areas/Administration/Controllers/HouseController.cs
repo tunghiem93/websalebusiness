@@ -108,12 +108,12 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     if (!string.IsNullOrEmpty(model.RawImageUrl) && model.PictureByte != null)
                     {
-                        var path = Server.MapPath("~/Uploads/" + model.ImageURL);
+                        var path = Server.MapPath("~/Uploads/" + model.RawImageUrl);
                         MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
                         ms.Write(photoByte, 0, photoByte.Length);
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
 
-                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL, ref photoByte);
+                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.RawImageUrl, ref photoByte);
                     }
 
                     foreach (var item in ListImage)

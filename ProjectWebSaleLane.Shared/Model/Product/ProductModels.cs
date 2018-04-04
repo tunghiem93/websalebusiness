@@ -58,6 +58,7 @@ namespace ProjectWebSaleLand.Shared.Model.Product
                 new SelectListItem(){ Value = Commons.ESegment.HighUp.ToString("d"), Text = "Cao cấp", },
             };
             ListImageUrl = new List<string>();
+            ListImg = new List<ImageProduct>();
         }
     }
     public class ImageProduct : BaseModels
