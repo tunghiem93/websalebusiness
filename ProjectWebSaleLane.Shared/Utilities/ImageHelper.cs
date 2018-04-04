@@ -70,10 +70,10 @@ namespace NuWebForSaler.Shared.Utilities
 
         public bool SaveCroppedImage(Image image, string filePath, string fileName, ref Byte[] imageBytes, int maxWidth = 400)
         {
-            if (image.Width < maxWidth)
-            {
-                return true;
-            }
+            //if (image.Width < maxWidth)
+            //{
+            //    return true;
+            //}
             var extension = fileName.Substring(fileName.Length - 3, 3).ToLower();
             //var filePath = GetNewPathFor(path, ref fileName);
 

@@ -108,19 +108,19 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     if (!string.IsNullOrEmpty(model.RawImageUrl) && model.PictureByte != null)
                     {
-                        var path = Server.MapPath("~/Uploads/" + model.ImageURL);
+                        var path = Server.MapPath("~/Uploads/Images/Product/" + model.RawImageUrl);
                         MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
                         ms.Write(photoByte, 0, photoByte.Length);
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
 
-                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL, ref photoByte);
+                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.RawImageUrl, ref photoByte);
                     }
 
                     foreach (var item in ListImage)
                     {
                         if (!string.IsNullOrEmpty(item.ImageURL) && item.PictureByte != null)
                         {
-                            var path = Server.MapPath("~/Uploads/" + item.ImageURL);
+                            var path = Server.MapPath("~/Uploads/Images/Product/" + item.ImageURL);
                             MemoryStream ms = new MemoryStream(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
                             ms.Write(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
                             System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
@@ -201,6 +201,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return PartialView("_Edit", model);
                 }
+
                 model.ListImageUrl.Add(model.RawImageUrl);
                 //========
                 Dictionary<int, byte[]> lstImgByte = new Dictionary<int, byte[]>();
@@ -218,6 +219,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                         model.ListImageUrl.Add(item.ImageURL);
                     }
                 }
+
                 //====================
                 string msg = "";
                 model.Type = (byte)Commons.EProductType.Land;
@@ -226,7 +228,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     if (!string.IsNullOrEmpty(model.RawImageUrl) && model.PictureByte != null)
                     {
-                        var path = Server.MapPath("~/Uploads/" + model.ImageURL);
+                        var path = Server.MapPath("~/Uploads/Images/Product/" + model.ImageURL);
                         MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
                         ms.Write(photoByte, 0, photoByte.Length);
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
@@ -238,7 +240,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     {
                         if (!string.IsNullOrEmpty(item.ImageURL) && item.PictureByte != null)
                         {
-                            var path = Server.MapPath("~/Uploads/" + item.ImageURL);
+                            var path = Server.MapPath("~/Uploads/Images/Product/" + item.ImageURL);
                             MemoryStream ms = new MemoryStream(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
                             ms.Write(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
                             System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
@@ -246,6 +248,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                             ImageHelper.Me.SaveCroppedImage(imageTmp, path, item.ImageURL, ref photoByte);
                         }
                     }
+
                     return RedirectToAction("Index");
                 }
                 else
