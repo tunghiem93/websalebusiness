@@ -3,6 +3,7 @@
 @{
     ///Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
 }
+@{ int index = 1;}
 <div role="main" class="right_col">
     <div class="">
         <div class="page-title">
@@ -147,6 +148,33 @@
                                         @Model.Description
                                     </div>
                                 </div>
+
+                                @if (Model.ListImageUrl != null)
+                                {
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <table class="table tab-content">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th><b>DÁNH SÁCH HÌNH ẢNH</b></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @for (int i = 0; i < Model.ListImageUrl.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>Hình số @index</td>
+                                                            <td>@Model.ListImageUrl[i]</td>
+                                                        </tr>
+                                                        index++;
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
 
