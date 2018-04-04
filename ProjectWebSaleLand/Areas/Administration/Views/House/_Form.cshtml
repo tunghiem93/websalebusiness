@@ -229,6 +229,14 @@
                 @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = "Mô tả" })
             </div>
         </div>
+
+        @*Right*@
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Pháp lý (Nếu có)</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @Html.TextAreaFor(model => model.Right, new { @class = "form-control", placeholder = "Pháp lý" })
+            </div>
+        </div>
         
         @*List Image*@
         <div class="form-group">

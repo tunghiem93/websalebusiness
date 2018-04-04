@@ -32,7 +32,7 @@
                                 }
                                 var item = Model.ListCate[i];
                                 <tr class="@styleRow">
-                                    <td style="color:#34495e; font-weight:bold; ">&nbsp;&nbsp;&nbsp;@item.Name</td>
+                                    <td style="color:#34495e; font-weight:bold; " class="moretext">&nbsp;&nbsp;&nbsp;@item.Name</td>
                                     <td style="text-align: center; ">@item.Email</td>
                                     <td style="text-align: center; ">@item.Phone</td>
                                     <td style="text-align: center; ">@item.BirthDate.ToString("dd/MM/yyyy")</td>
@@ -69,6 +69,18 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var showChar = 40;
+
+        $('.moretext').each(function () {
+            var content = $(this).text();
+            if (content.length > showChar) {
+                var html = content.substr(0, showChar);
+                html = html + "...";
+                $(this).html(html);
+            }
+
+        });  
+
         var handleDataTableButtons = function () {
             if ($("#datatable-buttons").length) {
                 $("#datatable-buttons").DataTable({

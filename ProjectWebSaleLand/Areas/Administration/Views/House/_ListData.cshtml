@@ -36,14 +36,14 @@
                             }
                             var item = Model.ListProduct[i];
                             <tr class="@styleRow">
-                                <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Name</td>
-                                <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Location</td>
-                                <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Address</td>
-                                <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Length</td>
-                                <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Width</td>
-                                <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Acreage</td>
-                                <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Right</td>
-                                <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;@item.Phone</td>
+                                <td style="color:#34495e; font-weight:bold; text-align: center;" class="moretext">&nbsp;&nbsp;&nbsp;@item.Name</td>
+                                <td style="color:#34495e; font-weight:bold; text-align: center;" class="moretext">&nbsp;&nbsp;&nbsp;@item.Location</td>
+                                <td style="color:#34495e; font-weight:bold; text-align: center;" class="moretext">&nbsp;&nbsp;&nbsp;@item.Address</td>
+                                <td style="color:#34495e; font-weight:bold; text-align: center;" class="moretext">&nbsp;&nbsp;&nbsp;@item.Length</td>
+                                <td style="color:#34495e; font-weight:bold; text-align: center;" class="moretext">&nbsp;&nbsp;&nbsp;@item.Width</td>
+                                <td style="color:#34495e; font-weight:bold; text-align: center;" class="moretext">&nbsp;&nbsp;&nbsp;@item.Acreage</td>
+                                <td style="color:#34495e; font-weight:bold; text-align: center;" class="moretext">&nbsp;&nbsp;&nbsp;@item.Right</td>
+                                <td style="color:#34495e; font-weight:bold; text-align: center;" class="moretext">&nbsp;&nbsp;&nbsp;@item.Phone</td>
                                 <td style="color:#34495e; font-weight:bold; text-align: center; ">&nbsp;&nbsp;&nbsp;
                                 @if (!string.IsNullOrEmpty(item.ImageURL))
                                 {
@@ -77,6 +77,18 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var showChar = 30;
+
+        $('.moretext').each(function () {
+            var content = $(this).text();
+            if (content.length > showChar) {
+                var html = content.substr(0, showChar);
+                html = html + "...";
+                $(this).html(html);
+            }
+
+        }); 
+
         var handleDataTableButtons = function () {
             if ($("#datatable-buttons").length) {
                 $("#datatable-buttons").DataTable({
