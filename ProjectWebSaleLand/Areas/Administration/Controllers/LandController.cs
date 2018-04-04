@@ -152,7 +152,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 ProductModels model = _factory.GetDetailProduct(id);
                 if (model != null)
                 {
-                    model.ImageURL = string.IsNullOrEmpty(model.ImageURL) ? Commons.Image100_100 : (Commons.HostImage + model.ImageURL);
+                    model.ImageURL = string.IsNullOrEmpty(model.ImageURL) ? Commons.Image200_100 : (Commons.HostImage + model.ImageURL);
                     return model;
                 }
                 else
@@ -181,9 +181,9 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             {
                 byte[] photoByte = null;
 
-                if (string.IsNullOrEmpty(model.ImageURL))
+                if (!string.IsNullOrEmpty(model.ImageURL))
                 {
-                    model.ImageURL = model.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
+                    model.ImageURL = model.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image200_100, "");
                 }
                 if (model.PictureUpload != null && model.PictureUpload.ContentLength > 0)
                 {
@@ -194,9 +194,6 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     model.PictureUpload = null;
                     photoByte = imgByte;
                 }
-                else
-                    model.ImageURL = model.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
-
 
                 if (!ModelState.IsValid)
                 {
@@ -230,12 +227,12 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     if (!string.IsNullOrEmpty(model.RawImageUrl) && model.PictureByte != null)
                     {
-                        var path = Server.MapPath("~/Uploads/Images/Product/" + model.ImageURL);
+                        var path = Server.MapPath("~/Uploads/Images/Product/" + model.RawImageUrl);
                         MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
                         ms.Write(photoByte, 0, photoByte.Length);
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
 
-                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL, ref photoByte);
+                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.RawImageUrl, ref photoByte);
                     }
 
                     foreach (var item in ListImage)
@@ -303,7 +300,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         {
             ImageProduct model = new ImageProduct();
             model.OffSet = OffSet;
-            model.ImageURL = Commons.Image100_100;
+            model.ImageURL = Commons.Image200_100;
             return PartialView("_ImageItemProduct", model);
         }
     }

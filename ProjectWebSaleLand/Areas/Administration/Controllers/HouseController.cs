@@ -153,6 +153,13 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 if (model != null)
                 {
                     model.ImageURL = string.IsNullOrEmpty(model.ImageURL) ? Commons.Image100_100 : (Commons.HostImage + model.ImageURL);
+                    if (model.ListImg != null && model.ListImg.Count > 0)
+                    {
+                        model.ListImg.ForEach(o => {
+                            o.ImageURL = string.IsNullOrEmpty(o.ImageURL) ? Commons.Image200_100 : (Commons.HostImage + o.ImageURL);
+                            o.IsDelete = false;
+                        });
+                    }
                     return model;
                 }
                 else
@@ -300,7 +307,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         {
             ImageProduct model = new ImageProduct();
             model.OffSet = OffSet;
-            model.ImageURL = Commons.Image100_100;
+            model.ImageURL = Commons.Image200_100;
             return PartialView("_ImageItemProduct", model);
         }
     }
