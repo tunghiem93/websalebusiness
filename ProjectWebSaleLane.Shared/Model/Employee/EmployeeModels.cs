@@ -17,6 +17,7 @@ namespace ProjectWebSaleLand.Shared.Model.Employee
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Làm ơn nhập tên!")]
         public string LastName { get; set; }
+        [Required(ErrorMessage ="Làm ơn nhập email")]
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail không hợp lệ")]
         public string Email { get; set; }
         [Required]
@@ -36,11 +37,11 @@ namespace ProjectWebSaleLand.Shared.Model.Employee
         public string Street { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        [Required(ErrorMessage = "Làm ơn nhập tên côn ty!")]
+        //[Required(ErrorMessage = "Làm ơn nhập tên côn ty!")]
         public string Company { get; set; }
-        [Required(ErrorMessage = "Làm ơn nhập tên mã code!")]
+       // [Required(ErrorMessage = "Làm ơn nhập tên mã code!")]
         public string ZipCode { get; set; }
-        [Required(ErrorMessage = "Làm ơn nhập thông tin website!")]
+       // [Required(ErrorMessage = "Làm ơn nhập thông tin website!")]
         public string WebSite { get; set; }
         public string Description { get; set; }
         public bool IsSupperAdmin { get; set; }
