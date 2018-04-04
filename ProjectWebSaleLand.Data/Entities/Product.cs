@@ -9,6 +9,7 @@ namespace ProjectWebSaleLand.Data.Entities
     public class Product
     {
         public string ID { get; set; }
+        public string Name { get; set; }
         public string LocationID { get; set; }
         public int Type { get; set; }
         public int Segment { get; set; }
