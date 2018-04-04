@@ -13,6 +13,7 @@ namespace ProjectWebSaleLand.Shared.Model.Product
     public class ProductModels : BaseModels
     {
         public string ID { get; set; }
+        [Required(ErrorMessage = "Làm ơn nhập tên!")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Làm ơn chọn khu vực!")]
         public string LocationID { get; set; }
