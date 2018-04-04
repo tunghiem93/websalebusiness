@@ -11,8 +11,8 @@ namespace ProjectWebSaleLand.Shared.Model.Employee
     public class EmployeeModels
     {
         public string ID { get; set; }
-        [Required(ErrorMessage = "Làm ơn nhập tên đầy đủ!")]
-        public string Name { get; set; }
+       // [Required(ErrorMessage = "Làm ơn nhập tên đầy đủ!")]
+        public string Name { get { return (this.FirstName + " " + this.LastName); } }
         [Required(ErrorMessage = "Làm ơn nhập họ!")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Làm ơn nhập tên!")]
