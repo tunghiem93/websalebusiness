@@ -23,7 +23,6 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         ID = o.ID,
                         FirstName = o.FirstName,
                         LastName = o.LastName,
-                        Name = o.Name,
                         Email = o.Email,
                         Password = o.Password,
                         ZipCode = o.ZipCode,
@@ -62,7 +61,6 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         ID = o.ID,
                         FirstName = o.FirstName,
                         LastName = o.LastName,
-                        Name = o.Name,
                         Email = o.Email,
                         Password = o.Password,
                         ZipCode = o.ZipCode,
@@ -90,7 +88,7 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
             }
         }
 
-        public bool InsertCustomer(CustomerModels model, ref string msg)
+        public bool InsertCustomer(CustomerModels model, ref string msg, ref string cusId)
         {
             bool result = true;
             using (DataContext cxt = new DataContext())
@@ -125,6 +123,7 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         cxt.dbCustomer.Add(item);
                         cxt.SaveChanges();
                         transaction.Commit();
+                        cusId = id;
                     }
                     catch (Exception ex)
                     {

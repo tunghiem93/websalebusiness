@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ProjectWebSaleLand.Shared.Factory.CustomerFactory;
+using ProjectWebSaleLand.Shared.Model.Customer;
 using ProjectWebSaleLand.Shared.Models;
 using ProjectWebSaleLand.Shared.Utilities;
 using ProjectWebSaleLane.Shared.Model.Customer;
@@ -81,7 +82,49 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
 
         public ActionResult SignUp()
         {
-            return View();
+            CustomerModels model = new CustomerModels();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult SignUp(CustomerModels model)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(model.Password) && !string.IsNullOrEmpty(model.ConfirmPassword) && !model.Password.Equals(model.ConfirmPassword))
+                    ModelState.AddModelError("ConfirmPassword", "Xác nhận mật khẩu không chính xác !");
+
+                if (!ModelState.IsValid)
+                    return View(model);
+                model.Password = CommonHelper.Encrypt(model.Password);
+                string msg = "";
+                string cusId = "";
+                var result = _factory.InsertCustomer(model,ref msg, ref cusId);
+                if(result)
+                {
+                    var data = _factory.GetDetailCustomer(cusId);
+                    UserSession userSession = new UserSession();
+                    userSession.Email = data.Email;
+                    userSession.UserName = data.Name;
+                    Session.Add("UserClient", userSession);
+                    string myObjectJson = JsonConvert.SerializeObject(userSession);  //new JavaScriptSerializer().Serialize(userSession);
+                    HttpCookie cookie = new HttpCookie("UserClientCookie");
+                    cookie.Expires = DateTime.Now.AddMonths(1);
+                    cookie.Value = Server.UrlEncode(myObjectJson);
+                    HttpContext.Response.Cookies.Add(cookie);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("FirstName", "Đăng kí không thành công");
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                NSLog.Logger.Error("SignUp", ex);
+                return new HttpStatusCodeResult(400, ex.Message);
+            }
         }
     }
 }

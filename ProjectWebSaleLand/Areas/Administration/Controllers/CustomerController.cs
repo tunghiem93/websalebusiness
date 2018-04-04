@@ -74,10 +74,10 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return PartialView("Create", model);
                 }
-                string msg = "";
+                string msg = "", cusId = "";
                 model.CreatedUser = CurrentUser.UserId;
                 model.Password = CommonHelper.Encrypt(model.Password);
-                var result = _factory.InsertCustomer(model, ref msg);
+                var result = _factory.InsertCustomer(model, ref msg,ref cusId);
                 if (result)
                 {
                     return RedirectToAction("Index");
