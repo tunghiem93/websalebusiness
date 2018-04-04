@@ -183,7 +183,7 @@
                             <div class="at-property-img">
                                 <img src="@Url.Content(item.ImageURL)" alt="" style="width:400px; height:200px">
                                 <div class="at-property-overlayer"></div>
-                                <a class="btn btn-default at-property-btn" href="/Home/PropertiesDetail" role="button">Chi Tiết</a>
+                                <a class="btn btn-default at-property-btn" href="/Home/PropertiesDetail/@item.ID" role="button">Chi Tiết</a>
                                 <h4>For Sale</h4>
                                 @if (!string.IsNullOrEmpty(item.Price))
                                 {
@@ -199,7 +199,7 @@
                                 </ul>
                             </div>
                             <div class="at-property-location">
-                                <h4><i class="fa fa-home" aria-hidden="true"></i><a href="/Home/PropertiesDetail">@item.Name</a></h4>
+                                <h4><i class="fa fa-home" aria-hidden="true"></i><a href="/Home/PropertiesDetail/@item.ID">@item.Name</a></h4>
                                 <p><i class="fa fa-map-marker" aria-hidden="true"></i> @item.Address</p>
                             </div>
                         </div>
