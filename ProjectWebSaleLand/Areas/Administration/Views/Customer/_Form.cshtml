@@ -4,14 +4,34 @@
     var _ID = Model.ID;
 }
 @Html.HiddenFor(model => model.ID)
-<div class="row form-horizontal form-label-left" style="margin-bottom:15px;">   
+<div class="row form-horizontal form-label-left" style="margin-bottom:15px;">  
+    @*Name*@
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Tên họ: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control has-feedback-left", placeholder = "Tên họ", autocomplete = "off" })
+            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.FirstName, null, new { @class = "label label-danger" })
+        </div>
+    </div>
+
     @*Name*@
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Tên: </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            @Html.TextBoxFor(model => model.Name, new { @class = "form-control has-feedback-left", placeholder = "Tên", autocomplete = "off" })
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control has-feedback-left", placeholder = "Tên", autocomplete = "off" })
             <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-            @Html.ValidationMessageFor(model => model.Name, null, new { @class = "label label-danger" })
+            @Html.ValidationMessageFor(model => model.LastName, null, new { @class = "label label-danger" })
+        </div>
+    </div>
+
+    @*Name*@
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Tên đầy đủ: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control has-feedback-left", placeholder = "Tên đầy đủ", autocomplete = "off" })
+            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.FullName, null, new { @class = "label label-danger" })
         </div>
     </div>
     @* Phone Number *@
@@ -51,6 +71,36 @@
             @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control has-feedback-left txtConfirmPassword", placeholder = "", autocomplete = "off" })
             <span class="fa fa-lock form-control-feedback left" aria-hidden="true"></span>
             @Html.ValidationMessageFor(model => model.ConfirmPassword, null, new { @class = "label label-danger" })
+        </div>
+    </div>
+
+    @* ZipCode *@
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12  lineHeight">Zipcode: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control has-feedback-left", placeholder = "Số điện thoại", autocomplete = "off", @type = "number" })
+            <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.ZipCode, null, new { @class = "label label-danger" })
+        </div>
+    </div>
+
+    @* Country *@
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12  lineHeight">Quốc gia: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            @Html.TextBoxFor(model => model.Country, new { @class = "form-control has-feedback-left", placeholder = "Số điện thoại", autocomplete = "off", @type = "number" })
+            <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.Country, null, new { @class = "label label-danger" })
+        </div>
+    </div>
+
+    @* Company *@
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12  lineHeight">Công ty: </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            @Html.TextBoxFor(model => model.Company, new { @class = "form-control has-feedback-left", placeholder = "Số điện thoại", autocomplete = "off", @type = "number" })
+            <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.Company, null, new { @class = "label label-danger" })
         </div>
     </div>
 

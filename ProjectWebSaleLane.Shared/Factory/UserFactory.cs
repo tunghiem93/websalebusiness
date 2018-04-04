@@ -28,7 +28,7 @@ namespace ProjectWebSaleLand.Shared.Factory
             {
                 using (DataContext _db = new DataContext())
                 {
-                    info.Password = CommonHelper.GetSHA512(info.Password);
+                    info.Password = CommonHelper.Encrypt(info.Password);
                     string serverImage = ConfigurationManager.AppSettings["PublicImages"];
 
                     var emp = _db.dbEmployee.Where(o => o.Email == info.Email.ToLower().Trim() && o.Password == info.Password).FirstOrDefault();

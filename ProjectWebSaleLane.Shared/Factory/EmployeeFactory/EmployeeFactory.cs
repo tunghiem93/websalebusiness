@@ -19,9 +19,14 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                 {
                     var lstResult = cxt.dbEmployee.Select(o => new EmployeeModels() {
                         ID = o.ID,
+                        FirstName = o.FirstName,
+                        LastName = o.LastName,
                         Name = o.Name,
                         Email = o.Email,
                         Password = o.Password,
+                        ZipCode = o.ZipCode,
+                        Company = o.Company,
+                        WebSite = o.WebSite,
                         Phone = o.Phone,
                         BirthDate = o.BirthDate,
                         Gender = o.Gender,
@@ -54,9 +59,14 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                     var result = cxt.dbEmployee.Where(w => w.ID == id).Select(o => new EmployeeModels()
                     {
                         ID = o.ID,
+                        FirstName = o.FirstName,
+                        LastName = o.LastName,
                         Name = o.Name,
                         Email = o.Email,
                         Password = o.Password,
+                        ZipCode = o.ZipCode,
+                        Company = o.Company,
+                        WebSite = o.WebSite,
                         Phone = o.Phone,
                         BirthDate = o.BirthDate,
                         Gender = o.Gender,
@@ -92,10 +102,13 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         Employee item = new Employee();
                         string id = Guid.NewGuid().ToString();
                         item.ID = id;
+                        item.FirstName = model.FirstName;
+                        item.LastName = model.LastName;
                         item.Name = model.Name;
-                        item.Email = model.Email;
-                        item.Password = model.Password;
                         item.Phone = model.Phone;
+                        item.ZipCode = model.ZipCode;
+                        item.Company = model.Company;
+                        item.WebSite = model.WebSite;
                         item.BirthDate = model.BirthDate;
                         item.Gender = model.Gender;
                         item.IsSupperAdmin = model.IsSupperAdmin;
@@ -172,9 +185,14 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         var itemUpdate = cxt.dbEmployee.Where(x => x.ID == model.ID).FirstOrDefault();
                         if (itemUpdate != null)
                         {
+                            itemUpdate.FirstName = model.FirstName;
+                            itemUpdate.LastName = model.LastName;
                             itemUpdate.Name = model.Name;
                             itemUpdate.Email = model.Email;
                             itemUpdate.Password = model.Password;
+                            itemUpdate.ZipCode = model.ZipCode;
+                            itemUpdate.Company = model.Company;
+                            itemUpdate.WebSite = model.WebSite;
                             itemUpdate.Phone = model.Phone;
                             itemUpdate.BirthDate = model.BirthDate;
                             itemUpdate.Gender = model.Gender;
