@@ -7,9 +7,9 @@
 <div class="row form-horizontal form-label-left" style="margin-bottom:15px;">  
     @*Name*@
     <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Tên họ: </label>
+        <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Họ: </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control has-feedback-left", placeholder = "Tên họ", autocomplete = "off" })
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control has-feedback-left", placeholder = "Họ..", autocomplete = "off" })
             <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
             @Html.ValidationMessageFor(model => model.FirstName, null, new { @class = "label label-danger" })
         </div>
@@ -19,21 +19,12 @@
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Tên: </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control has-feedback-left", placeholder = "Tên", autocomplete = "off" })
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control has-feedback-left", placeholder = "Tên..", autocomplete = "off" })
             <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
             @Html.ValidationMessageFor(model => model.LastName, null, new { @class = "label label-danger" })
         </div>
     </div>
 
-    @*Name*@
-    <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12 lineHeight">Tên đầy đủ: </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control has-feedback-left", placeholder = "Tên đầy đủ", autocomplete = "off" })
-            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-            @Html.ValidationMessageFor(model => model.FullName, null, new { @class = "label label-danger" })
-        </div>
-    </div>
     @* Phone Number *@
     <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12  lineHeight">Số điện thoại: </label>
