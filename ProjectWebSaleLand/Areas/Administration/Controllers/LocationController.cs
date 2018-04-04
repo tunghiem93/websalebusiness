@@ -1,5 +1,6 @@
 ﻿using ProjectWebSaleLand.Shared.Factory.LocationFactory;
 using ProjectWebSaleLand.Shared.Model.Location;
+using ProjectWebSaleLand.Web.App_Start;
 using ProjectWebSaleLane.Shared.Model.Location;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace ProjectWebSaleLand.Areas.Administration.Controllers
 {
+    [NuAuth]
     public class LocationController : BaseController
     {
         private LocationFactory _factory = null;

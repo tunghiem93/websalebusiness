@@ -2,6 +2,7 @@
 using ProjectWebSaleLand.Shared;
 using ProjectWebSaleLand.Shared.Factory.ProductFactory;
 using ProjectWebSaleLand.Shared.Model.Product;
+using ProjectWebSaleLand.Web.App_Start;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 
 namespace ProjectWebSaleLand.Areas.Administration.Controllers
 {
+    [NuAuth]
     public class HouseController : BaseController
     {
         private ProductFactory _factory = null;

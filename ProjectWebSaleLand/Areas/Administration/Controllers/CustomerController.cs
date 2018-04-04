@@ -1,6 +1,7 @@
 ﻿using ProjectWebSaleLand.Shared.Factory.CustomerFactory;
 using ProjectWebSaleLand.Shared.Model.Customer;
 using ProjectWebSaleLand.Shared.Utilities;
+using ProjectWebSaleLand.Web.App_Start;
 using ProjectWebSaleLane.Shared.Model.Customer;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ using System.Web.Mvc;
 
 namespace ProjectWebSaleLand.Areas.Administration.Controllers
 {
+    [NuAuth]
     public class CustomerController : BaseController
     {
-        
         private CustomerFactory _factory = null;
         // GET: Administration/Customer
         public CustomerController()

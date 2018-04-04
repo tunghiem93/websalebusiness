@@ -24,7 +24,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         public ActionResult Index(bool isAjax = false, string returnUrl = null)
         {
             if (Session["User"] != null)
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction("Index", "Home", new { area = "Administration" });
 
             LoginRequestModel model = new LoginRequestModel();
 
@@ -58,7 +58,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
 
             if (isAjax)
                 //return PartialView("_Login", model);
-                return RedirectToAction("Index", "Login", new { area = "" });
+                return RedirectToAction("Index", "Login", new { area = "Administration" });
             else
                 return View(model);
         }
@@ -70,7 +70,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             try
             {
                 if (Session["User"] != null)
-                    return RedirectToAction("Index", "Home", new { area = "" });
+                    return RedirectToAction("Index", "Home", new { area = "Administration" });
 
                 if (ModelState.IsValid)
                 {

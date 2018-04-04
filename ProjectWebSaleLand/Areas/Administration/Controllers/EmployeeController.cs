@@ -1,6 +1,7 @@
 ﻿using ProjectWebSaleLand.Shared.Factory.EmployeeFactory;
 using ProjectWebSaleLand.Shared.Model.Employee;
 using ProjectWebSaleLand.Shared.Utilities;
+using ProjectWebSaleLand.Web.App_Start;
 using ProjectWebSaleLane.Shared.Model.Employee;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace ProjectWebSaleLand.Areas.Administration.Controllers
 {
+    [NuAuth]
     public class EmployeeController : BaseController
     {
         private EmployeeFactory _factory = null;
