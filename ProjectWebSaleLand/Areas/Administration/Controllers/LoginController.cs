@@ -82,9 +82,9 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     if (isValid)
                     {
                         UserSession userSession = new UserSession();
+                        userSession.UserId = User.EmployeeID;
                         userSession.Email = User.EmployeeEmail;
                         userSession.UserName = User.EmployeeName;
-                        userSession.UserId = User.EmployeeID;
                         userSession.IsAuthenticated = true;
                         userSession.ImageUrl = User.EmployeeImageURL;
                         userSession.RoleID = User.RoleID;
@@ -94,15 +94,15 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                         Session.Add("User", userSession);
                         //
                         if (!string.IsNullOrEmpty(mController))
-                            return RedirectToAction("Index", mController, new { area = "" });
+                            return RedirectToAction("Index", mController, new { area = "Administration" });
                         if (returnUrl == null)
-                            return RedirectToAction("Index", "Home", new { area = "" });
+                            return RedirectToAction("Index", "Home", new { area = "Administration" });
                         else
                             return Redirect(returnUrl);
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Email/Password is incorrect!");
+                        ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không chính xác!");
                         return View(model);
                     }
                 }
