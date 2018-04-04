@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectWebSaleLand.Web.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
 {
     public class HomeController : BaseController
     {
+        [NuAuth]
         public ActionResult Index()
         {
             return View();

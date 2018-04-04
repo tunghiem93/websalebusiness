@@ -20,16 +20,6 @@ namespace ProjectWebSaleLand.Web.App_Start
         private string Action;
 
         private List<string> _Views = new List<string> { "index", "default", "view", "detail", "get", "load", "filter", "search", "apply" };
-        private List<string> _ControllerDenies = new List<string> { "ACModule", "IngIngredients" };
-
-        private List<String> _ViewTimeoutSession = new List<string>
-        {
-            "LoadIngredient", "LoadIngredientIngredient",       //Ingrident
-            "AddTab", "AddDishes", "CheckDish",                 //SetMenu 
-            "AddModifiers","LoadModifiers","CheckModifier",      //Dish
-            "LoadDetail",
-            "AddSubPayment"                                 //Payment
-        };
 
         /*Factory*/
 
@@ -67,9 +57,7 @@ namespace ProjectWebSaleLand.Web.App_Start
                     {
                         return true;
                     }
-                    bool IsModPer = true;
-                    return IsModPer;
-
+                    return true;
                 }
 
             }
@@ -84,39 +72,17 @@ namespace ProjectWebSaleLand.Web.App_Start
         {
             if (!_CurrentUser.IsAuthenticated)
             {
-                string controller = filterContext.RouteData.Values["controller"].ToString();
-                string action = filterContext.RouteData.Values["action"].ToString();
-                bool isChange = false;
-                if (_ViewTimeoutSession.Contains(action))
-                {
-                    isChange = true;
-                }
-                if (isChange) //TimeoutSession
-                {
-                    filterContext.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary(
-                        new
-                        {
-                            controller = "Error",
-                            action = "TimeOutSession",
-                            area = string.Empty,
-                        })
-                    );
-                }
-                else //Login
-                {
-                    filterContext.Result = new RedirectToRouteResult(
+                filterContext.Result = new RedirectToRouteResult(
                     new RouteValueDictionary(
                         new
                         {
                             controller = "Login",
                             action = "Index",
-                            area = string.Empty,
+                            area = "Administration",
                             isAjax = filterContext.HttpContext.Request.IsAjaxRequest(),
-                            returnUrl = filterContext.HttpContext.Request.Url.ToString().Replace("/Report", "")
+                            returnUrl = filterContext.HttpContext.Request.Url.ToString().Replace("/Logout", "")
                         })
                     );
-                }
             }
             else
             {
