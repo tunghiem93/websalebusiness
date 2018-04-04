@@ -2,6 +2,7 @@
 using ProjectWebSaleLand.Shared.Factory.LocationFactory;
 using ProjectWebSaleLand.Shared.Factory.ProductFactory;
 using ProjectWebSaleLand.Shared.Model.Product;
+using ProjectWebSaleLane.Shared.Model.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,9 +62,33 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
             return View();
         }
 
-        public ActionResult PropertiesDetail()
+        public ActionResult PropertiesDetail(string id)
         {
-            return View();
+            ProductDetailViewModels model = new ProductDetailViewModels();
+            if (!string.IsNullOrEmpty(id))
+            {
+                
+                var data = _factoryPro.GetListProduct();
+                var oldData = data.OrderBy(x => x.CreatedDate).Skip(0).Take(3).ToList();
+                oldData.ForEach(x =>
+                {
+                    if (!string.IsNullOrEmpty(x.ImageURL))
+                        x.ImageURL = Commons.HostImage + x.ImageURL;
+                });
+                var dataDetail = data.Where(x => x.ID.Equals(id)).FirstOrDefault();
+                dataDetail.ImageURL = Commons.HostImage + dataDetail.ImageURL;
+                model.ListProduct = oldData;
+                model.Product = dataDetail;
+
+                //// get list location
+                var _location = _factoryLoc.GetListLocation();
+                _location.ForEach(x =>
+                {
+                    x.Total = data.Count(z => z.LocationID.Equals(x.ID));
+                });
+                model.ListLocation = _location;
+            }
+            return View(model);
         }
     }
 }

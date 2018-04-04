@@ -17,6 +17,7 @@ namespace ProjectWebSaleLand.Shared.Model.Location
         public string CreatedUser { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string ModifiedUser { get; set; }
+        public int Total { get; set; }
         public LocationModels()
         {
             IsActive = true;

@@ -1,6 +1,8 @@
 ﻿@{
     Layout = "~/Areas/ClientSite/Views/Shared/_Layout.cshtml";
 }
+@model ProjectWebSaleLane.Shared.Model.Product.ProductDetailViewModels
+    @using ProjectWebSaleLand.Shared
     <div id="preloader"></div>
     <!-- Inner page heading start from here -->
     <section id="at-inner-title-sec">
@@ -32,9 +34,9 @@
                             <div class="carousel-inner">
                                 <div class="item active">
                                    
-                                    <img src="@Url.Content("~/Images/slider/slider-1.jpg")" alt="">
+                                    <img src="@Url.Content(Model.Product.ImageURL)" alt="">
                                     <div class="carousel-caption">
-                                        <h2>NEW SUPERB VILLA</h2>
+                                        <h2>@Model.Product.Name</h2>
                                     </div>
                                 </div>
                                 <!-- End Item -->
@@ -85,42 +87,45 @@
                             </ul>*@
                         </div>
                         <!-- End Carousel -->
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. </p>
+                        <p>@Model.Product.Description </p>
                         <div class="at-sec-title at-sec-title-left">
                             <h2>Property <span>Features</span></h2>
                             <div class="at-heading-under-line">
                                 <div class="at-heading-inside-line"></div>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum totam et dolores voluptatem porro tempore temporibus ducimus</p>
+                            <p>Thông tin chi tiết</p>
                         </div>
                         <div class="row at-property-features">
                             <div class="col-md-6 clearfix">
                                 <ul>
                                     <li>
-                                        Property ID : <span class="pull-right">AB-010234</span>
+                                        Tên : <span class="pull-right">@Model.Product.Name</span>
                                     </li>
                                     <li>
-                                        Full Area : <span class="pull-right">520 sqft</span>
+                                        Diện tích : <span class="pull-right">@Model.Product.Acreage</span>
+                                    </li>
+                                    @if (Model.Product.Type == (int)Commons.EProductType.House)
+                                    {
+                                        <li>
+                                            Phòng ngủ : <span class="pull-right">@Model.Product.BedRoom</span>
+                                        </li>
+                                        <li>
+                                            Phòng tắm : <span class="pull-right">@Model.Product.BathRoom</span>
+                                        </li>
+                                        <li>
+                                            Phòng khách : <span class="pull-right">@Model.Product.LivingRoom</span>
+                                        </li>
+                                    }
+                                    <li>
+                                        Chiều dài : <span class="pull-right">@Model.Product.Length</span>
                                     </li>
                                     <li>
-                                        Bedrooms : <span class="pull-right">6</span>
-                                    </li>
-                                    <li>
-                                        Bathrooms : <span class="pull-right">3</span>
-                                    </li>
-                                    <li>
-                                        Garages : <span class="pull-right">1</span>
-                                    </li>
-                                    <li>
-                                        swimming pool : <span class="pull-right">Yes</span>
-                                    </li>
-                                    <li>
-                                        Party Rooms : <span class="pull-right">Yes</span>
+                                        Chiều rộng : <span class="pull-right">@Model.Product.Width</span>
                                     </li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
-                                <ul>
+                                @*<ul>
                                     <li>
                                         Status : <span class="pull-right"> for Sale</span>
                                     </li>
@@ -142,7 +147,7 @@
                                     <li>
                                         Pool : <span class="pull-right">Yes</span>
                                     </li>
-                                </ul>
+                                </ul>*@
                             </div>
                         </div>
                     </div>
@@ -162,10 +167,18 @@
                         <div class="at-categories clearfix">
                             <h3 class="at-sedebar-title">Danh Mục</h3>
                             <ul>
-                                <li>
-                                    <a href="#">new building</a> <span class="pull-right">(10)</span>
-                                </li>
-                                <li>
+                                @if (Model.ListLocation != null && Model.ListLocation.Any())
+                                {
+                                    foreach (var itemLocation in Model.ListLocation)
+                                    {
+                                        <li>
+                                            <a href="#">@itemLocation.Name</a> <span class="pull-right">(@itemLocation.Total)</span>
+                                        </li>
+                                    }
+                                }
+
+
+                                @*<li>
                                     <a href="#">modern design</a> <span class="pull-right">(08)</span>
                                 </li>
                                 <li>
@@ -185,13 +198,26 @@
                                 </li>
                                 <li>
                                     <a href="#">best design</a> <span class="pull-right">(11)</span>
-                                </li>
+                                </li>*@
                             </ul>
                         </div>
                         <div class="at-latest-news">
                             <h3 class="at-sedebar-title">Tin Cũ</h3>
                             <ul>
-                                <li>
+                                @if (Model.ListProduct != null && Model.ListProduct.Any())
+                                {
+                                    foreach (var item in Model.ListProduct)
+                                    {
+                                        <li>
+                                            <div class="at-news-item">
+                                                <img src="@Url.Content(item.ImageURL)" alt="" style="height:44px">
+                                                <h4><a href="#">@item.Name</a></h4>
+                                                <p>@item.Description</p>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                                @*<li>
                                     <div class="at-news-item">
                                         <img src="@Url.Content("~/Images/blog/s1.jpg")" alt="">
                                         <h4><a href="#">Popular building design</a></h4>
@@ -211,7 +237,7 @@
                                         <h4><a href="#">Building in city</a></h4>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis unde</p>
                                     </div>
-                                </li>
+                                </li>*@
                             </ul>
                         </div>
                         <div class="at-preview">
