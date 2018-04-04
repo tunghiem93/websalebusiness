@@ -1,6 +1,6 @@
 ﻿@model ProjectWebSaleLand.Shared.Model.Product.ProductModels
 @{
-    ViewBag.Title = "Sản phẩm - Xóa";
+    ViewBag.Title = "Đất - Xóa";
   //  Layout = "~/Areas/Administration/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
         <div class="page-title">
             <div class="title_left" style="padding: 10px 0px">
                 @Html.Partial("~/Areas/Administration/Views/Shared/_breadcrumb.cshtml",
-               new Dictionary<string, string> { { "A", "Quản lý" }, { "B", "Sản phẩm" }, { "C", "Xóa" } })
+               new Dictionary<string, string> { { "A", "Quản lý" }, { "B", "Đất" }, { "C", "Xóa" } })
             </div>
             <div class="clearfix"></div>
             <div class="row">
@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"></label>
                                     <div class="col-md-6" style="font-size:20px;">
-                                        Bạn có chắc chắn muôn xóa <strong></strong>?
+                                        Bạn có chắc chắn muôn xóa <strong>[ @Model.Name ]</strong>?
                                         <br />
                                         @Html.HiddenFor(model => model.ID)
                                         @Html.ValidationMessageFor(model => model.ID, null, new { @class = "label label-danger" })
