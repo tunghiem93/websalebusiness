@@ -34,12 +34,12 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             try
             {
                 if (Session["User"] == null)
-                    return RedirectToAction("Login", new { area = "" });
+                    return RedirectToAction("Login", new { area = "Administration" });
 
                 FormsAuthentication.SignOut();
                 Session.Remove("User");
 
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction("Index", "Home", new { area = "Administration" });
             }
             catch (Exception ex)
             {
