@@ -108,7 +108,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     if (!string.IsNullOrEmpty(model.RawImageUrl) && model.PictureByte != null)
                     {
-                        var path = Server.MapPath("~/Uploads/" + model.RawImageUrl);
+                        var path = Server.MapPath("~/Uploads/Images/House/" + model.RawImageUrl);
                         MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
                         ms.Write(photoByte, 0, photoByte.Length);
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
@@ -120,7 +120,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     {
                         if (!string.IsNullOrEmpty(item.ImageURL) && item.PictureByte != null)
                         {
-                            var path = Server.MapPath("~/Uploads/" + item.ImageURL);
+                            var path = Server.MapPath("~/Uploads/Images/House/" + item.ImageURL);
                             MemoryStream ms = new MemoryStream(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
                             ms.Write(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
                             System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
@@ -228,7 +228,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     if (!string.IsNullOrEmpty(model.RawImageUrl) && model.PictureByte != null)
                     {
-                        var path = Server.MapPath("~/Uploads/" + model.ImageURL);
+                        var path = Server.MapPath("~/Uploads/Images/House/" + model.ImageURL);
                         MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
                         ms.Write(photoByte, 0, photoByte.Length);
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
@@ -240,7 +240,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     {
                         if (!string.IsNullOrEmpty(item.ImageURL) && item.PictureByte != null)
                         {
-                            var path = Server.MapPath("~/Uploads/" + item.ImageURL);
+                            var path = Server.MapPath("~/Uploads/Images/House/" + item.ImageURL);
                             MemoryStream ms = new MemoryStream(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
                             ms.Write(lstImgByte[item.OffSet], 0, lstImgByte[item.OffSet].Length);
                             System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);

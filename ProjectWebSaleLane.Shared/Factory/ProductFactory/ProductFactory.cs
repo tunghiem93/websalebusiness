@@ -199,7 +199,6 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         item.ModifiedDate = DateTime.Now;
                         item.CreatedUser = model.CreatedUser;
                         item.ModifiedUser = model.ModifiedUser;
-                        item.Type = model.Type;
                         cxt.dbProduct.Add(item);
 
                         //////////////////////////////////// Save table Image
