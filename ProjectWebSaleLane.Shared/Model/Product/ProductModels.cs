@@ -26,7 +26,7 @@ namespace ProjectWebSaleLand.Shared.Model.Product
         public double Length { get; set; }
         public double Width { get; set; }
         public double Acreage { get; set; }
-        public double Price { get; set; }
+        public string Price { get; set; }
         public string Location { get; set; }
         public string Right { get; set; }
         public int BedRoom { get; set; }
