@@ -24,6 +24,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                      select new ProductModels()
                                      {
                                          ID = pro.ID,
+                                         Name = pro.Name,
                                          Address = pro.Address,
                                          Length = pro.Length,
                                          Width = pro.Width,
@@ -42,7 +43,6 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                          Address2 = pro.Address2,
                                          LocationID = loc.ID,
                                          Type = pro.Type,
-                                         Name = pro.Name
                                      }).ToList();
 
                     var _images = cxt.dbImage.Select(x => new
@@ -104,6 +104,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                   select new ProductModels()
                                   {
                                       ID = pro.ID,
+                                      Name = pro.Name,
                                       Address = pro.Address,
                                       Length = pro.Length,
                                       Width = pro.Width,
@@ -290,6 +291,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         if (itemUpdate != null)
                         {
                             //itemUpdate.ID = model.ID;
+                            itemUpdate.Name = model.Name;
                             itemUpdate.Address = model.Address;
                             itemUpdate.Length = model.Length;
                             itemUpdate.Width = model.Width;
@@ -308,7 +310,6 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                             itemUpdate.Phone2 = model.Phone2;
                             itemUpdate.Address2 = model.Address2;
                             itemUpdate.IsActive = model.IsActive;
-                            itemUpdate.Name = model.Name;
                             ///// update image
                             var images = cxt.dbImage.Where(x => x.ProductID == model.ID).ToList();
                             if (images != null)
