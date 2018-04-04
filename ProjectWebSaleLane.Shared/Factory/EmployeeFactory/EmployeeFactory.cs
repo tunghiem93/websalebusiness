@@ -30,6 +30,7 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         Phone = o.Phone,
                         BirthDate = o.BirthDate,
                         Gender = o.Gender,
+                        MaritalStatus = o.MaritalStatus,
                         IsSupperAdmin = o.IsSupperAdmin,
                         IsActive = o.IsActive,
                         CreatedDate = o.CreatedDate,
@@ -70,6 +71,7 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         Phone = o.Phone,
                         BirthDate = o.BirthDate,
                         Gender = o.Gender,
+                        MaritalStatus = o.MaritalStatus,
                         IsSupperAdmin = o.IsSupperAdmin,
                         IsActive = o.IsActive,
                         CreatedDate = o.CreatedDate,
@@ -111,6 +113,7 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                         item.WebSite = model.WebSite;
                         item.BirthDate = model.BirthDate;
                         item.Gender = model.Gender;
+                        item.MaritalStatus = model.MaritalStatus;
                         item.IsSupperAdmin = model.IsSupperAdmin;
                         item.IsActive = model.IsActive;
                         item.CreatedDate = DateTime.Now;
@@ -196,6 +199,7 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
                             itemUpdate.Phone = model.Phone;
                             itemUpdate.BirthDate = model.BirthDate;
                             itemUpdate.Gender = model.Gender;
+                            itemUpdate.MaritalStatus = model.MaritalStatus;
                             itemUpdate.IsSupperAdmin = model.IsSupperAdmin;
                             itemUpdate.IsActive = model.IsActive;
                             itemUpdate.ModifiedDate = DateTime.Now;

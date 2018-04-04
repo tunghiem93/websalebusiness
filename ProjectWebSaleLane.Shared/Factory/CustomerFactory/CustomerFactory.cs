@@ -31,6 +31,7 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         Phone = o.Phone,
                         BirthDate = o.BirthDate,
                         Gender = o.Gender,
+                        MaritalStatus = o.MaritalStatus,
                         IsActive = o.IsActive,
                         CreatedDate = o.CreatedDate,
                         CreatedUser = o.CreatedUser,
@@ -69,6 +70,7 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         Phone = o.Phone,
                         BirthDate = o.BirthDate,
                         Gender = o.Gender,
+                        MaritalStatus = o.MaritalStatus,
                         IsActive = o.IsActive,
                         CreatedDate = o.CreatedDate,
                         CreatedUser = o.CreatedUser,
@@ -111,6 +113,7 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                         item.Phone = model.Phone;
                         item.BirthDate = model.BirthDate;
                         item.Gender = model.Gender;
+                        item.MaritalStatus = model.MaritalStatus;
                         item.IsActive = model.IsActive;
                         item.CreatedDate = DateTime.Now;
                         item.CreatedUser = model.CreatedUser;
@@ -197,6 +200,7 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                             itemUpdate.Phone = model.Phone;
                             itemUpdate.BirthDate = model.BirthDate;
                             itemUpdate.Gender = model.Gender;
+                            itemUpdate.MaritalStatus = model.MaritalStatus;
                             itemUpdate.IsActive = model.IsActive;
                             itemUpdate.ModifiedDate = DateTime.Now;
                             itemUpdate.ModifiedUser = model.CreatedUser;
