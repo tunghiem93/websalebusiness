@@ -34,7 +34,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         {
             try
             {
-                var data = _factory.GetListProduct().Where(x => x.Type == (int)Commons.EProductType.House).ToList();
+                var data = _factory.GetListProduct().Where(x => x.Type == (int)Commons.EProductType.Land).ToList();
                 data.ForEach(x =>
                 {
                     if (!string.IsNullOrEmpty(x.ImageURL))
