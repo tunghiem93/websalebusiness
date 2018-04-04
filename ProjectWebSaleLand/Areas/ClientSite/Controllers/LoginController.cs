@@ -78,5 +78,10 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                 return View(model);
             }
         }
+
+        public ActionResult SignUp()
+        {
+            return View();
+        }
     }
 }
