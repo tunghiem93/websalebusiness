@@ -181,7 +181,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             {
                 byte[] photoByte = null;
 
-                if (string.IsNullOrEmpty(model.ImageURL))
+                if (!string.IsNullOrEmpty(model.ImageURL))
                 {
                     model.ImageURL = model.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
                 }
@@ -194,9 +194,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     model.PictureUpload = null;
                     photoByte = imgByte;
                 }
-                else
-                    model.ImageURL = model.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
-
+               
 
                 if (!ModelState.IsValid)
                 {
@@ -230,12 +228,12 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     if (!string.IsNullOrEmpty(model.RawImageUrl) && model.PictureByte != null)
                     {
-                        var path = Server.MapPath("~/Uploads/Images/Product/" + model.ImageURL);
+                        var path = Server.MapPath("~/Uploads/Images/Product/" + model.RawImageUrl);
                         MemoryStream ms = new MemoryStream(photoByte, 0, photoByte.Length);
                         ms.Write(photoByte, 0, photoByte.Length);
                         System.Drawing.Image imageTmp = System.Drawing.Image.FromStream(ms, true);
 
-                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.ImageURL, ref photoByte);
+                        ImageHelper.Me.SaveCroppedImage(imageTmp, path, model.RawImageUrl, ref photoByte);
                     }
 
                     foreach (var item in ListImage)

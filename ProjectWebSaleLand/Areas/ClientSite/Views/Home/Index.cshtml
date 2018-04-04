@@ -2,8 +2,8 @@
 @{
     Layout = "~/Areas/ClientSite/Views/Shared/_Layout.cshtml";
 }
-    <div id="preloader"></div>
-    <!-- Main Slider start -->
+<div id="preloader"></div>
+<!-- Main Slider start -->
 <section class="at-main-slider">
     <div class="flexslider">
         <ul class="slides">
@@ -37,14 +37,13 @@
     </div>
 </section>
 <!-- Main Slider end -->
-
-    <!-- Main Search start from here -->
-    <section class="main-search-field">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="at-col-default-mar">
-                        @Html.DropDownListFor(model => model.CateID,
+<!-- Main Search start from here -->
+<section class="main-search-field">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="at-col-default-mar">
+                    @Html.DropDownListFor(model => model.CateID,
                         new SelectList(Model.ListCate, "Value", "Text", Model.CateID), "Thể loại",
                         new
                         {
@@ -52,11 +51,11 @@
                             @id = "CateDdl",
                             @style = "width:100%;"
                         })
-                    </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="at-col-default-mar">
-                        @Html.DropDownListFor(model => model.AreaID,
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="at-col-default-mar">
+                    @Html.DropDownListFor(model => model.AreaID,
                         new SelectList(Model.ListArea, "Value", "Text", Model.AreaID), "Khu vực",
                         new
                         {
@@ -64,11 +63,11 @@
                             @id = "AreaDdl",
                             @style = "width:100%;"
                         })
-                    </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="at-col-default-mar">
-                        @Html.DropDownListFor(model => model.SegmentID,
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="at-col-default-mar">
+                    @Html.DropDownListFor(model => model.SegmentID,
                         new SelectList(Model.ListSeg, "Value", "Text", Model.SegmentID), "Phân khúc",
                         new
                         {
@@ -76,9 +75,9 @@
                             @id = "SegmentDdl",
                             @style = "width:100%;"
                         })
-                    </div>
                 </div>
-                @*<div class="col-lg-3 col-md-6">
+            </div>
+            @*<div class="col-lg-3 col-md-6">
                     <div class="at-col-default-mar">
                         <select class="div-toggle" data-target=".my-info-1">
                             <option value="0" data-show=".acitveon" selected>Khu Vực</option>
@@ -106,74 +105,110 @@
                         </div>
                     </div>
                 </div>*@
-                <div class="col-lg-3 col-md-6">
-                    <div class="at-col-default-mar">
-                        <button class="btn btn-default hvr-bounce-to-right" type="submit">Tìm kiếm</button>
-                    </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="at-col-default-mar">
+                    <button class="btn btn-default hvr-bounce-to-right" type="submit">Tìm kiếm</button>
                 </div>
-            </div>            
+            </div>
         </div>
-    </section>
-    <!-- Main Search End -->
-    <!-- About start from here -->
-    <section class="at-about-sec">
-        <div class="container">
-            <div class="row animatedParent animateOnce">
-                <div class="col-lg-7 col-md-12">
-                    <div class="at-about-col at-col-default-mar">
-                        <div class="at-about-title">
-                            <h1>Công Ty Phạm Thạch<br> <span>Chích sách</span></h1>
-                            <h6>Quyền lợi</h6>
-                        </div>
-                        <p>PhamThach.com có trách nhiệm chuyển tải thông tin. Chúng tôi không chịu bất kỳ trách nhiệm nào từ các tin này..</p> <br>
+    </div>
+</section>
+<!-- Main Search End -->
+<!-- About start from here -->
+<section class="at-about-sec">
+    <div class="container">
+        <div class="row animatedParent animateOnce">
+            <div class="col-lg-7 col-md-12">
+                <div class="at-about-col at-col-default-mar">
+                    <div class="at-about-title">
+                        <h1>Công Ty Phạm Thạch<br> <span>Chích sách</span></h1>
+                        <h6>Quyền lợi</h6>
+                    </div>
+                    <p>PhamThach.com có trách nhiệm chuyển tải thông tin. Chúng tôi không chịu bất kỳ trách nhiệm nào từ các tin này..</p> <br>
 
-                        <p>Thị trường mua bán nhà đất tại Việt Nam luôn diễn ra nhộn nhịp và vô cùng sôi động. Bên cạnh đầu tư vào đất nền, đất thổ cư thì những dự án bất động sản khác như căn hộ chung cư tiềm năng hoặc những căn nhà có mặt bằng đẹp,...</p>
-                    </div>
+                    <p>Thị trường mua bán nhà đất tại Việt Nam luôn diễn ra nhộn nhịp và vô cùng sôi động. Bên cạnh đầu tư vào đất nền, đất thổ cư thì những dự án bất động sản khác như căn hộ chung cư tiềm năng hoặc những căn nhà có mặt bằng đẹp,...</p>
                 </div>
-                <div class="col-lg-5 hidden-md">
-                    <div class="at-about-col animated fadeInRightShort slow delay-250">
-                        <img src="images/about/1.png" alt="">
-                    </div>
+            </div>
+            <div class="col-lg-5 hidden-md">
+                <div class="at-about-col animated fadeInRightShort slow delay-250">
+                    <img src="images/about/1.png" alt="">
                 </div>
             </div>
         </div>
-    </section>
-    <!-- About End -->
-    <!-- Call start from here -->
-    <section class="at-Call-sec jarallax at-over-layer-black">
-        <div class="at-Call-both-side clearfix">
-            <div class="at-Call-left">
-                <div class="at-inside-Call">
-                    <h5>Lựa chọn của bạn</h5>
-                    <h2>Văn phòng chúng tôi</h2>
-                </div>
+    </div>
+</section>
+<!-- About End -->
+<!-- Call start from here -->
+<section class="at-Call-sec jarallax at-over-layer-black">
+    <div class="at-Call-both-side clearfix">
+        <div class="at-Call-left">
+            <div class="at-inside-Call">
+                <h5>Lựa chọn của bạn</h5>
+                <h2>Văn phòng chúng tôi</h2>
             </div>
-            <div class="at-Call-right">
-                <div class="at-Call-right-inside">
-                    <h2>Chúng tôi sẵn sàng nhận tất cả cuộc gọi từ phía khách hàng</h2>
-                    <div class="at-short-line"></div>
-                    <h3><span>+0412 001 123</span></h3>
+        </div>
+        <div class="at-Call-right">
+            <div class="at-Call-right-inside">
+                <h2>Chúng tôi sẵn sàng nhận tất cả cuộc gọi từ phía khách hàng</h2>
+                <div class="at-short-line"></div>
+                <h3><span>+0412 001 123</span></h3>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Call End -->
+<!-- Property start from here -->
+<section class="at-property-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="at-sec-title at-sec-title-left">
+                    <h2>Giá trị <span>Trách nhiệm</span></h2>
+                    <div class="at-heading-under-line">
+                        <div class="at-heading-inside-line"></div>
+                    </div>
+                    <p>Cung cấp cho các nhà đầu tư, môi giới và những người đang có nhu cầu về mua bán nhà đất một nơi cung cấp dịch vụ, thông tin đầy đủ và nhanh chóng nhất với hàng ngàn tin đăng bán, rao vặt bất động sản tại Quận 12, TP.HCM được cập nhật mới hàng ngày, thông tin minh bạch và đầy đủ.</p>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Call End -->
-    <!-- Property start from here -->
-    <section class="at-property-sec">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="at-sec-title at-sec-title-left">
-                        <h2>Giá trị <span>Trách nhiệm</span></h2>
-                        <div class="at-heading-under-line">
-                            <div class="at-heading-inside-line"></div>
+        <div class="row animatedParent animateOnce">
+            @if (Model.ListProduct != null && Model.ListProduct.Any())
+                        {
+                            var _class = "";
+                            var _delay = 250;
+                            foreach (var item in Model.ListProduct)
+                            {
+                    <div class="col-md-4 col-sm-6">
+                        <div class="at-property-item at-col-default-mar animated fadeInUpShort slow @_class">
+                            <div class="at-property-img">
+                                <img src="@Url.Content(item.ImageURL)" alt="" style="width:400px; height:200px">
+                                <div class="at-property-overlayer"></div>
+                                <a class="btn btn-default at-property-btn" href="/Home/PropertiesDetail" role="button">Chi Tiết</a>
+                                <h4>For Sale</h4>
+                                @if (!string.IsNullOrEmpty(item.Price))
+                                {
+                                    <h5>@item.Price</h5>
+                                }
+                                    
+                            </div>
+                            <div class="at-property-dis">
+                                <ul>
+                                    <li><i class="fa fa-object-group" aria-hidden="true"></i> @item.LivingRoom</li>
+                                    <li><i class="fa fa-bed" aria-hidden="true"></i> @item.BedRoom</li>
+                                    <li><i class="fa fa-bath" aria-hidden="true"></i> @item.BathRoom</li>
+                                </ul>
+                            </div>
+                            <div class="at-property-location">
+                                <h4><i class="fa fa-home" aria-hidden="true"></i><a href="/Home/PropertiesDetail">@item.Name</a></h4>
+                                <p><i class="fa fa-map-marker" aria-hidden="true"></i> @item.Address</p>
+                            </div>
                         </div>
-                        <p>Cung cấp cho các nhà đầu tư, môi giới và những người đang có nhu cầu về mua bán nhà đất một nơi cung cấp dịch vụ, thông tin đầy đủ và nhanh chóng nhất với hàng ngàn tin đăng bán, rao vặt bất động sản tại Quận 12, TP.HCM được cập nhật mới hàng ngày, thông tin minh bạch và đầy đủ.</p>
                     </div>
-                </div>
-            </div>
-            <div class="row animatedParent animateOnce">
-                <div class="col-md-4 col-sm-6">
+                    _class = "delay-"+_delay+"";
+                    _delay = _delay + 250;
+                }
+            }
+            @*<div class="col-md-4 col-sm-6">
                     <div class="at-property-item at-col-default-mar animated fadeInUpShort slow">
                         <div class="at-property-img">
                             <img src="@Url.Content("~/Images/property/1.jpg")" alt="">
@@ -304,16 +339,16 @@
                             <p><i class="fa fa-map-marker" aria-hidden="true"></i> 123 1st Width Road, , summit, new york</p>
                         </div>
                     </div>
-                </div>
-                <div class="text-center">
-                    <a class="btn btn-default hvr-bounce-to-right" href="Home/MoreProperties" role="button">Xem Thêm</a>
-                </div>
+                </div>*@
+            <div class="text-center">
+                <a class="btn btn-default hvr-bounce-to-right" href="Home/MoreProperties" role="button">Xem Thêm</a>
             </div>
         </div>
-    </section>
-    <!-- Property End -->
-    <!-- Agents start from here -->
-    @*<section class="at-agents-sec">
+    </div>
+</section>
+<!-- Property End -->
+<!-- Agents start from here -->
+@*<section class="at-agents-sec">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
@@ -442,9 +477,9 @@
             </div>
         </div>
     </section>*@
-    <!-- Agents End -->
-    <!-- Blog start from here -->
-    @*<section class="at-blog-sec">
+<!-- Agents End -->
+<!-- Blog start from here -->
+@*<section class="at-blog-sec">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -527,31 +562,31 @@
             </div>
         </div>
     </section>*@
-    <!-- End -->
-    <!-- Newsletter start from here -->
-    <section class="at-newsletter-sec jarallax at-over-layer-black">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <h2>subscribe <span>newsletter</span></h2>
-                    <p>consectetur adipisicing elit. Beatae ducimus in enim quae</p>
-                    <form class="input-group">
-                        <div class="form-group">
-                            <input class="form-control" type="email" placeholder="Enter Your Email">
-                        </div>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default at-sub-btn hvr-bounce-to-right" type="submit">
-                                SUBSCRIBE
-                            </button>
-                        </span>
-                    </form>
-                </div>
+<!-- End -->
+<!-- Newsletter start from here -->
+<section class="at-newsletter-sec jarallax at-over-layer-black">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>subscribe <span>newsletter</span></h2>
+                <p>consectetur adipisicing elit. Beatae ducimus in enim quae</p>
+                <form class="input-group">
+                    <div class="form-group">
+                        <input class="form-control" type="email" placeholder="Enter Your Email">
+                    </div>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default at-sub-btn hvr-bounce-to-right" type="submit">
+                            SUBSCRIBE
+                        </button>
+                    </span>
+                </form>
             </div>
         </div>
-    </section>
-    <!-- Newsletter end -->
-    <!-- Brand start from here -->
-    @*<section class="at-brand-sec">
+    </div>
+</section>
+<!-- Newsletter end -->
+<!-- Brand start from here -->
+@*<section class="at-brand-sec">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -601,4 +636,4 @@
             </div>
         </div>
     </section>*@
-    <!-- Brand End -->
+<!-- Brand End -->

@@ -1,4 +1,5 @@
-﻿using ProjectWebSaleLand.Shared.Factory.LocationFactory;
+﻿using ProjectWebSaleLand.Shared;
+using ProjectWebSaleLand.Shared.Factory.LocationFactory;
 using ProjectWebSaleLand.Shared.Factory.ProductFactory;
 using ProjectWebSaleLand.Shared.Model.Product;
 using System;
@@ -25,8 +26,14 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
             try
             {
                 ProductViewModels model = new ProductViewModels();
-                //var data = _factoryPro.GetListProduct();
-                //model.ListProduct = data;
+                var data = _factoryPro.GetListProduct().OrderByDescending(x=>x.CreatedDate)
+                                                       .Skip(0).Take(6).ToList();
+                data.ForEach(x =>
+                {
+                    if (!string.IsNullOrEmpty(x.ImageURL))
+                        x.ImageURL = Commons.HostImage + x.ImageURL;
+                });
+                model.ListProduct = data;
                 //model.ListProduct = model.ListProduct.OrderBy(o => o.CreatedDate).ToList();
                 //var lstCate = _factoryCate.GetListCate();
                 //model.ListCate = lstCate.Where(w => w.IsActive).Select(o => new SelectListItem()

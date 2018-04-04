@@ -44,6 +44,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                          Address2 = pro.Address2,
                                          LocationID = loc.ID,
                                          Type = pro.Type,
+                                         CreatedDate = pro.CreatedDate
                                      }).ToList();
 
                     var _images = cxt.dbImage.Select(x => new
