@@ -25,6 +25,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                      {
                                          ID = pro.ID,
                                          Name = pro.Name,
+                                         Phone = pro.Phone,
                                          Address = pro.Address,
                                          Length = pro.Length,
                                          Width = pro.Width,
@@ -105,6 +106,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                   {
                                       ID = pro.ID,
                                       Name = pro.Name,
+                                      Phone = pro.Phone,
                                       Address = pro.Address,
                                       Length = pro.Length,
                                       Width = pro.Width,
@@ -178,6 +180,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         string id = Guid.NewGuid().ToString();
                         item.ID = id;
                         item.Name = model.Name;
+                        item.Phone = model.Phone;
                         item.Address = model.Address;
                         item.Length = model.Length;
                         item.Width = model.Width;
@@ -292,6 +295,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         {
                             //itemUpdate.ID = model.ID;
                             itemUpdate.Name = model.Name;
+                            itemUpdate.Phone = model.Phone;
                             itemUpdate.Address = model.Address;
                             itemUpdate.Length = model.Length;
                             itemUpdate.Width = model.Width;
