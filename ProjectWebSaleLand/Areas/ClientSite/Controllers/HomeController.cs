@@ -101,5 +101,25 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
             }
             return View(model);
         }
+
+        public ActionResult Search(ProductViewModels model)
+        {
+            if (model == null)
+                model = new ProductViewModels();
+
+            var data = _factoryPro.GetListProduct()
+                                    .Where(x=> (!string.IsNullOrEmpty(model.SegmentID) ? x.Segment == Convert.ToInt16(model.SegmentID): 1 == 1)
+                                            && (!string.IsNullOrEmpty(model.AreaID) ? x.LocationID.Equals(model.AreaID) : 1==1)
+                                            && (!string.IsNullOrEmpty(model.CateID) ? x.Type == Convert.ToInt16(model.CateID) : 1 == 1))
+                                    .OrderByDescending(x => x.CreatedDate)
+                                                   .ToList();
+            data.ForEach(x =>
+            {
+                if (!string.IsNullOrEmpty(x.ImageURL))
+                    x.ImageURL = Commons.HostImage + x.ImageURL;
+            });
+            model.ListProduct = data;
+            return View(model);
+        }
     }
 }

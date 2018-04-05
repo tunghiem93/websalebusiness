@@ -41,22 +41,24 @@
 <!-- Main Search start from here -->
 <section class="main-search-field">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="at-col-default-mar">
-                    @Html.DropDownListFor(model => model.CateID,
-                        new SelectList(Model.ListCate, "Value", "Text", Model.CateID), "Thể loại",
-                        new
-                        {
-                            @class = "form-control select2_multiple has-feedback-left",
-                            @id = "CateDdl",
-                            @style = "width:100%;"
-                        })
+        @using (@Html.BeginForm("Search", "Home", FormMethod.Post, new { @class = "form-horizontal create-form", @enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="at-col-default-mar">
+                        @Html.DropDownListFor(model => model.CateID,
+         new SelectList(Model.ListCate, "Value", "Text", Model.CateID), "Thể loại",
+         new
+         {
+             @class = "form-control select2_multiple has-feedback-left",
+             @id = "CateDdl",
+             @style = "width:100%;"
+         })
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="at-col-default-mar">
-                    @Html.DropDownListFor(model => model.AreaID,
+                <div class="col-lg-3 col-md-6">
+                    <div class="at-col-default-mar">
+                        @Html.DropDownListFor(model => model.AreaID,
                         new SelectList(Model.ListArea, "Value", "Text", Model.AreaID), "Khu vực",
                         new
                         {
@@ -64,11 +66,11 @@
                             @id = "AreaDdl",
                             @style = "width:100%;"
                         })
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="at-col-default-mar">
-                    @Html.DropDownListFor(model => model.SegmentID,
+                <div class="col-lg-3 col-md-6">
+                    <div class="at-col-default-mar">
+                        @Html.DropDownListFor(model => model.SegmentID,
                         new SelectList(Model.ListSeg, "Value", "Text", Model.SegmentID), "Phân khúc",
                         new
                         {
@@ -76,42 +78,44 @@
                             @id = "SegmentDdl",
                             @style = "width:100%;"
                         })
-                </div>
-            </div>
-            @*<div class="col-lg-3 col-md-6">
-                    <div class="at-col-default-mar">
-                        <select class="div-toggle" data-target=".my-info-1">
-                            <option value="0" data-show=".acitveon" selected>Khu Vực</option>
-                            <option value="1" data-show=".sale">Khu vực A</option>
-                            <option value="2" data-show=".rent">Khu vực B</option>
-                        </select>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="at-col-default-mar">
-                        <div class="at-pricing-range">
-                            <div class="my-info-1">
-                                <h4>Lựa chọn khoảng giá</h4>
-                                <div class="acitveon sale hide">
-                                    <label>Giá : </label>
-                                    <input type="text" class="amount at-input-price" readonly>
-                                    <div class="slider-range"></div>
-                                </div>
-                                <div class="rent hide">
-                                    <label>Giá : </label>
-                                    <input type="text" class="amount-two at-input-price" readonly>
-                                    <div class="slider-range-two"></div>
+                @*<div class="col-lg-3 col-md-6">
+                        <div class="at-col-default-mar">
+                            <select class="div-toggle" data-target=".my-info-1">
+                                <option value="0" data-show=".acitveon" selected>Khu Vực</option>
+                                <option value="1" data-show=".sale">Khu vực A</option>
+                                <option value="2" data-show=".rent">Khu vực B</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="at-col-default-mar">
+                            <div class="at-pricing-range">
+                                <div class="my-info-1">
+                                    <h4>Lựa chọn khoảng giá</h4>
+                                    <div class="acitveon sale hide">
+                                        <label>Giá : </label>
+                                        <input type="text" class="amount at-input-price" readonly>
+                                        <div class="slider-range"></div>
+                                    </div>
+                                    <div class="rent hide">
+                                        <label>Giá : </label>
+                                        <input type="text" class="amount-two at-input-price" readonly>
+                                        <div class="slider-range-two"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>*@
+                <div class="col-lg-3 col-md-6">
+                    <div class="at-col-default-mar">
+                        <button class="btn btn-default hvr-bounce-to-right" type="submit">Tìm kiếm</button>
                     </div>
-                </div>*@
-            <div class="col-lg-3 col-md-6">
-                <div class="at-col-default-mar">
-                    <button class="btn btn-default hvr-bounce-to-right" type="submit">Tìm kiếm</button>
                 </div>
             </div>
-        </div>
+        }
+
     </div>
 </section>
 <!-- Main Search End -->
@@ -132,7 +136,7 @@
             </div>
             <div class="col-lg-5 hidden-md">
                 <div class="at-about-col animated fadeInRightShort slow delay-250">
-                    @*<img src="images/about/1.png" alt="">*@
+                    <img src="@Url.Content("~/Images/about/1.png")" alt="">
                 </div>
             </div>
         </div>
@@ -174,23 +178,23 @@
         </div>
         <div class="row animatedParent animateOnce">
             @if (Model.ListProduct != null && Model.ListProduct.Any())
-                        {
-                            var _class = "";
-                            var _delay = 250;
-                            foreach (var item in Model.ListProduct)
-                            {
+            {
+                var _class = "";
+                var _delay = 250;
+                foreach (var item in Model.ListProduct)
+                {
                     <div class="col-md-4 col-sm-6">
                         <div class="at-property-item at-col-default-mar animated fadeInUpShort slow @_class">
                             <div class="at-property-img">
                                 <img src="@Url.Content(item.ImageURL)" alt="" style="width:400px; height:200px">
                                 <div class="at-property-overlayer"></div>
-                                @Html.ActionLink("Chi Tiết", "PropertiesDetail", "Home", new { id = item.ID }, new { @class= "btn btn-default at-property-btn" })
+                                @Html.ActionLink("Chi Tiết", "PropertiesDetail", "Home", new { id = item.ID }, new { @class = "btn btn-default at-property-btn" })
                                 @*<h4>For Sale</h4>*@
                                 @if (!string.IsNullOrEmpty(item.Price))
                                 {
                                     <h5>@item.Price</h5>
                                 }
-                                    
+
                             </div>
                             @if (item.Type == (int)Commons.EProductType.House)
                             {
@@ -204,12 +208,12 @@
                             }
 
                             <div class="at-property-location">
-                                <h4><i class="fa fa-home" aria-hidden="true"></i>@Html.ActionLink(item.Name, "PropertiesDetail", "Home", new { id=item.ID},null)</h4>
+                                <h4><i class="fa fa-home" aria-hidden="true"></i>@Html.ActionLink(item.Name, "PropertiesDetail", "Home", new { id = item.ID }, null)</h4>
                                 <p><i class="fa fa-map-marker" aria-hidden="true"></i> @item.Address</p>
                             </div>
                         </div>
                     </div>
-                    _class = "delay-"+_delay+"";
+                    _class = "delay-" + _delay + "";
                     _delay = _delay + 250;
                 }
             }
@@ -345,12 +349,12 @@
                         </div>
                     </div>
                 </div>*@
-    @if (Model.TotalProduct > 6)
-    {
-        <div class="text-center">
-            @Html.ActionLink("Xem Thêm", "MoreProperties", "Home",null,new {@class= "btn btn-default hvr-bounce-to-right" })
-        </div>
-    }
+            @if (Model.TotalProduct > 6)
+            {
+                <div class="text-center">
+                    @Html.ActionLink("Xem Thêm", "MoreProperties", "Home", null, new { @class = "btn btn-default hvr-bounce-to-right" })
+                </div>
+            }
 
         </div>
     </div>

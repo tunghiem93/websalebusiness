@@ -44,7 +44,8 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                                          Address2 = pro.Address2,
                                          LocationID = loc.ID,
                                          Type = pro.Type,
-                                         CreatedDate = pro.CreatedDate
+                                         CreatedDate = pro.CreatedDate,
+                                         Segment = pro.Segment
                                      }).ToList();
 
                     var _images = cxt.dbImage.Select(x => new
@@ -204,6 +205,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                         item.ModifiedDate = DateTime.Now;
                         item.CreatedUser = model.CreatedUser;
                         item.ModifiedUser = model.ModifiedUser;
+                        item.Segment = model.Segment;
                         cxt.dbProduct.Add(item);
 
                         //////////////////////////////////// Save table Image
@@ -315,7 +317,7 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                             itemUpdate.Phone2 = model.Phone2;
                             itemUpdate.Address2 = model.Address2;
                             itemUpdate.IsActive = model.IsActive;
-                            
+                            itemUpdate.Segment = model.Segment;
                             ///// update image
                             if (model.ListImageUrl != null && model.ListImageUrl.Count > 0)
                             {

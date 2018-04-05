@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "~/Areas/ClientSite/Views/Shared/_Layout.cshtml";
+}
+@model ProjectWebSaleLand.Shared.Model.Product.ProductViewModels
+@using ProjectWebSaleLand.Shared
+
+@*<div id="preloader"></div>*@
+<!-- Inner page heading start from here -->
+<section id="at-inner-title-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="at-inner-title-box">
+                    <h2>Kết quả tìm kiếm</h2>
+                    <p>
+                        @Html.ActionLink("Trang chủ", "Index", "Home", null, null)<i class="fa fa-angle-double-right" aria-hidden="true"></i> <a href="#">Tin</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <img src="images/title.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Inner page heading end -->
+<!-- Property start from here -->
+<section class="at-property-sec">
+    <div class="container">
+        <div class="row">
+            @if (Model.ListProduct != null && Model.ListProduct.Any())
+            {
+                foreach (var item in Model.ListProduct)
+                {
+                    <div class="col-md-4 col-sm-6">
+                        <div class="at-property-item at-col-default-mar">
+                            <div class="at-property-img">
+                                <img src="@Url.Content(item.ImageURL)" alt="" style="width:400px; height:200px">
+                                <div class="at-property-overlayer"></div>
+                                @Html.ActionLink("Chi Tiết", "PropertiesDetail", "Home", new { id = item.ID }, new { @class = "btn btn-default at-property-btn" })
+                                @*<h4>For Sale</h4>*@
+                                <h5>@item.Price</h5>
+                            </div>
+                            @if (item.Type == (int)Commons.EProductType.House)
+                            {
+                                <div class="at-property-dis">
+                                    <ul>
+                                        <li><i class="fa fa-object-group" aria-hidden="true"></i> @item.LivingRoom</li>
+                                        <li><i class="fa fa-bed" aria-hidden="true"></i> @item.BedRoom</li>
+                                        <li><i class="fa fa-bath" aria-hidden="true"></i> @item.BathRoom</li>
+                                    </ul>
+                                </div>
+                            }
+                            <div class="at-property-location">
+                                <h4><i class="fa fa-home" aria-hidden="true"></i> @Html.ActionLink(item.Name, "PropertiesDetail", "Home", new { id = item.ID }, null)</h4>
+                                <p><i class="fa fa-map-marker" aria-hidden="true"></i> @item.Address</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        @*<div class="at-pagination">
+                <ul class="pagination">
+                    <li>
+                        <a href="#"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>*@
+    </div>
+</section>
+<!-- Property End -->
