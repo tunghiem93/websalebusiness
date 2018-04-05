@@ -49,6 +49,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             {
                 CustomerModels model = _factory.GetDetailCustomer(id);
                 model.Password = CommonHelper.Decrypt(model.Password);
+                model.ConfirmPassword = model.Password;
                 return model;
             }
             catch (Exception ex)
@@ -85,7 +86,8 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("Name", msg);
+                    ModelState.AddModelError("Email", msg);
+                    model.Password = CommonHelper.Decrypt(model.Password);
                     Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return PartialView("Create", model);
                 }
@@ -93,7 +95,8 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             catch (Exception ex)
             {
                 NSLog.Logger.Error("CustomerCreate: ", ex);
-                ModelState.AddModelError("Name", "Có một lỗi xảy ra!");
+                ModelState.AddModelError("Email", "Có một lỗi xảy ra!");
+                model.Password = CommonHelper.Decrypt(model.Password);
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return PartialView("Create", model);
             }
@@ -137,7 +140,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     model = GetDetail(model.ID);
                     if (!string.IsNullOrEmpty(msg))
                     {
-                        ModelState.AddModelError("Name", msg);
+                        ModelState.AddModelError("Email", msg);
                     }
                     Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     return PartialView("_Edit", model);
@@ -146,7 +149,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             catch (Exception ex)
             {
                 NSLog.Logger.Error("Customer_Edit: ", ex);
-                ModelState.AddModelError("Name", ex.Message);
+                ModelState.AddModelError("Email", ex.Message);
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return PartialView("_Edit", model);
             }

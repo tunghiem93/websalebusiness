@@ -95,49 +95,59 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
             bool result = true;
             using (DataContext cxt = new DataContext())
             {
-                using (var transaction = cxt.Database.BeginTransaction())
+                var _isExits = cxt.dbCustomer.Any(x => x.Email.Equals(model.Email) && x.IsActive);
+                if(_isExits)
                 {
-                    try
+                    msg = "Địa chỉ email đã tồn tại";
+                    result = false;
+                }
+                else
+                {
+                    using (var transaction = cxt.Database.BeginTransaction())
                     {
-                        Customer item = new Customer();
-                        string id = Guid.NewGuid().ToString();
-                        item.ID = id;
-                        item.FirstName = model.FirstName;
-                        item.LastName = model.LastName;
-                        item.Name = model.Name;
-                        item.Email = model.Email;
-                        item.Password = model.Password;
-                        item.ZipCode = model.ZipCode;
-                        item.Company = model.Company;
-                        item.WebSite = model.WebSite;
-                        item.Phone = model.Phone;
-                        item.BirthDate = model.BirthDate;
-                        item.Gender = model.Gender;
-                        item.MaritalStatus = model.MaritalStatus;
-                        item.IsActive = model.IsActive;
-                        item.CreatedDate = DateTime.Now;
-                        item.CreatedUser = model.CreatedUser;
-                        item.ModifiedDate = DateTime.Now;
-                        item.ModifiedUser = model.CreatedUser;
-                        item.ImageURL = model.ImageURL;
-                        item.Address = model.Address;
-                        item.Description = model.Description;
+                        try
+                        {
+                            Customer item = new Customer();
+                            string id = Guid.NewGuid().ToString();
+                            item.ID = id;
+                            item.FirstName = model.FirstName;
+                            item.LastName = model.LastName;
+                            item.Name = model.Name;
+                            item.Email = model.Email;
+                            item.Password = model.Password;
+                            item.ZipCode = model.ZipCode;
+                            item.Company = model.Company;
+                            item.WebSite = model.WebSite;
+                            item.Phone = model.Phone;
+                            item.BirthDate = model.BirthDate;
+                            item.Gender = model.Gender;
+                            item.MaritalStatus = model.MaritalStatus;
+                            item.IsActive = model.IsActive;
+                            item.CreatedDate = DateTime.Now;
+                            item.CreatedUser = model.CreatedUser;
+                            item.ModifiedDate = DateTime.Now;
+                            item.ModifiedUser = model.CreatedUser;
+                            item.ImageURL = model.ImageURL;
+                            item.Address = model.Address;
+                            item.Description = model.Description;
 
-                        cxt.dbCustomer.Add(item);
-                        cxt.SaveChanges();
-                        transaction.Commit();
-                        cusId = id;
-                    }
-                    catch (Exception ex)
-                    {
-                        NSLog.Logger.Error("Không thể thêm khách hàng. Làm ơn kiểm tra lại!", ex);
-                        result = false;
-                        transaction.Rollback();
-                    }
-                    finally
-                    {
-                        if (cxt != null)
-                            cxt.Dispose();
+                            cxt.dbCustomer.Add(item);
+                            cxt.SaveChanges();
+                            transaction.Commit();
+                            cusId = id;
+                        }
+                        catch (Exception ex)
+                        {
+                            NSLog.Logger.Error("Không thể thêm khách hàng. Làm ơn kiểm tra lại!", ex);
+                            result = false;
+                            msg = "Không thể thêm khách hàng. Làm ơn kiểm tra lại!";
+                            transaction.Rollback();
+                        }
+                        finally
+                        {
+                            if (cxt != null)
+                                cxt.Dispose();
+                        }
                     }
                 }
             }
@@ -182,48 +192,59 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
             bool result = true;
             using (DataContext cxt = new DataContext())
             {
-                using (var transaction = cxt.Database.BeginTransaction())
+                var _isExits = cxt.dbCustomer.Any(x => x.Email.Equals(model.Email) && x.IsActive && !x.ID.Equals(model.ID));
+                if(_isExits)
                 {
-                    try
+                    result = false;
+                    msg = "Địa chỉ email đã tồn tại";
+                }
+                else
+                {
+                    using (var transaction = cxt.Database.BeginTransaction())
                     {
-                        var itemUpdate = cxt.dbCustomer.Where(x => x.ID == model.ID).FirstOrDefault();
-                        if (itemUpdate != null)
+                        try
                         {
-                            itemUpdate.FirstName = model.FirstName;
-                            itemUpdate.LastName = model.LastName;
-                            itemUpdate.Name = model.Name;
-                            itemUpdate.Email = model.Email;
-                            itemUpdate.Password = model.Password;
-                            itemUpdate.ZipCode = model.ZipCode;
-                            itemUpdate.Company = model.Company;
-                            itemUpdate.WebSite = model.WebSite;
-                            itemUpdate.Phone = model.Phone;
-                            itemUpdate.BirthDate = model.BirthDate;
-                            itemUpdate.Gender = model.Gender;
-                            itemUpdate.MaritalStatus = model.MaritalStatus;
-                            itemUpdate.IsActive = model.IsActive;
-                            itemUpdate.ModifiedDate = DateTime.Now;
-                            itemUpdate.ModifiedUser = model.CreatedUser;
-                            itemUpdate.ImageURL = model.ImageURL;
-                            itemUpdate.Description = model.Description;
-                            itemUpdate.Address = model.Address;
+                            var itemUpdate = cxt.dbCustomer.Where(x => x.ID == model.ID).FirstOrDefault();
+                            if (itemUpdate != null)
+                            {
+                                itemUpdate.FirstName = model.FirstName;
+                                itemUpdate.LastName = model.LastName;
+                                itemUpdate.Name = model.Name;
+                                itemUpdate.Email = model.Email;
+                                itemUpdate.Password = model.Password;
+                                itemUpdate.ZipCode = model.ZipCode;
+                                itemUpdate.Company = model.Company;
+                                itemUpdate.WebSite = model.WebSite;
+                                itemUpdate.Phone = model.Phone;
+                                itemUpdate.BirthDate = model.BirthDate;
+                                itemUpdate.Gender = model.Gender;
+                                itemUpdate.MaritalStatus = model.MaritalStatus;
+                                itemUpdate.IsActive = model.IsActive;
+                                itemUpdate.ModifiedDate = DateTime.Now;
+                                itemUpdate.ModifiedUser = model.CreatedUser;
+                                itemUpdate.ImageURL = model.ImageURL;
+                                itemUpdate.Description = model.Description;
+                                itemUpdate.Address = model.Address;
 
-                            cxt.SaveChanges();
-                            transaction.Commit();
+                                cxt.SaveChanges();
+                                transaction.Commit();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            NSLog.Logger.Error("Không thể cập nhập cho khách hàng này. Làm ơn kiểm tra lại!", ex);
+                            result = false;
+                            msg = "Không thể cập nhập cho khách hàng này. Làm ơn kiểm tra lại!";
+                            transaction.Rollback();
+                        }
+                        finally
+                        {
+                            if (cxt != null)
+                                cxt.Dispose();
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        NSLog.Logger.Error("Không thể cập nhập cho khách hàng này. Làm ơn kiểm tra lại!", ex);
-                        result = false;
-                        transaction.Rollback();
-                    }
-                    finally
-                    {
-                        if (cxt != null)
-                            cxt.Dispose();
-                    }
                 }
+                
             }
             return result;
         }

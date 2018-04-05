@@ -116,7 +116,7 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("FirstName", "Đăng kí không thành công");
+                    ModelState.AddModelError("Email", msg);
                     return View(model);
                 }
             }
