@@ -179,11 +179,13 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         {
             try
             {
+                List<string> ListNotChangeImg = new List<string>();
                 byte[] photoByte = null;
 
                 if (!string.IsNullOrEmpty(model.ImageURL))
                 {
                     model.ImageURL = model.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image200_100, "");
+                    model.RawImageUrl = model.ImageURL;
                 }
                 if (model.PictureUpload != null && model.PictureUpload.ContentLength > 0)
                 {
@@ -193,6 +195,11 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     model.RawImageUrl = Guid.NewGuid() + Path.GetExtension(model.PictureUpload.FileName);
                     model.PictureUpload = null;
                     photoByte = imgByte;
+                    if (!string.IsNullOrEmpty(model.ImageURL))
+                    {
+                        model.ImageURL = model.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
+                        ListNotChangeImg.Add(model.ImageURL);
+                    }
                 }
 
                 if (!ModelState.IsValid)
@@ -201,7 +208,11 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     return PartialView("_Edit", model);
                 }
 
-                model.ListImageUrl.Add(model.RawImageUrl);
+                if (!string.IsNullOrEmpty(model.RawImageUrl))
+                {
+                    model.ListImageUrl.Add(model.RawImageUrl);
+                }
+
                 //========
                 Dictionary<int, byte[]> lstImgByte = new Dictionary<int, byte[]>();
                 var ListImage = model.ListImg.Where(x => !x.IsDelete).ToList();
@@ -209,6 +220,9 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     if (item.PictureUpload != null && item.PictureUpload.ContentLength > 0)
                     {
+                        item.ImageURL = item.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
+                        ListNotChangeImg.Add(item.ImageURL);
+
                         Byte[] imgByte = new Byte[item.PictureUpload.ContentLength];
                         item.PictureUpload.InputStream.Read(imgByte, 0, item.PictureUpload.ContentLength);
                         item.PictureByte = imgByte;
@@ -216,6 +230,14 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                         item.PictureUpload = null;
                         lstImgByte.Add(item.OffSet, imgByte);
                         model.ListImageUrl.Add(item.ImageURL);
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(item.ImageURL))
+                        {
+                            item.ImageURL = item.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
+                            model.ListImageUrl.Add(item.ImageURL);
+                        }
                     }
                 }
 
@@ -225,6 +247,22 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 var result = _factory.UpdateProduct(model, ref msg);
                 if (result)
                 {
+                    if (ListNotChangeImg != null && ListNotChangeImg.Any())
+                    {
+                        //Delete image on forder
+                        foreach (var item in ListNotChangeImg)
+                        {
+                            if (!item.Equals(Commons.Image200_100))
+                            {
+                                var filePath = Server.MapPath("~/Uploads/Images/Product/" + item);
+                                if (System.IO.File.Exists(filePath))
+                                {
+                                    System.IO.File.Delete(filePath);
+                                }
+                            }
+                        }
+                    }
+
                     if (!string.IsNullOrEmpty(model.RawImageUrl) && model.PictureByte != null)
                     {
                         var path = Server.MapPath("~/Uploads/Images/Product/" + model.RawImageUrl);
@@ -280,7 +318,27 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
             {
                 string msg = "";
                 var result = _factory.DeleteProduct(model.ID, ref msg);
-                if (!result)
+                if (result)
+                {
+                    List<string> lstImgs = new List<string>();
+                    lstImgs = _factory.GetListImageProduct(model.ID);
+                    if (lstImgs != null && lstImgs.Any())
+                    {
+                        //Delete image on forder
+                        foreach (var item in lstImgs)
+                        {
+                            if (!item.Equals(Commons.Image200_100))
+                            {
+                                var filePath = Server.MapPath("~/Uploads/Images/Product/" + item);
+                                if (System.IO.File.Exists(filePath))
+                                {
+                                    System.IO.File.Delete(filePath);
+                                }
+                            }
+                        }
+                    }
+                }
+                else 
                 {
                     ModelState.AddModelError("Name", msg);
                     Response.StatusCode = (int)HttpStatusCode.BadRequest;

@@ -315,23 +315,27 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                             itemUpdate.Phone2 = model.Phone2;
                             itemUpdate.Address2 = model.Address2;
                             itemUpdate.IsActive = model.IsActive;
+                            
                             ///// update image
-                            var images = cxt.dbImage.Where(x => x.ProductID == model.ID).ToList();
-                            if (images != null)
-                                cxt.dbImage.RemoveRange(images);
-
-
-                            var lstEImage = new List<Image>();
-                            model.ListImageUrl.ForEach(x =>
+                            if (model.ListImageUrl != null && model.ListImageUrl.Count > 0)
                             {
-                                lstEImage.Add(new Image
+                                var images = cxt.dbImage.Where(x => x.ProductID == model.ID).ToList();
+                                if (images != null)
+                                    cxt.dbImage.RemoveRange(images);
+
+
+                                var lstEImage = new List<Image>();
+                                model.ListImageUrl.ForEach(x =>
                                 {
-                                    ID = Guid.NewGuid().ToString(),
-                                    ImageUrL = x,
-                                    ProductID = model.ID
+                                    lstEImage.Add(new Image
+                                    {
+                                        ID = Guid.NewGuid().ToString(),
+                                        ImageUrL = x,
+                                        ProductID = model.ID
+                                    });
                                 });
-                            });
-                            cxt.dbImage.AddRange(lstEImage);
+                                cxt.dbImage.AddRange(lstEImage);
+                            }                            
 
                             cxt.SaveChanges();
                             transaction.Commit();
@@ -351,6 +355,33 @@ namespace ProjectWebSaleLand.Shared.Factory.ProductFactory
                 }
             }
             return result;
+        }
+        public List<string> GetListImageProduct(string id)
+        {
+            using (DataContext cxt = new DataContext())
+            {
+                List<string> result = new List<string>();
+                try
+                {
+                    var _lstImages = cxt.dbImage.Where(w=>w.ProductID == id).Select(x => new
+                    {
+                        ImageUrL = x.ImageUrL
+                    }).ToList();
+                    _lstImages.ForEach(o =>
+                    {
+                        if (!string.IsNullOrEmpty(o.ImageUrL))
+                        {
+                            result.Add(o.ImageUrL);
+                        }
+                    });
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    NSLog.Logger.Error("GetListImagesProduct_Fail", ex);
+                    return null;
+                }
+            }
         }
     }
 }
