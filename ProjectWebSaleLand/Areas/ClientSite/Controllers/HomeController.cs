@@ -27,14 +27,17 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
             try
             {
                 ProductViewModels model = new ProductViewModels();
-                var data = _factoryPro.GetListProduct().OrderByDescending(x=>x.CreatedDate)
-                                                       .Skip(0).Take(6).ToList();
-                data.ForEach(x =>
+                var data = _factoryPro.GetListProduct();
+
+                var temp = data.OrderByDescending(x => x.CreatedDate)
+                                                      .Skip(0).Take(6).ToList();
+                model.TotalProduct = data.Count;
+                temp.ForEach(x =>
                 {
                     if (!string.IsNullOrEmpty(x.ImageURL))
                         x.ImageURL = Commons.HostImage + x.ImageURL;
                 });
-                model.ListProduct = data;
+                model.ListProduct = temp;
 
                 model.ListCate = new List<SelectListItem>()
                 {

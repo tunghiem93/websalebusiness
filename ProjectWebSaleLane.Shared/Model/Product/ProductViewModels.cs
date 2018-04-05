@@ -16,7 +16,7 @@ namespace ProjectWebSaleLand.Shared.Model.Product
         public List<SelectListItem> ListArea { get; set; }
         public string SegmentID { get; set; }
         public List<SelectListItem> ListSeg { get; set; }
-
+        public int TotalProduct { get; set; }
         public ProductViewModels()
         {
             ListProduct = new List<ProductModels>();

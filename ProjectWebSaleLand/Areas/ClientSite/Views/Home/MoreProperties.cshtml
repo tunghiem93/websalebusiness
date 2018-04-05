@@ -2,6 +2,7 @@
     Layout = "~/Areas/ClientSite/Views/Shared/_Layout.cshtml";
 }
 @model ProjectWebSaleLand.Shared.Model.Product.ProductViewModels
+@using ProjectWebSaleLand.Shared
     @*<div id="preloader"></div>*@
     <!-- Inner page heading start from here -->
     <section id="at-inner-title-sec">
@@ -36,16 +37,19 @@
                                     <img src="@Url.Content(item.ImageURL)" alt="" style="width:400px; height:200px">
                                     <div class="at-property-overlayer"></div>
                                     @Html.ActionLink("Chi Tiết", "PropertiesDetail","Home",new { id=item.ID},new {@class= "btn btn-default at-property-btn" })
-                                    <h4>For Sale</h4>
+                                    @*<h4>For Sale</h4>*@
                                     <h5>@item.Price</h5>
                                 </div>
-                                <div class="at-property-dis">
-                                    <ul>
-                                        <li><i class="fa fa-object-group" aria-hidden="true"></i> @item.LivingRoom</li>
-                                        <li><i class="fa fa-bed" aria-hidden="true"></i> @item.BedRoom</li>
-                                        <li><i class="fa fa-bath" aria-hidden="true"></i> @item.BathRoom</li>
-                                    </ul>
-                                </div>
+                                @if (item.Type == (int)Commons.EProductType.House)
+                                {
+                                    <div class="at-property-dis">
+                                        <ul>
+                                            <li><i class="fa fa-object-group" aria-hidden="true"></i> @item.LivingRoom</li>
+                                            <li><i class="fa fa-bed" aria-hidden="true"></i> @item.BedRoom</li>
+                                            <li><i class="fa fa-bath" aria-hidden="true"></i> @item.BathRoom</li>
+                                        </ul>
+                                    </div>
+                                }
                                 <div class="at-property-location">
                                     <h4><i class="fa fa-home" aria-hidden="true"></i> @Html.ActionLink(item.Name, "PropertiesDetail","Home",new { id=item.ID},null)</h4>
                                     <p><i class="fa fa-map-marker" aria-hidden="true"></i> @item.Address</p>
