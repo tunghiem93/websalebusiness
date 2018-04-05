@@ -35,19 +35,18 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                         x.ImageURL = Commons.HostImage + x.ImageURL;
                 });
                 model.ListProduct = data;
-                //model.ListProduct = model.ListProduct.OrderBy(o => o.CreatedDate).ToList();
-                //var lstCate = _factoryCate.GetListCate();
-                //model.ListCate = lstCate.Where(w => w.IsActive).Select(o => new SelectListItem()
-                //{
-                //    Value = o.ID,
-                //    Text = o.Name,
-                //}).OrderBy(o => o.Text).ToList();
-                //var lstLoc = _factoryLoc.GetListLocation();
-                //model.ListArea = lstLoc.Where(w => w.IsActive).Select(o => new SelectListItem()
-                //{
-                //    Value = o.ID,
-                //    Text = o.Name,
-                //}).OrderBy(o => o.Text).ToList();
+
+                model.ListCate = new List<SelectListItem>()
+                {
+                    new SelectListItem() {  Text = "Đất", Value = Commons.EProductType.Land.ToString("d")},
+                    new SelectListItem() { Text = "Nhà", Value = Commons.EProductType.House.ToString("d")}
+                };
+                var lstLoc = _factoryLoc.GetListLocation();
+                model.ListArea = lstLoc.Where(w => w.IsActive).Select(o => new SelectListItem()
+                {
+                    Value = o.ID,
+                    Text = o.Name,
+                }).OrderBy(o => o.Text).ToList();
                 return View(model);
             }
             catch (Exception ex)
