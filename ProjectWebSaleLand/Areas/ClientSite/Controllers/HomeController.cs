@@ -88,6 +88,13 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                 });
                 var dataDetail = data.Where(x => x.ID.Equals(id)).FirstOrDefault();
                 dataDetail.ImageURL = Commons.HostImage + dataDetail.ImageURL;
+                if(dataDetail.ListImg != null)
+                {
+                    dataDetail.ListImg.ForEach(x =>
+                    {
+                        x.ImageURL = Commons.HostImage + x.ImageURL;
+                    });
+                }
                 model.ListProduct = oldData;
                 model.Product = dataDetail;
 
