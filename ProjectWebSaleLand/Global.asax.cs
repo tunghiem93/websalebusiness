@@ -43,7 +43,7 @@ namespace ProjectWebSaleLand
             {
                 var input = Server.UrlDecode(_UserClientCookie.Value);
                 UserSession userSession = JsonConvert.DeserializeObject<UserSession>(input); //new JavaScriptSerializer().Deserialize<UserSession>(input);
-                if (userSession != null)
+                if (userSession != null && HttpContext.Current.Session != null)
                 {
                     Session.Add("UserClient", userSession);
                 }
