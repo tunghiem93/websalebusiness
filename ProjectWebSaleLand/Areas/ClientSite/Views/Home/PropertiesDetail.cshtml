@@ -10,9 +10,9 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="at-inner-title-box">
-                        <h2>PROPERTIES DETAILS</h2>
+                        <h2>Thông tin chi tiết</h2>
                         <p>
-                            <a href="index-one.html">Home</a> <i class="fa fa-angle-double-right" aria-hidden="true"></i> <a href="#">Properties</a>
+                            @Html.ActionLink("Trang chủ", "Index", "Home", null, null) <i class="fa fa-angle-double-right" aria-hidden="true"></i> <a href="#">@Model.Product.Name</a>
                         </p>
                     </div>
                 </div>
@@ -125,29 +125,30 @@
                                 </ul>
                             </div>
                             <div class="col-md-6">
-                                @*<ul>
+                                <ul>
                                     <li>
-                                        Status : <span class="pull-right"> for Sale</span>
+                                        Khu vực: <span class="pull-right">@Model.Product.Location</span>
                                     </li>
                                     <li>
-                                        Kitchen : <span class="pull-right">2</span>
+                                        Điện thoại : <span class="pull-right"> @Model.Product.Phone</span>
                                     </li>
                                     <li>
-                                        AC Rooms: <span class="pull-right">4</span>
+                                        Địa chỉ : <span class="pull-right">@Model.Product.Address</span>
+                                    </li>
+
+                                    <li>
+                                        Điện thoại 2 : <span class="pull-right">@Model.Product.Phone1</span>
                                     </li>
                                     <li>
-                                        Internet : <span class="pull-right">Yes</span>
+                                        Địa chỉ 2 : <span class="pull-right">@Model.Product.Address1</span>
                                     </li>
                                     <li>
-                                        Cable TV : <span class="pull-right">Yes</span>
+                                        Điện thoại 3 : <span class="pull-right">@Model.Product.Phone2</span>
                                     </li>
                                     <li>
-                                        Balcony : <span class="pull-right">Yes</span>
+                                        Địa chỉ 3 : <span class="pull-right">@Model.Product.Address2</span>
                                     </li>
-                                    <li>
-                                        Pool : <span class="pull-right">Yes</span>
-                                    </li>
-                                </ul>*@
+                                </ul>
                             </div>
                         </div>
                     </div>

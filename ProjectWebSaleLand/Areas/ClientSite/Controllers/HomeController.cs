@@ -59,7 +59,16 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
 
         public ActionResult MoreProperties()
         {
-            return View();
+            ProductViewModels model = new ProductViewModels();
+            var data = _factoryPro.GetListProduct().OrderByDescending(x => x.CreatedDate)
+                                                   .ToList();
+            data.ForEach(x =>
+            {
+                if (!string.IsNullOrEmpty(x.ImageURL))
+                    x.ImageURL = Commons.HostImage + x.ImageURL;
+            });
+            model.ListProduct = data;
+            return View(model);
         }
 
         public ActionResult PropertiesDetail(string id)
