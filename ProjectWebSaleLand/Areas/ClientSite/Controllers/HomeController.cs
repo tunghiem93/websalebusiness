@@ -105,8 +105,13 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                     x.Total = data.Count(z => z.LocationID.Equals(x.ID));
                 });
                 model.ListLocation = _location;
+                return View(model);
             }
-            return View(model);
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
 
         public ActionResult Search(ProductViewModels model)
