@@ -153,6 +153,13 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 if (model != null)
                 {
                     model.ImageURL = string.IsNullOrEmpty(model.ImageURL) ? Commons.Image200_100 : (Commons.HostImage + model.ImageURL);
+                    if (model.ListImg != null && model.ListImg.Count > 0)
+                    {
+                        model.ListImg.ForEach(o => {
+                            o.ImageURL = string.IsNullOrEmpty(o.ImageURL) ? Commons.Image200_100 : (Commons.HostImage + o.ImageURL);
+                            o.IsDelete = false;
+                        });
+                    }
                     return model;
                 }
                 else
@@ -316,12 +323,14 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         {
             try
             {
+                List<string> lstImgs = new List<string>();
+                lstImgs = _factory.GetListImageProduct(model.ID);
+
+                //-----------------------
                 string msg = "";
                 var result = _factory.DeleteProduct(model.ID, ref msg);
                 if (result)
-                {
-                    List<string> lstImgs = new List<string>();
-                    lstImgs = _factory.GetListImageProduct(model.ID);
+                {                    
                     if (lstImgs != null && lstImgs.Any())
                     {
                         //Delete image on forder
