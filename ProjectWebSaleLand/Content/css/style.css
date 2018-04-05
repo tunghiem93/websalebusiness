@@ -963,7 +963,7 @@ option {
 /* main search two start */
 .main-search-field-two {
     padding: 150px 0;
-    background: url(../images/background/4.jpg);
+    /*background: url(../images/background/4.jpg);*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1706,7 +1706,7 @@ option {
 
 /* Agents two start */
 .at-agents-sec-two {
-    background: url(../images/background/2.jpg);
+    /*background: url(../images/background/2.jpg);*/
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -2008,7 +2008,7 @@ option {
 #at-inner-title-sec {
     padding: 0 0 50px;
     background: #F2F2F2;
-    background: url(../images/background/2.jpg);
+    /*background: url(../images/background/2.jpg);*/
     background-size: cover;
     background-position: center;
 }
@@ -2254,7 +2254,7 @@ option {
 ---///---///---///---///---///---///---///---///---///---*/
 .at-error-sec {
     padding: 150px 0;
-    background: url(../images/background/error.jpg);
+    /*background: url(../images/background/error.jpg);*/
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
