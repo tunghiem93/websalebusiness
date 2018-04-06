@@ -71,7 +71,7 @@
     }
 
     .list-group-item {
-        padding: 3px 3px;
+        padding: 0.1px 0.1px;
     }
 </style>
 @*<div id="preloader"></div>*@
@@ -111,23 +111,23 @@
                                         @item.Name
                                     </p>
                                     <p class="">
-                                        Địa chỉ: @item.Address
+                                       <i style="font-weight:bold">Địa chỉ:</i>  @item.Address
                                     </p>
                                     <p class="">
-                                        Chiều dài: @item.Length
+                                        <i style="font-weight:bold">Chiều dài:</i> @item.Length
                                     </p>
                                     <p class="">
-                                        Chiệu rộng: @item.Width
+                                        <i style="font-weight:bold">Chiệu rộng:</i> @item.Width
                                     </p>
                                     <p class="">
-                                        Diện tích: @item.Length x @item.Width m2
+                                        <i style="font-weight:bold">Diện tích:</i> @item.Length x @item.Width m2
                                     </p>
                                     <p class="">
-                                        Giá: @item.Price
+                                        <i style="font-weight:bold">Giá:</i> @item.Price
                                     </p>
                                     <div class="row">
-                                        <p class="">
-                                            Mô tả: @item.Description
+                                        <p class="moretext">
+                                            <i style="font-weight:bold">Mô tả:</i> @item.Description
                                         </p>
                                     </div>
                                 </div>
@@ -165,3 +165,18 @@
     </div>
 </section>
 <!-- Property End -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        var showChar = 200;
+
+        $('.moretext').each(function () {
+            var content = $(this).text();
+            if (content.length > showChar) {
+                var html = content.substr(0, showChar);
+                html = html + "...";
+                $(this).html(html);
+            }
+
+        });
+    });
+</script>
