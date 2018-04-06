@@ -74,7 +74,7 @@
             <img src=@string.Format("{0}", string.IsNullOrEmpty(Model.Product.ImageURL) ? Commons.Image400_250 : Model.Product.ImageURL) alt="@Model.Product.Name" style="width:400px; height:250px">
         </div>
     }<!-- End Carousel -->
-                    <p>@Model.Product.Description </p>
+                    <p style="padding-top: 7px; ">@Model.Product.Description </p>
                     <div class="at-sec-title at-sec-title-left">
                         <h2>Property <span>Features</span></h2>
                         <div class="at-heading-under-line">
@@ -86,54 +86,53 @@
                         <div class="col-md-6 clearfix">
                             <ul>
                                 <li>
-                                    Tên : <span class="pull-right">@Model.Product.Name</span>
+                                    Tên : <span class="">@Model.Product.Name</span>
                                 </li>
                                 <li>
-                                    Diện tích : <span class="pull-right">@Model.Product.Acreage</span>
+                                    Diện tích : <span class="">@Model.Product.Acreage</span>
                                 </li>
                                 @if (Model.Product.Type == (int)Commons.EProductType.House)
                                 {
                                 <li>
-                                    Phòng ngủ : <span class="pull-right">@Model.Product.BedRoom</span>
+                                    Phòng ngủ : <span class="">@Model.Product.BedRoom</span>
                                 </li>
                                 <li>
-                                    Phòng tắm : <span class="pull-right">@Model.Product.BathRoom</span>
+                                    Phòng tắm : <span class="">@Model.Product.BathRoom</span>
                                 </li>
                                 <li>
-                                    Phòng khách : <span class="pull-right">@Model.Product.LivingRoom</span>
+                                    Phòng khách : <span class="">@Model.Product.LivingRoom</span>
                                 </li>
                                 }
                                 <li>
-                                    Chiều dài : <span class="pull-right">@Model.Product.Length</span>
+                                    Chiều dài : <span class="">@Model.Product.Length</span>
                                 </li>
                                 <li>
-                                    Chiều rộng : <span class="pull-right">@Model.Product.Width</span>
+                                    Chiều rộng : <span class="">@Model.Product.Width</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-md-6">
                             <ul>
                                 <li>
-                                    Khu vực: <span class="pull-right">@Model.Product.Location</span>
+                                    Khu vực: <span class="">@Model.Product.Location</span>
                                 </li>
                                 <li>
-                                    Điện thoại : <span class="pull-right"> @Model.Product.Phone</span>
+                                    Điện thoại : <span class=""> @Model.Product.Phone</span>
                                 </li>
                                 <li>
-                                    Địa chỉ : <span class="pull-right">@Model.Product.Address</span>
-                                </li>
-
-                                <li>
-                                    Điện thoại 2 : <span class="pull-right">@Model.Product.Phone1</span>
+                                    Điện thoại 2 : <span class="">@Model.Product.Phone1</span>
                                 </li>
                                 <li>
-                                    Địa chỉ 2 : <span class="pull-right">@Model.Product.Address1</span>
+                                    Điện thoại 3 : <span class="">@Model.Product.Phone2</span>
                                 </li>
                                 <li>
-                                    Điện thoại 3 : <span class="pull-right">@Model.Product.Phone2</span>
+                                    Địa chỉ 1 : <span class="">@Model.Product.Address</span>
                                 </li>
                                 <li>
-                                    Địa chỉ 3 : <span class="pull-right">@Model.Product.Address2</span>
+                                    Địa chỉ 2 : <span class="">@Model.Product.Address1</span>
+                                </li>
+                                <li>
+                                    Địa chỉ 3 : <span class="">@Model.Product.Address2</span>
                                 </li>
                             </ul>
                         </div>
@@ -176,9 +175,9 @@
                                 {
                             <li>
                                 <div class="at-news-item">
-                                    <img src=@string.Format("{0}", string.IsNullOrEmpty(item.ImageURL) ? Commons.Image100_50 : item.ImageURL) alt="" style="height: 50px; width: 100%">
-                                    <h4><a href="#">@item.Name</a></h4>
-                                    <p>@item.Description</p>
+                                    <img src=@string.Format("{0}", string.IsNullOrEmpty(item.ImageURL) ? Commons.Image100_50 : item.ImageURL) alt="" style="height: 46px; ">
+                                    <p><a href="#">@item.Name</a></p>
+                                    @*<p>@item.Description</p>*@
                                 </div>
                             </li>
                                 }
