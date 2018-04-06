@@ -68,6 +68,7 @@
     img {
         width: auto;
     }
+
     .list-group-item {
         padding: 3px 3px;
     }
@@ -100,26 +101,28 @@
             {
                 foreach (var item in Model.ListProduct)
                 {
-                    <div class="item list-group-item col-xs-4 col-lg-4">
-                        <div class="thumbnail">
-                            <img class="group list-group-image" src="@Url.Content(item.ImageURL)" alt="" />
-                            <div class="caption">
-                                <h4 class="group inner list-group-item-heading">
-                                    @item.Name
-                                </h4>
-                                <p class="group inner list-group-item-text">
-                                    @item.Address
-                                </p>
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-6">
-                                        <p class="lead">
-                                            @item.Price
-                            </p>
+                    <a href="/Home/PropertiesDetail/@item.ID">
+                        <div class="item list-group-item col-xs-4 col-lg-4">
+                            <div class="thumbnail">
+                                <img class="group list-group-image" src="@Url.Content(item.ImageURL)" alt="" />
+                                <div class="caption">
+                                    <h4 class="group inner list-group-item-heading">
+                                        @item.Name
+                                    </h4>
+                                    <p class="group inner list-group-item-text">
+                                        @item.Address
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-6">
+                                            <p class="lead">
+                                                @item.Price
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </a>
                 }
             }
         </div>
