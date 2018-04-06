@@ -40,7 +40,7 @@
                                     @*<h4>For Sale</h4>*@
                                     <h5>@item.Price</h5>
                                 </div>
-                                @if (item.Type == (int)Commons.EProductType.House)
+                                @*@if (item.Type == (int)Commons.EProductType.House)
                                 {
                                     <div class="at-property-dis">
                                         <ul>
@@ -49,10 +49,10 @@
                                             <li><i class="fa fa-bath" aria-hidden="true"></i> @item.BathRoom</li>
                                         </ul>
                                     </div>
-                                }
+                                }*@
                                 <div class="at-property-location">
                                     <h4><i class="fa fa-home" aria-hidden="true"></i> @Html.ActionLink(item.Name, "PropertiesDetail","Home",new { id=item.ID},null)</h4>
-                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> @item.Address</p>
+                                    <p class="moretext"><i class="fa fa-map-marker" aria-hidden="true"></i> @item.Address</p>
                                 </div>
                             </div>
                         </div>
@@ -87,3 +87,17 @@
         </div>
     </section>
     <!-- Property End -->
+<script>
+    $(document).ready(function () {
+        var showChar = 39;
+        $('.moretext').each(function () {
+            var content = $(this).text();
+            if (content.length > showChar) {
+                var html = content.substr(0, showChar);
+                html = html + "...";
+                $(this).html(html);
+            }
+
+        });
+    });
+</script>
