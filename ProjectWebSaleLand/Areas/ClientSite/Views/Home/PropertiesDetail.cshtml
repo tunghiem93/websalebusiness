@@ -67,8 +67,13 @@
             </a>
         </div>
     }
-                    
-                    <!-- End Carousel -->
+    else
+    {
+
+        <div class="item">
+            <img src=@string.Format("{0}", string.IsNullOrEmpty(Model.Product.ImageURL) ? Commons.Image400_250 : Model.Product.ImageURL) alt="@Model.Product.Name" style="width:400px; height:250px">
+        </div>
+    }<!-- End Carousel -->
                     <p>@Model.Product.Description </p>
                     <div class="at-sec-title at-sec-title-left">
                         <h2>Property <span>Features</span></h2>

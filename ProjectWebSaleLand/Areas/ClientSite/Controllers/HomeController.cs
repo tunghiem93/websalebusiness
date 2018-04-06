@@ -87,7 +87,8 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                         x.ImageURL = Commons.HostImage + x.ImageURL;
                 });
                 var dataDetail = data.Where(x => x.ID.Equals(id)).FirstOrDefault();
-                dataDetail.ImageURL = Commons.HostImage + dataDetail.ImageURL;
+                if(!string.IsNullOrEmpty(dataDetail.ImageURL))
+                    dataDetail.ImageURL = Commons.HostImage + dataDetail.ImageURL;
                 if(dataDetail.ListImg != null)
                 {
                     dataDetail.ListImg.ForEach(x =>
