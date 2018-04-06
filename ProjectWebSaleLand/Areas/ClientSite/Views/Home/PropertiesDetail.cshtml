@@ -45,12 +45,12 @@
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img src="@Model.Product.ImageURL" alt="@Model.Product.Name" style="width:100%;height:400px;">
+                                    <img src=@string.Format("{0}", string.IsNullOrEmpty(Model.Product.ImageURL) ? Commons.Image400_250 : Model.Product.ImageURL) alt="@Model.Product.Name" style="width:400px; height:250px">
                                 </div>
                                 @foreach (var itemin in Model.Product.ListImg)
                                 {
                                     <div class="item">
-                                        <img src="@Url.Content(itemin.ImageURL)" alt="@Model.Product.Name" style="width:100%;height:400px;">
+                                        <img src=@string.Format("{0}", string.IsNullOrEmpty(itemin.ImageURL) ? Commons.Image400_250 : Model.Product.ImageURL) alt="@Model.Product.Name" style="width:400px; height:250px">
                                     </div>
                                 }
                             </div>
@@ -169,34 +169,13 @@
                                 {
                             <li>
                                 <div class="at-news-item">
-                                    <img src="@Url.Content(item.ImageURL)" alt="" style="height:44px">
+                                    <img src=@string.Format("{0}", string.IsNullOrEmpty(item.ImageURL) ? Commons.Image400_250 : item.ImageURL) alt="" style="width:400px; height:250px">
                                     <h4><a href="#">@item.Name</a></h4>
                                     <p>@item.Description</p>
                                 </div>
                             </li>
                                 }
                             }
-                            @*<li>
-                                    <div class="at-news-item">
-                                        <img src="@Url.Content("~/Images/blog/s1.jpg")" alt="">
-                                        <h4><a href="#">Popular building design</a></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis unde</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="at-news-item">
-                                        <img src="@Url.Content("~/Images/blog/s2.jpg")" alt="">
-                                        <h4><a href="#">Best building design</a></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis unde</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="at-news-item">
-                                        <img src="@Url.Content("~/Images/blog/s3.jpg")" alt="">
-                                        <h4><a href="#">Building in city</a></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis unde</p>
-                                    </div>
-                                </li>*@
                         </ul>
                     </div>
                     <div class="at-preview">
