@@ -81,9 +81,9 @@
         <div class="row">
             <div class="col-md-6 col-sm-6">
                 <div class="at-inner-title-box">
-                    <h2>Kết quả tìm kiếm</h2>
+                    <h4 style="color: #CC935C; ">Kết quả tìm kiếm</h4>
                     <p>
-                        @Html.ActionLink("Trang chủ", "Index", "Home", null, null)<i class="fa fa-angle-double-right" aria-hidden="true"></i> <a href="#">Tin</a>
+                        @Html.ActionLink("Trang chủ", "Index", "Home", null, null) &nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i> <a href="#">Tin</a>
                     </p>
                 </div>
             </div>
@@ -107,18 +107,28 @@
                             <div class="thumbnail">
                                 <img class="group list-group-image" src="@Url.Content(item.ImageURL)" alt="" />
                                 <div class="caption">
-                                    <h4 class="group inner list-group-item-heading">
+                                    <p class="">
                                         @item.Name
-                                    </h4>
-                                    <p class="group inner list-group-item-text">
-                                        @item.Address
+                                    </p>
+                                    <p class="">
+                                        Địa chỉ: @item.Address
+                                    </p>
+                                    <p class="">
+                                        Chiều dài: @item.Length
+                                    </p>
+                                    <p class="">
+                                        Chiệu rộng: @item.Width
+                                    </p>
+                                    <p class="">
+                                        Diện tích: @item.Length x @item.Width m2
+                                    </p>
+                                    <p class="">
+                                        Giá: @item.Price
                                     </p>
                                     <div class="row">
-                                        <div class="col-xs-12 col-md-6">
-                                            <p class="lead">
-                                                @item.Price
-                                            </p>
-                                        </div>
+                                        <p class="">
+                                            Mô tả: @item.Description
+                                        </p>
                                     </div>
                                 </div>
                             </div>
