@@ -80,7 +80,7 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
             {
                 
                 var data = _factoryPro.GetListProduct();
-                var oldData = data.OrderBy(x => x.CreatedDate).Skip(0).Take(3).ToList();
+                var oldData = data.Where(x=>!x.ID.Equals(id)).OrderBy(x => x.CreatedDate).Skip(0).Take(3).ToList();
                 oldData.ForEach(x =>
                 {
                     if (!string.IsNullOrEmpty(x.ImageURL))
