@@ -105,7 +105,7 @@
                     <a href="/Home/PropertiesDetail/@item.ID">
                         <div class="item list-group-item col-xs-4 col-lg-4">
                             <div class="thumbnail">
-                                <img class="group list-group-image" src="@Url.Content(item.ImageURL)" alt="" />
+                                <img class="group list-group-image" src= @string.Format("{0}", string.IsNullOrEmpty(item.ImageURL) ? Commons.Image400_250 : item.ImageURL) alt="" />
                                 <div class="caption">
                                     <p class="">
                                         @item.Name
@@ -137,31 +137,6 @@
                 }
             }
         </div>
-        @*<div class="at-pagination">
-                <ul class="pagination">
-                    <li>
-                        <a href="#"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-                    </li>
-                    <li>
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                    </li>
-                </ul>
-            </div>*@
     </div>
 </section>
 <!-- Property End -->
