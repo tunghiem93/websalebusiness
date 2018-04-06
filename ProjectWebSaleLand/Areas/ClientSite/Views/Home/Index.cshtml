@@ -165,7 +165,7 @@
                     <div class="col-md-4 col-sm-6">
                         <div class="at-property-item at-col-default-mar animated fadeInUpShort slow @_class">
                             <div class="at-property-img">
-                                <img src="@Url.Content(item.ImageURL)" alt="" style="width:400px; height:200px">
+                                <img src= @string.Format("{0}", string.IsNullOrEmpty(item.ImageURL) ? Commons.Image400_250 : item.ImageURL) alt="" style="width:400px; height:200px">
                                 <div class="at-property-overlayer"></div>
                                 @Html.ActionLink("Chi Tiết", "PropertiesDetail", "Home", new { id = item.ID }, new { @class = "btn btn-default at-property-btn" })
                                 @*<h4>For Sale</h4>*@

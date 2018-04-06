@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-6">
                 <div class="at-inner-title-box">
-                    <h2>Thông tin chi tiết</h2>
+                    <h4 style="color: #CC935C; ">Thông tin chi tiết</h4>
                     <p>
                         @Html.ActionLink("Trang chủ", "Index", "Home", null, null) <i class="fa fa-angle-double-right" aria-hidden="true"></i> <a href="#">@Model.Product.Name</a>
                     </p>
@@ -145,7 +145,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="at-categories clearfix">
+                    <div class="at-categories">
                         <h3 class="at-sedebar-title">Danh Mục</h3>
                         <ul>
                             @if (Model.ListLocation != null && Model.ListLocation.Any())
@@ -153,33 +153,11 @@
                                 foreach (var itemLocation in Model.ListLocation)
                                 {
                             <li>
-                                <a href="#">@itemLocation.Name</a> <span class="pull-right">(@itemLocation.Total)</span>
+                                <a href="#">@itemLocation.Name</a> <span class="">(@itemLocation.Total)</span>
                             </li>
                                 }
                             }
 
-
-                            @*<li>
-                                    <a href="#">modern design</a> <span class="pull-right">(08)</span>
-                                </li>
-                                <li>
-                                    <a href="#">best design</a> <span class="pull-right">(29)</span>
-                                </li>
-                                <li>
-                                    <a href="#">popular design</a> <span class="pull-right">(33)</span>
-                                </li>
-                                <li>
-                                    <a href="#">strong building</a> <span class="pull-right">(23)</span>
-                                </li>
-                                <li>
-                                    <a href="#">old design</a> <span class="pull-right">(22)</span>
-                                </li>
-                                <li>
-                                    <a href="#">popular design</a> <span class="pull-right">(29)</span>
-                                </li>
-                                <li>
-                                    <a href="#">best design</a> <span class="pull-right">(11)</span>
-                                </li>*@
                         </ul>
                     </div>
                     <div class="at-latest-news">
