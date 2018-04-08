@@ -84,8 +84,10 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     return View(model);
                 }
-
-                model.ListImageUrl.Add(model.RawImageUrl);
+                if (!string.IsNullOrEmpty(model.RawImageUrl))
+                {
+                    model.ListImageUrl.Add(model.RawImageUrl);
+                }
                 //========
                 Dictionary<int, byte[]> lstImgByte = new Dictionary<int, byte[]>();
                 var ListImage = model.ListImg.Where(x => !x.IsDelete).ToList();

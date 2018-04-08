@@ -85,7 +85,10 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     return View(model);
                 }
 
-                model.ListImageUrl.Add(model.RawImageUrl);
+                if (!string.IsNullOrEmpty(model.RawImageUrl))
+                {
+                    model.ListImageUrl.Add(model.RawImageUrl);
+                }
                 //========
                 Dictionary<int, byte[]> lstImgByte = new Dictionary<int, byte[]>();
                 var ListImage = model.ListImg.Where(x => !x.IsDelete).ToList();
@@ -152,10 +155,15 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 ProductModels model = _factory.GetDetailProduct(id);
                 if (model != null)
                 {
+                    if (!string.IsNullOrEmpty(model.ImageURL))
+                        model.ImageURL = Commons.HostImage + model.ImageURL;
                     if (model.ListImg != null && model.ListImg.Count > 0)
                     {
                         model.ListImg.ForEach(o => {
-                            o.ImageURL = Commons.HostImage + o.ImageURL;
+                            if (!string.IsNullOrEmpty(o.ImageURL))
+                            {
+                                o.ImageURL = Commons.HostImage + o.ImageURL;
+                            }
                             o.IsDelete = false;
                         });
                     }
