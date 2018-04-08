@@ -37,7 +37,7 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 var data = _factory.GetListProduct().Where(x => x.Type == (int)Commons.EProductType.House).ToList();
                 data.ForEach(x =>
                 {
-                    if (!string.IsNullOrEmpty(x.ImageURL) && !x.ImageURL.Equals(Commons.Image200_100))
+                    if (!string.IsNullOrEmpty(x.ImageURL))
                         x.ImageURL = Commons.HostImage + x.ImageURL;
                 });
                 model.ListProduct = data;
@@ -101,11 +101,6 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                         lstImgByte.Add(item.OffSet, imgByte);
                         model.ListImageUrl.Add(item.ImageURL);
                     }
-                    if (!string.IsNullOrEmpty(item.ImageURL))
-                    {
-                        item.ImageURL = item.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
-                        model.ListImageUrl.Add(item.ImageURL);
-                    }
                 }
                 //====================
                 string msg = "";
@@ -160,13 +155,10 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                     if (model.ListImg != null && model.ListImg.Count > 0)
                     {
                         model.ListImg.ForEach(o => {
-                            if(!o.ImageURL.Equals(Commons.Image200_100))
-                                o.ImageURL = Commons.HostImage + o.ImageURL;
+                            o.ImageURL = Commons.HostImage + o.ImageURL;
                             o.IsDelete = false;
                         });
                     }
-                    if (!string.IsNullOrEmpty(model.ImageURL) && !model.ImageURL.Equals(Commons.Image200_100))
-                        model.ImageURL = Commons.HostImage + model.ImageURL;
                     return model;
                 }
                 else
@@ -375,7 +367,6 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         {
             ImageProduct model = new ImageProduct();
             model.OffSet = OffSet;
-            model.ImageURL = Commons.Image200_100;
             return PartialView("_ImageItemProduct", model);
         }
     }
