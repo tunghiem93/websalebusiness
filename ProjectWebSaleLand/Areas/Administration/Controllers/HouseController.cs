@@ -152,11 +152,10 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 ProductModels model = _factory.GetDetailProduct(id);
                 if (model != null)
                 {
-                    model.ImageURL = string.IsNullOrEmpty(model.ImageURL) ? Commons.Image100_100 : (Commons.HostImage + model.ImageURL);
                     if (model.ListImg != null && model.ListImg.Count > 0)
                     {
                         model.ListImg.ForEach(o => {
-                            o.ImageURL = string.IsNullOrEmpty(o.ImageURL) ? Commons.Image200_100 : (Commons.HostImage + o.ImageURL);
+                            o.ImageURL = Commons.HostImage + o.ImageURL;
                             o.IsDelete = false;
                         });
                     }
@@ -226,8 +225,11 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
                 {
                     if (item.PictureUpload != null && item.PictureUpload.ContentLength > 0)
                     {
-                        item.ImageURL = item.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
-                        ListNotChangeImg.Add(item.ImageURL);
+                        if (!string.IsNullOrEmpty(item.ImageURL))
+                        {
+                            item.ImageURL = item.ImageURL.Replace(Commons._PublicImages, "").Replace(Commons.Image100_100, "");
+                            ListNotChangeImg.Add(item.ImageURL);
+                        }
 
                         Byte[] imgByte = new Byte[item.PictureUpload.ContentLength];
                         item.PictureUpload.InputStream.Read(imgByte, 0, item.PictureUpload.ContentLength);
@@ -365,7 +367,6 @@ namespace ProjectWebSaleLand.Areas.Administration.Controllers
         {
             ImageProduct model = new ImageProduct();
             model.OffSet = OffSet;
-            model.ImageURL = Commons.Image200_100;
             return PartialView("_ImageItemProduct", model);
         }
     }

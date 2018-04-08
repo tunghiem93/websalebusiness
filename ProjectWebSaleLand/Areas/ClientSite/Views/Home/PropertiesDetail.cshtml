@@ -71,68 +71,68 @@
     {
 
         <div class="item">
-            <img src=@string.Format("{0}", string.IsNullOrEmpty(Model.Product.ImageURL) ? Commons.Image400_250 : Model.Product.ImageURL) alt="@Model.Product.Name" style="width:400px; height:250px">
+            <img src=@string.Format("{0}", string.IsNullOrEmpty(Model.Product.ImageURL) ? Commons.Image400_250 : Model.Product.ImageURL) alt="@Model.Product.Name" style="width:750px; height:400px">
         </div>
     }<!-- End Carousel -->
                     <p style="padding-top: 7px; ">@Model.Product.Description </p>
                     <div class="at-sec-title at-sec-title-left">
-                        <h2>Property <span>Features</span></h2>
+                        @*<h2>Property <span>Features</span></h2>
                         <div class="at-heading-under-line">
                             <div class="at-heading-inside-line"></div>
-                        </div>
-                        <p>Thông tin chi tiết</p>
+                        </div>*@
+                        <h4>Thông tin chi tiết</h4>
                     </div>
                     <div class="row at-property-features">
                         <div class="col-md-6 clearfix">
                             <ul>
                                 <li>
-                                    Tên : <span class="">@Model.Product.Name</span>
+                                    Tên : <em class="">@Model.Product.Name</em>
                                 </li>
                                 <li>
-                                    Diện tích : <span class="">@Model.Product.Acreage</span>
+                                    Diện tích : <em class="">@Model.Product.Acreage</em>
                                 </li>
                                 @if (Model.Product.Type == (int)Commons.EProductType.House)
                                 {
                                 <li>
-                                    Phòng ngủ : <span class="">@Model.Product.BedRoom</span>
+                                    Phòng ngủ : <em class="">@Model.Product.BedRoom</em>
                                 </li>
                                 <li>
-                                    Phòng tắm : <span class="">@Model.Product.BathRoom</span>
+                                    Phòng tắm : <em class="">@Model.Product.BathRoom</em>
                                 </li>
                                 <li>
-                                    Phòng khách : <span class="">@Model.Product.LivingRoom</span>
+                                    Phòng khách : <em class="">@Model.Product.LivingRoom</em>
                                 </li>
                                 }
                                 <li>
-                                    Chiều dài : <span class="">@Model.Product.Length</span>
+                                    Chiều dài : <em class="">@Model.Product.Length</em>
                                 </li>
                                 <li>
-                                    Chiều rộng : <span class="">@Model.Product.Width</span>
+                                    Chiều rộng : <em class="">@Model.Product.Width</em>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-md-6">
                             <ul>
                                 <li>
-                                    Khu vực: <span class="">@Model.Product.Location</span>
+                                    Khu vực: <em class="">@Model.Product.Location</em>
                                 </li>
                                 <li>
-                                    Điện thoại : <span class=""> @Model.Product.Phone</span>
+                                    Điện thoại : <em class=""> @Model.Product.Phone</em>
                                 </li>
                                 <li>
-                                    Điện thoại 2 : <span class="">@Model.Product.Phone1</span>
+                                    Điện thoại 2 : <em class="">@Model.Product.Phone1</em>
                                 </li>
                                 <li>
-                                    Điện thoại 3 : <span class="">@Model.Product.Phone2</span>
+                                    Điện thoại 3 : <em class="">@Model.Product.Phone2</em>
                                 </li>
                                 <li>
-                                    Địa chỉ 1 : <span class="">@Model.Product.Address</span>
+                                    Địa chỉ 1 : <em class="">@Model.Product.Address</em>
                                 </li>
                                 <li>
-                                    Địa chỉ 2 : <span class="">@Model.Product.Address1</span>
+                                    Địa chỉ 2 : <em class="">@Model.Product.Address1</em>
                                 </li>
                                 <li>
-                                    Địa chỉ 3 : <span class="">@Model.Product.Address2</span>
+                                    Địa chỉ 3 : <em class="">@Model.Product.Address2</em>
                                 </li>
                             </ul>
                         </div>
@@ -159,7 +159,7 @@
                                 foreach (var itemLocation in Model.ListLocation)
                                 {
                             <li>
-                                <a href="#">@itemLocation.Name</a> <span class="">(@itemLocation.Total)</span>
+                                <a href="#">@itemLocation.Name</a> <span style="float: right; ">(@itemLocation.Total)</span>
                             </li>
                                 }
                             }
