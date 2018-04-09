@@ -90,7 +90,7 @@ namespace NuWebForSaler.Shared.Utilities
                 //int resizedW = maxWidth;
                 //int resizedH = (originalH * resizedW) / originalW;
                 int resizedW = 400;
-                int resizedH = 200;
+                int resizedH = 250;
                 bitmap = new System.Drawing.Bitmap(resizedW, resizedH);
 
                 using (Graphics g = Graphics.FromImage(bitmap))
