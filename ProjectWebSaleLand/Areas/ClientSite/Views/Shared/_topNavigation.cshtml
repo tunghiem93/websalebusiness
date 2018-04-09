@@ -95,7 +95,7 @@
                         </li>
                         @{
                             var user = Session["UserClient"] as ProjectWebSaleLand.Shared.Models.UserSession;
-                            if (user.IsAdminClient == true)
+                            if (user != null && user.IsAdminClient == true)
                             {
                                 <li>
                                     <a href="@Url.Action("Index","Login", new { area = "Administration"})">Quản lý</a>
