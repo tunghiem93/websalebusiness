@@ -64,6 +64,7 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                 UserSession userSession = new UserSession();
                 userSession.Email = result.Email;
                 userSession.UserName = result.DisplayName;
+                userSession.IsAdminClient = result.IsAdmin;
                 Session.Add("UserClient", userSession);
                 string myObjectJson = JsonConvert.SerializeObject(userSession);  //new JavaScriptSerializer().Serialize(userSession);
                 HttpCookie cookie = new HttpCookie("UserClientCookie");

@@ -17,7 +17,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" data-hover="dropdown" data-animations="fadeInUp">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active">
-                            <a href="@Url.Action("Index","Home")" @*class="dropdown-toggle" data-toggle="dropdown" role="button"*@ aria-haspopup="true" aria-expanded="false">Trang chủ @*<i class="fa fa-angle-down" aria-hidden="true"></i>*@</a>
+                            <a href="@Url.Action("Index", "Home")" @*class="dropdown-toggle" data-toggle="dropdown" role="button"*@ aria-haspopup="true" aria-expanded="false">Trang chủ @*<i class="fa fa-angle-down" aria-hidden="true"></i>*@</a>
                             @*<ul class="dropdown-menu">
                                 <li>
                                     <a href="index-one.html">Home one</a>
@@ -34,7 +34,7 @@
                             </ul>*@
                         </li>
                         <li>
-                            <a href="@Url.Action("Index","About")">Giới thiệu</a>
+                            <a href="@Url.Action("Index", "About")">Giới thiệu</a>
                         </li>
                         @*<li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Properties <i class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -91,8 +91,18 @@
                             </ul>
                         </li>*@
                         <li>
-                            <a href="@Url.Action("Index","Contact")">Liên hệ</a>
+                            <a href="@Url.Action("Index", "Contact")">Liên hệ</a>
                         </li>
+                        @{
+                            var user = Session["UserClient"] as ProjectWebSaleLand.Shared.Models.UserSession;
+                            if (user.IsAdminClient == true)
+                            {
+                                <li>
+                                    <a href="@Url.Action("Index","Login", new { area = "Administration"})">Quản lý</a>
+                                </li>
+                            }
+                        }
+                       
                     </ul>
                 </div>
             </nav>

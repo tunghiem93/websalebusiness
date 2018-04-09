@@ -19,6 +19,7 @@ namespace ProjectWebSaleLand.Data.Entities
         public string Address { get; set; }
         public bool Gender { get; set; }
         public bool IsActive { get; set; }
+        public bool IsAdmin { get; set; }
         public bool MaritalStatus { get; set; }
         public string Street { get; set; }
         public string City { get; set; }

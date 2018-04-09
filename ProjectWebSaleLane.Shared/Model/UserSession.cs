@@ -16,6 +16,7 @@ namespace ProjectWebSaleLand.Shared.Models
         public string ImageUrl { get; set; }
         public string RoleID { get; set; }
         public bool IsSuperAdmin { get; set; }
+        public bool IsAdminClient { get; set; }
         public string OrganizationName { get; set; }
         public string StoreId { get; set; }
         public string CurrencySymbol { get; set; }

@@ -161,7 +161,7 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
             {
                 try
                 {
-                    var item = cxt.dbCustomer.Where(x => x.ID == id).FirstOrDefault();
+                    var item = cxt.dbCustomer.Where(x => x.ID == id && !x.IsActive && !x.IsAdmin).FirstOrDefault();
                     if (item != null)
                     {
                         cxt.dbCustomer.Remove(item);
@@ -262,7 +262,8 @@ namespace ProjectWebSaleLand.Shared.Factory.CustomerFactory
                                               {
                                                   Email = x.Email,
                                                   DisplayName = x.Name,
-                                                  Password = x.Password
+                                                  Password = x.Password,
+                                                  IsAdmin = x.IsAdmin,
                                               })
                                               .FirstOrDefault();
                     return data;

@@ -17,6 +17,7 @@ namespace ProjectWebSaleLane.Shared.Model.Customer
         public string Password { get; set; }
         public bool IsRemember { get; set; }
         public string DisplayName { get; set; }
+        public bool IsAdmin { get; set; }
 
         public ClientLoginModel()
         {

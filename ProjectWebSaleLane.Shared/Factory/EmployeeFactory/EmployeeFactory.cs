@@ -163,7 +163,7 @@ namespace ProjectWebSaleLand.Shared.Factory.EmployeeFactory
             {
                 try
                 {
-                    var item = cxt.dbEmployee.Where(x => x.ID == id).FirstOrDefault();
+                    var item = cxt.dbEmployee.Where(x => x.ID == id && !x.IsActive && !x.IsSupperAdmin).FirstOrDefault();
                     if (item != null)
                     {
                         cxt.dbEmployee.Remove(item);
