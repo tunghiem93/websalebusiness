@@ -1279,7 +1279,8 @@ option {
 
 .at-property-location {
     background: #F2F2F2;
-    padding: 30px 20px;
+    /*padding: 30px 20px;*/
+    padding: 10px 15px;
 }
 
     .at-property-location h4 i {

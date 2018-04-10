@@ -38,7 +38,10 @@
                                     <div class="at-property-overlayer"></div>
                                     @Html.ActionLink("Chi Tiết", "PropertiesDetail","Home",new { id=item.ID},new {@class= "btn btn-default at-property-btn" })
                                     @*<h4>For Sale</h4>*@
-                                    <h5>@item.Price</h5>
+                                    @if (!string.IsNullOrEmpty(item.Price))
+                                    {
+                                        <h5>@item.Price</h5>
+                                    }
                                 </div>
                                 @*@if (item.Type == (int)Commons.EProductType.House)
                                 {
@@ -51,7 +54,7 @@
                                     </div>
                                 }*@
                                 <div class="at-property-location">
-                                    <h4><i class="fa fa-home" aria-hidden="true"></i> @Html.ActionLink(item.Name, "PropertiesDetail","Home",new { id=item.ID},null)</h4>
+                                    <p><i class="fa fa-home" aria-hidden="true"></i> @Html.ActionLink(item.Name, "PropertiesDetail", "Home", new { id=item.ID}, null)</p>
                                     <p class="moretext"><i class="fa fa-map-marker" aria-hidden="true"></i> @item.Address</p>
                                 </div>
                             </div>
