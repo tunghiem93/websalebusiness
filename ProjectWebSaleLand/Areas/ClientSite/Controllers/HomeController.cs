@@ -2,6 +2,7 @@
 using ProjectWebSaleLand.Shared.Factory.LocationFactory;
 using ProjectWebSaleLand.Shared.Factory.ProductFactory;
 using ProjectWebSaleLand.Shared.Model.Product;
+using ProjectWebSaleLand.Shared.Utilities;
 using ProjectWebSaleLane.Shared.Model.Product;
 using System;
 using System.Collections.Generic;
@@ -56,7 +57,7 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
             {
                 NSLog.Logger.Error("Index : ", ex);
                 return new HttpStatusCodeResult(400, ex.Message);
-            }            
+            }
         }
 
         public ActionResult MoreProperties()
@@ -78,18 +79,18 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
             ProductDetailViewModels model = new ProductDetailViewModels();
             if (!string.IsNullOrEmpty(id))
             {
-                
+
                 var data = _factoryPro.GetListProduct();
-                var oldData = data.Where(x=>!x.ID.Equals(id)).OrderBy(x => x.CreatedDate).Skip(0).Take(3).ToList();
+                var oldData = data.Where(x => !x.ID.Equals(id)).OrderBy(x => x.CreatedDate).Skip(0).Take(3).ToList();
                 oldData.ForEach(x =>
                 {
                     if (!string.IsNullOrEmpty(x.ImageURL))
                         x.ImageURL = Commons.HostImage + x.ImageURL;
                 });
                 var dataDetail = data.Where(x => x.ID.Equals(id)).FirstOrDefault();
-                if(!string.IsNullOrEmpty(dataDetail.ImageURL))
+                if (!string.IsNullOrEmpty(dataDetail.ImageURL))
                     dataDetail.ImageURL = Commons.HostImage + dataDetail.ImageURL;
-                if(dataDetail.ListImg != null)
+                if (dataDetail.ListImg != null)
                 {
                     dataDetail.ListImg.ForEach(x =>
                     {
@@ -112,7 +113,7 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
+
         }
 
         public ActionResult Search(ProductViewModels model)
@@ -121,8 +122,8 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                 model = new ProductViewModels();
 
             var data = _factoryPro.GetListProduct()
-                                    .Where(x=> (!string.IsNullOrEmpty(model.SegmentID) ? x.Segment == Convert.ToInt16(model.SegmentID): 1 == 1)
-                                            && (!string.IsNullOrEmpty(model.AreaID) ? x.LocationID.Equals(model.AreaID) : 1==1)
+                                    .Where(x => (!string.IsNullOrEmpty(model.SegmentID) ? x.Segment == Convert.ToInt16(model.SegmentID) : 1 == 1)
+                                            && (!string.IsNullOrEmpty(model.AreaID) ? x.LocationID.Equals(model.AreaID) : 1 == 1)
                                             && (!string.IsNullOrEmpty(model.CateID) ? x.Type == Convert.ToInt16(model.CateID) : 1 == 1))
                                     .OrderByDescending(x => x.CreatedDate)
                                                    .ToList();
@@ -136,10 +137,10 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
         }
         public ActionResult SearchLocation(string id)
         {
-           var model = new ProductViewModels();
+            var model = new ProductViewModels();
 
             var data = _factoryPro.GetListProduct()
-                                    .Where(x=>x.LocationID.Equals(id))
+                                    .Where(x => x.LocationID.Equals(id))
                                     .OrderByDescending(x => x.CreatedDate)
                                                    .ToList();
             data.ForEach(x =>
@@ -148,7 +149,26 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                     x.ImageURL = Commons.HostImage + x.ImageURL;
             });
             model.ListProduct = data;
-            return View("Search",model);
+            return View("Search", model);
+        }
+
+        [HttpPost]
+        public ActionResult SearchKeyWord(ProductDetailViewModels model)
+        {
+            var modelView = new ProductViewModels();
+            if (string.IsNullOrEmpty(model.KeyWord))
+                model.KeyWord = "";
+            var data = _factoryPro.GetListProduct()
+                                    .Where(x =>CommonHelper.RemoveUnicode(x.Name.ToLower()).Contains(CommonHelper.RemoveUnicode(model.KeyWord.ToLower())))
+                                    .OrderByDescending(x => x.CreatedDate)
+                                                   .ToList();
+            data.ForEach(x =>
+            {
+                if (!string.IsNullOrEmpty(x.ImageURL))
+                    x.ImageURL = Commons.HostImage + x.ImageURL;
+            });
+            modelView.ListProduct = data;
+            return View("Search", modelView);
         }
     }
 }

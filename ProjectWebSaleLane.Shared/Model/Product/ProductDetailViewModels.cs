@@ -13,5 +13,7 @@ namespace ProjectWebSaleLane.Shared.Model.Product
         public ProductModels Product { get; set; }
         public List<ProductModels> ListProduct { get; set; }
         public List<LocationModels> ListLocation { get; set; }
+
+        public string KeyWord { get; set; }
     }
 }
