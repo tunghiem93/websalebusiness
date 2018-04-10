@@ -19,6 +19,7 @@
         -webkit-border-radius: 0px;
         -moz-border-radius: 0px;
         border-radius: 0px;
+        border: 0px solid #fff;
     }
 
     .item.list-group-item {
@@ -34,6 +35,7 @@
 
         .item.list-group-item .list-group-image {
             margin-right: 10px;
+            border: 0px; 
         }
 
         .item.list-group-item .thumbnail {
@@ -45,7 +47,7 @@
         }
 
         .item.list-group-item:nth-of-type(odd) {
-            background: #eeeeee;
+            /*background: #eeeeee;*/
         }
 
         .item.list-group-item:before, .item.list-group-item:after {
@@ -97,7 +99,7 @@
 <!-- Property start from here -->
 <section class="at-property-sec">
     <div class="container">
-        <div id="products" class="row list-group">
+        <div id="products" class="list-group">
             @if (Model.ListProduct != null && Model.ListProduct.Any())
             {
                 foreach (var item in Model.ListProduct)
@@ -125,11 +127,9 @@
                                     <p class="">
                                         <i style="font-weight:bold">Giá:</i> @item.Price
                                     </p>
-                                    <div class="row">
-                                        <p class="moretext">
-                                            <i style="font-weight:bold">Mô tả:</i> @item.Description
-                                        </p>
-                                    </div>
+                                    <p class="moretext">
+                                        <i style="font-weight:bold">Mô tả:</i> @item.Description
+                                    </p>
                                 </div>
                             </div>
                         </div>
