@@ -134,5 +134,21 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
             model.ListProduct = data;
             return View(model);
         }
+        public ActionResult SearchLocation(string id)
+        {
+           var model = new ProductViewModels();
+
+            var data = _factoryPro.GetListProduct()
+                                    .Where(x=>x.LocationID.Equals(id))
+                                    .OrderByDescending(x => x.CreatedDate)
+                                                   .ToList();
+            data.ForEach(x =>
+            {
+                if (!string.IsNullOrEmpty(x.ImageURL))
+                    x.ImageURL = Commons.HostImage + x.ImageURL;
+            });
+            model.ListProduct = data;
+            return View("Search",model);
+        }
     }
 }

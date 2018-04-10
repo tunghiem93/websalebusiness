@@ -165,7 +165,8 @@
                                 foreach (var itemLocation in Model.ListLocation)
                                 {
                             <li>
-                                <a href="#">@itemLocation.Name</a> <span style="float: right; ">(@itemLocation.Total)</span>
+                                @Html.ActionLink(itemLocation.Name, "SearchLocation", "Home",new { id=itemLocation.ID},null)
+                                @*<a href="#">@itemLocation.Name</a>*@ <span style="float: right; ">(@itemLocation.Total)</span>
                             </li>
                                 }
                             }
