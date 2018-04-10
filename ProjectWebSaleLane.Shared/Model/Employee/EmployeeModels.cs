@@ -56,7 +56,7 @@ namespace ProjectWebSaleLand.Shared.Model.Employee
         public EmployeeModels()
         {
             IsActive = true;
-            IsSupperAdmin = true;
+            //IsSupperAdmin = true;
             BirthDate = new DateTime(1990, 01, 01);
             ListMarital = new List<SelectListItem>()
             {
