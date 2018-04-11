@@ -95,7 +95,7 @@
                                     Tên : <em class="">@Model.Product.Name</em>
                                 </li>
                                 <li>
-                                    Diện tích : <em class="">@Model.Product.Acreage</em>
+                                    Diện tích : <em class="">@Model.Product.Length X @Model.Product.Width m2</em>
                                 </li>
                                 @if (Model.Product.Type == (int)Commons.EProductType.House)
                                 {
@@ -204,22 +204,3 @@
     </div>
 </section>
 <!-- Property End -->
-@*<script>
-    function SearchKeyWord() {
-        var keyword = $('#search_field').val();
-        alert(keyword);
-        $.ajax({
-            url: '@Url.Action("SearchKeyWord")',
-            type: "post",
-            data: { keyword: keyword},
-            //processData: false,
-            //contentType: false,
-            success: function () {
-
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-
-            }
-        });
-    }
-</script>*@
