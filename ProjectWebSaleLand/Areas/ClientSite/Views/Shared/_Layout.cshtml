@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string controller = (string)ViewContext.RouteData.Values["controller"];
+}
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -51,7 +55,7 @@
         <!-- Header top end -->
         <!-- Header navbar start -->
         <div class="at-navbar fixed-header">
-            @Html.Partial("_topNavigation")
+            @Html.Partial("_topNavigation", controller)
         </div>
         <!-- Header navbar end -->
 </section>
@@ -107,3 +111,8 @@
     <script src="@Url.Content("~/Scripts/js/main.js")"></script>
 </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    });
+</script>
