@@ -88,26 +88,34 @@ namespace ProjectWebSaleLand.Areas.ClientSite.Controllers
                         x.ImageURL = Commons.HostImage + x.ImageURL;
                 });
                 var dataDetail = data.Where(x => x.ID.Equals(id)).FirstOrDefault();
-                if (!string.IsNullOrEmpty(dataDetail.ImageURL))
-                    dataDetail.ImageURL = Commons.HostImage + dataDetail.ImageURL;
-                if (dataDetail.ListImg != null)
+                if(dataDetail != null)
                 {
-                    dataDetail.ListImg.ForEach(x =>
+                    if (!string.IsNullOrEmpty(dataDetail.ImageURL))
+                        dataDetail.ImageURL = Commons.HostImage + dataDetail.ImageURL;
+                    if (dataDetail.ListImg != null)
                     {
-                        x.ImageURL = Commons.HostImage + x.ImageURL;
-                    });
-                }
-                model.ListProduct = oldData;
-                model.Product = dataDetail;
+                        dataDetail.ListImg.ForEach(x =>
+                        {
+                            x.ImageURL = Commons.HostImage + x.ImageURL;
+                        });
+                    }
+                    model.ListProduct = oldData;
+                    model.Product = dataDetail;
 
-                //// get list location
-                var _location = _factoryLoc.GetListLocation();
-                _location.ForEach(x =>
+                    //// get list location
+                    var _location = _factoryLoc.GetListLocation();
+                    _location.ForEach(x =>
+                    {
+                        x.Total = data.Count(z => z.LocationID.Equals(x.ID));
+                    });
+                    model.ListLocation = _location;
+                    return View(model);
+                }
+                else
                 {
-                    x.Total = data.Count(z => z.LocationID.Equals(x.ID));
-                });
-                model.ListLocation = _location;
-                return View(model);
+                    return RedirectToAction("Index","Home");
+                }
+                
             }
             else
             {
