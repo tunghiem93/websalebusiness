@@ -97,7 +97,7 @@
                         }
                         <hr />
                         <center><h4>OR</h4></center>
-                        <input class="btn btn-lg btn-facebook btn-block" type="submit" value="Đăng Nhập Với Facebook">
+                        <input class="btn btn-lg btn-facebook btn-block" onclick="Loginfb()" value="Đăng Nhập Với Facebook">
                     </div>
                 </div>
             </div>
@@ -112,3 +112,36 @@
     </footer>
 </body>
 </html>
+
+<script>
+    function Loginfb() {
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1626090807486378',
+                xfbml: true,
+                version: 'v2.12'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    }
+
+    $.fblogin({
+        fbId: '1626090807486378',
+        permissions: 'email,user_birthday',
+        fields: 'email,first_name',
+        success: function (data) {
+            // data will only contain the requested fields plus the user FB id
+            // which is always included by default
+            console.log(data.first_name, data.birthday);
+        }
+    });
+</script>
